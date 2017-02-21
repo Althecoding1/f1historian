@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+    <title>F1 Historian</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+    window.onscroll = function(e) {
+      var nav = document.getElementsByClassName("top-bar")[0],
+          banner = document.getElementsByClassName("big-banner")[0],
+          scrollArrow = document.getElementsByClassName("arrow")[0],
+          range = 70,
+          scrollTop = document.body.scrollTop;
+      if (scrollTop > range) {
+          nav.classList.add("scrollNav");
+          if(scrollArrow) {
+            scrollArrow.style.display = 'none';
+          }
+        }
+        else {
+          nav.classList.remove("scrollNav");
+          if(scrollArrow) {
+            scrollArrow.style.display = "block";
+          }
+      }
+    };
+    </script>
+    <script src="bundle.js"></script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+.driverInfo {
+  font: arial;
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: right;
+  color: white;
+  .driverName {
+    font-family: "Captain";
+    font-weight: bolder;
+    font-size: 1.5em;
+
+    .firstName {
+    }
+    .lastName {
+    }
+  }
+}

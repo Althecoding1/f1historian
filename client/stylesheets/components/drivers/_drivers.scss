@@ -1,0 +1,60 @@
+@function black($opacity) {
+  @return rgba(black, $opacity)
+}
+
+.driversPage {
+  position: relative;
+  top: 20vh;
+}
+
+.drivers {
+  width: 200px;
+  height: 300px;
+  margin: 20px;
+  border: 1px solid black;
+  overflow: hidden;
+  object-fit: fill;
+
+  .driverImage {
+    height: 100%;
+    width: 100%;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .driverInfo {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: none;
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+.hvr-grow-shadow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 2px 2px 2px black;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: box-shadow, transform;
+  transition-property: box-shadow, transform;
+}
+
+.hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  .driverInfo {
+    display: block;
+    bottom: 0;
+    padding: 5px;
+    background: black(0.5);
+  }
+}
