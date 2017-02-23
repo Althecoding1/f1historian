@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import MenuItem from 'material-ui/MenuItem';
-import SearchDrivers from './Search.jsx';
+import DropDownMenu from 'material-ui/DropDownMenu';
 
 class YearSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
       value: 0,
-      years: [],
+      years: ['Years'],
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -25,7 +25,7 @@ class YearSearch extends Component {
       return (
         <MenuItem value={index} primaryText={year} key={index}/>
       )});
-    this.setState({years: years});
+    this.setState({years: years.concat(this.state.years)});
   }
 
   handleChange(event, index, value) {
@@ -33,13 +33,12 @@ class YearSearch extends Component {
   }
 
   render() {
-    console.log(this.state.years);
     return(
-      <SearchDrivers
-        years={this.state.years}
-        yValue={this.state.value}
-        yonChange={this.handleChange}
-      />
+      <div className="seasonDropDown">
+        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+          {this.state.years}
+        </DropDownMenu>
+      </div>
     );
   }
 }

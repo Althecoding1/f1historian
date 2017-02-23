@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
 import MenuItem from 'material-ui/MenuItem';
+import DropDownMenu from 'material-ui/DropDownMenu';
 import SearchDrivers from './Search.jsx';
 
 class TeamSearch extends Component {
@@ -36,11 +37,11 @@ class TeamSearch extends Component {
   render() {
     console.log(this.state);
     return(
-      <SearchDrivers
-        teams={this.state.teams}
-        tValue={this.state.value}
-        tonChange={this.handleChange}
-      />
+      <div className="constructorDropDown">
+        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+          {this.state.teams}
+        </DropDownMenu>
+      </div>
     );
   }
 }

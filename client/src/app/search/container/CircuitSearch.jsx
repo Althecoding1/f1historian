@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
 import MenuItem from 'material-ui/MenuItem';
+import DropDownMenu from 'material-ui/DropDownMenu';
 import SearchDrivers from './Search.jsx';
 
 class CircuitSearch extends Component {
@@ -35,11 +36,11 @@ class CircuitSearch extends Component {
 
   render() {
     return(
-      <SearchDrivers
-        circuits={this.state.circuits}
-        cValue={this.state.value}
-        conChange={this.handleChange}
-      />
+      <div className="circuitsDropDown">
+        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+          {this.state.circuits}
+        </DropDownMenu>
+      </div>
     );
   }
 }

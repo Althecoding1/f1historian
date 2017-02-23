@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import SearchDrivers from '../../search/container/Search.jsx';
+import SearchDrivers from '../../search/presentation/SearchDrivers.jsx';
 
 const DriversPage = ({ drivers, updateText, text, driversList }) => (
 
