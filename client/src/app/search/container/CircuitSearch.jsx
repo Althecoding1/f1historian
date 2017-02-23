@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import axios from 'axios';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import SearchDrivers from './Search.jsx';
 
 class CircuitSearch extends Component {
   constructor(props) {
@@ -20,13 +19,15 @@ class CircuitSearch extends Component {
   }
 
   generateCircuits() {
+    let count = 0;
     axios.get('/api/circuits')
     .then( (res) => {
-      this.setState({circuits: res.data.map( (circuit, index) => {
-        return (
-          <MenuItem value={index} primaryText={circuit.name} key={index}/>
-        );
-      })})
+      let circuits = res.data.map( (circuit) => {
+        count++;
+        return <MenuItem value={count} primaryText={circuit.name} key={count}/>;
+      })
+      circuits.unshift(<MenuItem value={0} primaryText="Circuits" key={0}/>);
+      this.setState({circuits});
     })
   }
 

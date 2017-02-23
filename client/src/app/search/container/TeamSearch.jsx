@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import axios from 'axios';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import SearchDrivers from './Search.jsx';
 
 class TeamSearch extends Component {
   constructor(props) {
@@ -20,13 +19,15 @@ class TeamSearch extends Component {
   }
 
   generateConstructors() {
+    let count = 0;
     axios.get('/api/teams')
     .then( (res) => {
-      this.setState({teams: res.data.map( (team, index) => {
-        return (
-          <MenuItem value={index} primaryText={team.name} key={index}/>
-        )
-      })})
+      let teams = res.data.map( (team, index) => {
+        count++;
+        return <MenuItem value={count} primaryText={team.name} key={count}/>;
+      })
+      teams.unshift(<MenuItem value={0} primaryText="Constructors" key={0}/>);
+      this.setState({teams});
     })
   }
 
@@ -35,7 +36,6 @@ class TeamSearch extends Component {
   }
 
   render() {
-    console.log(this.state);
     return(
       <div className="constructorDropDown">
         <DropDownMenu value={this.state.value} onChange={this.handleChange}>

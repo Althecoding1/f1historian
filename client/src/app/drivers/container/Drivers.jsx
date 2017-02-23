@@ -37,6 +37,16 @@ class Drivers extends Component {
     this.updateDriverList();
   }
 
+  collectDriverNames(drivers) {
+    let count = 0;
+    let driverNames = drivers.map( (driver) => {
+      count++;
+      return <MenuItem value={count} primaryText={driver.forename + ' ' + driver.surname} key={count}/>;
+    })
+    driverNames.unshift(<MenuItem value={0} primaryText="Drivers" key={0}/>);
+    return driverNames;
+  }
+
   sortDriverByNum(list) {
     let resultNums = [];
     let resultNoNums = []
@@ -64,6 +74,7 @@ class Drivers extends Component {
   }
 
   getInitialDrivers() {
+    let count = 0;
     axios.get('/api/drivers')
     .then( (res) => {
       this.setState({
@@ -84,11 +95,7 @@ class Drivers extends Component {
           );
         }),
         drivers: res.data,
-        driverNames: res.data.map( (driver, index) => {
-            return (
-              <MenuItem value={index} primaryText={driver.forename + ' ' + driver.surname} key={index}/>
-            );
-        })
+        driverNames: this.collectDriverNames(res.data),
       })
     }).catch( (err) => {
       console.log(`Error occured fetching drivers: ${err}`);

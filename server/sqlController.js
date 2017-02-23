@@ -70,5 +70,8 @@ module.exports = {
         res.json(rows);
       }
     })
+  },
+  getCompileByYear: (req, res) => {
+    res.send('hi');
   }
  };

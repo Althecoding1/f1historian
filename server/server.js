@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 app.get('/api/drivers', sql.getAllDrivers);
 app.get('/api/circuits', sql.getAllTracks);
 app.get('/api/teams', sql.getAllTeamNames);
+app.get('/api/year-search/:year', sql.getCompileByYear);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('client/static', 'index.html'));

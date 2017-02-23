@@ -8,7 +8,7 @@ import TeamMenu from '../container/TeamSearch.jsx';
 import YearMenu from '../container/YearSearch.jsx';
 import '../../../../stylesheets/main.scss';
 
-const SearchDrivers = ({drivers}) => (
+const SearchDrivers = ({ drivers }) => (
 
 <div className="container-fluid">
   <Card>
@@ -31,10 +31,7 @@ const SearchDrivers = ({drivers}) => (
 );
 
 SearchDrivers.propTypes = {
-  years: PropTypes.array.isRequired,
   drivers: PropTypes.array.isRequired,
-  teams: PropTypes.array.isRequired,
-  circuits: PropTypes.array.isRequired
 }
 
 export default SearchDrivers;
