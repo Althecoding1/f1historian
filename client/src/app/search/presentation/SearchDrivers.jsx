@@ -13,18 +13,18 @@ const SearchDrivers = ({ drivers }) => (
 <div className="container-fluid">
   <Card>
   <div className="row">
-      <div className="col-sm-3">
-        <YearMenu />
-      </div>
-      <div className="col-sm-3">
-        <DriverMenu drivers={drivers}/>
-      </div>
-      <div className="col-sm-3">
-        <TeamMenu />
-      </div>
-      <div className="col-sm-3">
-        <CircuitsMenu />
-      </div>
+    <div className="col-sm-3">
+      <YearMenu />
+    </div>
+    <div className="col-sm-3">
+      <DriverMenu drivers={drivers}/>
+    </div>
+    <div className="col-sm-3">
+      <TeamMenu />
+    </div>
+    <div className="col-sm-3">
+      <CircuitsMenu />
+    </div>
   </div>
 </Card>
 </div>

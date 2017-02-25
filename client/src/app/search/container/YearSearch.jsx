@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import { render, findDOMNode } from 'react-dom';
+import axios from 'axios';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
+import Driver from './driverSearch.jsx';
 
 class YearSearch extends Component {
   constructor(props) {
@@ -9,8 +11,12 @@ class YearSearch extends Component {
     this.state = {
       value: 0,
       years: [],
+      circuit: '',
+      driver: '',
+      team: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.updateAllQueryInfo = this.updateAllQueryInfo.bind(this);
   }
 
   componentWillMount() {
@@ -24,19 +30,23 @@ class YearSearch extends Component {
     for(let i = 1950; i <= year; i++) { years.push(i); }
     years = years.map( (year) => {
       count++;
-      return <MenuItem value={count} primaryText={year} key={count}/>;
+      return <MenuItem value={count} primaryText={year} key={count} />;
     });
-    years.unshift(<MenuItem value={0} primaryText="Years" key={0}/>);
+    years.unshift(<MenuItem value={0} primaryText="Years" key={0} />);
     this.setState({years: years});
   }
 
   handleChange(event, index, value) {
-    console.log(this.state.years[value].props.primaryText);
-    this.setState({value});
+    let circuit = document.getElementsByClassName("circuit")[0].children[0].children[1].innerHTML;
+    let driver = document.getElementsByClassName("driver")[0].children[0].children[1].innerHTML;
+    let team = document.getElementsByClassName("team")[0].children[0].children[1].innerHTML;
+    let year = this.state.years[value].props.primaryText;
+    this.updateAllQueryInfo(year, circuit, driver, team);
+    this.setState({value, circuit, driver, team});
   }
 
-  updateAllQueryInfo(currIdx) {
-    axios.get('/api/year-search/' + this.state.years[currIdx].props.primaryText + '')
+  updateAllQueryInfo(year, circuit, driver, team) {
+    axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit)
     .then( (res) => {
       console.log(res);
     })
@@ -45,7 +55,7 @@ class YearSearch extends Component {
   render() {
     return(
       <div className="seasonDropDown">
-        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+        <DropDownMenu value={this.state.value} onChange={this.handleChange} className="year">
           {this.state.years}
         </DropDownMenu>
       </div>

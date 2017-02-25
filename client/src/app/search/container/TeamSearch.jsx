@@ -10,6 +10,9 @@ class TeamSearch extends Component {
     this.state = {
       value: 0,
       teams: [],
+      circuit: '',
+      driver: '',
+      year: ''
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -32,13 +35,16 @@ class TeamSearch extends Component {
   }
 
   handleChange(event, index, value) {
-    this.setState({value});
+    let circuit = document.getElementsByClassName("circuit")[0].children[0].children[1].innerHTML;
+    let driver = document.getElementsByClassName("driver")[0].children[0].children[1].innerHTML;
+    let year = document.getElementsByClassName('year')[0].children[0].children[1].innerHTML;
+    this.setState({circuit, driver, year, value});
   }
 
   render() {
     return(
       <div className="constructorDropDown">
-        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+        <DropDownMenu value={this.state.value} onChange={this.handleChange} className="team">
           {this.state.teams}
         </DropDownMenu>
       </div>

@@ -9,7 +9,10 @@ class CircuitSearch extends Component {
     super(props);
     this.state = {
       value: 0,
-      circuits: []
+      circuits: [],
+      year: '',
+      driver: '',
+      team: ''
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -24,21 +27,24 @@ class CircuitSearch extends Component {
     .then( (res) => {
       let circuits = res.data.map( (circuit) => {
         count++;
-        return <MenuItem value={count} primaryText={circuit.name} key={count}/>;
+        return <MenuItem value={count} primaryText={circuit.name} key={count} />;
       })
-      circuits.unshift(<MenuItem value={0} primaryText="Circuits" key={0}/>);
+      circuits.unshift(<MenuItem value={0} primaryText="Circuits" key={0} />);
       this.setState({circuits});
     })
   }
 
   handleChange(event, index, value) {
-    this.setState({value});
+    let year = document.getElementsByClassName('year')[0].children[0].children[1].innerHTML;
+    let driver = document.getElementsByClassName('driver')[0].children[0].children[1].innerHTML;
+    let team = document.getElementsByClassName('team')[0].children[0].children[1].innerHTML;
+    this.setState({year, driver, team, value});
   }
 
   render() {
     return(
       <div className="circuitsDropDown">
-        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+        <DropDownMenu value={this.state.value} onChange={this.handleChange} className="circuit">
           {this.state.circuits}
         </DropDownMenu>
       </div>

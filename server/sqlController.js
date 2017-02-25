@@ -71,7 +71,13 @@ module.exports = {
       }
     })
   },
-  getCompileByYear: (req, res) => {
-    res.send('hi');
+  getCompiledSearch: (req, res) => {
+    const defaultParams = {
+      year: "Years",
+      driver: "Drivers",
+      team: "Constructors",
+      circuit: "Circuits"
+    }
+    res.send(req.params);
   }
  };
