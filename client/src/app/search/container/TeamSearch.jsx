@@ -34,10 +34,19 @@ class TeamSearch extends Component {
     })
   }
 
+  updateAllQueryInfo(year, circuit, driver, team) {
+    axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit)
+    .then( (res) => {
+      this.props.callback(res);
+    })
+  }
+
   handleChange(event, index, value) {
     let circuit = document.getElementsByClassName("circuit")[0].children[0].children[1].innerHTML;
     let driver = document.getElementsByClassName("driver")[0].children[0].children[1].innerHTML;
     let year = document.getElementsByClassName('year')[0].children[0].children[1].innerHTML;
+    let team = this.state.teams[value].props.primaryText;
+    this.updateAllQueryInfo(year, circuit, driver, team);
     this.setState({circuit, driver, year, value});
   }
 

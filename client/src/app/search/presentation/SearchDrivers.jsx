@@ -8,30 +8,29 @@ import TeamMenu from '../container/TeamSearch.jsx';
 import YearMenu from '../container/YearSearch.jsx';
 import '../../../../stylesheets/main.scss';
 
-const SearchDrivers = ({ drivers }) => (
+const SearchDrivers = () => (
 
 <div className="container-fluid">
   <Card>
-  <div className="row">
-    <div className="col-sm-3">
-      <YearMenu />
+    <div className="row">
+      <div className="col-sm-3">
+        <YearMenu />
+      </div>
+      <div className="col-sm-3">
+        <DriverMenu />
+      </div>
+      <div className="col-sm-3">
+        <TeamMenu />
+      </div>
+      <div className="col-sm-3">
+        <CircuitsMenu />
+      </div>
     </div>
-    <div className="col-sm-3">
-      <DriverMenu drivers={drivers}/>
-    </div>
-    <div className="col-sm-3">
-      <TeamMenu />
-    </div>
-    <div className="col-sm-3">
-      <CircuitsMenu />
-    </div>
-  </div>
-</Card>
+  </Card>
 </div>
 );
 
 SearchDrivers.propTypes = {
-  drivers: PropTypes.array.isRequired,
 }
 
 export default SearchDrivers;

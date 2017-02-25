@@ -29,10 +29,6 @@ class Drivers extends Component {
 
   }
 
-  componentWillMount() {
-    this.getInitialDrivers();
-  }
-
   componentDidUpdate() {
     this.updateDriverList();
   }
@@ -130,19 +126,6 @@ class Drivers extends Component {
   }
 
   render() {
-    while(this.state.driverNames.length === 0) {
-      return (
-      <div className="driversPage">
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-sm-12">
-              <CircularProgress size={80} thickness={5}/>
-            </div>
-          </div>
-        </div>
-      </div>
-      );
-    }
     return(
       <DriversPage updateText={this.updateText} drivers={this.state.driverList}
         text={this.state.text} driversList={this.state.driverNames}/>

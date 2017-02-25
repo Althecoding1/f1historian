@@ -5,7 +5,6 @@ const DriversPage = ({ drivers, updateText, text, driversList }) => (
 
   <div className="driversPage">
     <form>
-      <SearchDrivers drivers={driversList}/>
     <div className="form-group">
       <label htmlFor="driverName">Driver</label>
         <input className="form-control" value={text} onChange={updateText} id="driverNmae"/>
@@ -23,7 +22,6 @@ const DriversPage = ({ drivers, updateText, text, driversList }) => (
 DriversPage.propTypes = {
   text: PropTypes.string.isRequired,
   updateText: PropTypes.func.isRequired,
-  drivers: PropTypes.array.isRequired,
 }
 
 

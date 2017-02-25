@@ -38,7 +38,16 @@ class CircuitSearch extends Component {
     let year = document.getElementsByClassName('year')[0].children[0].children[1].innerHTML;
     let driver = document.getElementsByClassName('driver')[0].children[0].children[1].innerHTML;
     let team = document.getElementsByClassName('team')[0].children[0].children[1].innerHTML;
+    let circuit = this.state.circuits[value].props.primaryText;
+    this.updateAllQueryInfo(year, circuit, driver, team);
     this.setState({year, driver, team, value});
+  }
+
+  updateAllQueryInfo(year, circuit, driver, team) {
+    axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit)
+    .then( (res) => {
+      this.props.callback(res);
+    })
   }
 
   render() {

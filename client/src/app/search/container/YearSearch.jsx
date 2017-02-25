@@ -4,6 +4,7 @@ import axios from 'axios';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import Driver from './driverSearch.jsx';
+import SearchResults from '../presentation/SearchResults.jsx';
 
 class YearSearch extends Component {
   constructor(props) {
@@ -48,16 +49,18 @@ class YearSearch extends Component {
   updateAllQueryInfo(year, circuit, driver, team) {
     axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit)
     .then( (res) => {
-      console.log(res);
+      this.props.callback(res);
     })
   }
 
   render() {
     return(
-      <div className="seasonDropDown">
-        <DropDownMenu value={this.state.value} onChange={this.handleChange} className="year">
-          {this.state.years}
-        </DropDownMenu>
+      <div>
+        <div className="seasonDropDown">
+          <DropDownMenu value={this.state.value} onChange={this.handleChange} className="year">
+            {this.state.years}
+          </DropDownMenu>
+        </div>
       </div>
     );
   }

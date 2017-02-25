@@ -2,6 +2,7 @@ import Base from './base/presentation/Base.jsx';
 import HomePage from './base/container/HomePage.jsx';
 import DriversPage from './drivers/container/Drivers.jsx';
 import CircuitsPage from './circuits/container/CircuitsPage.jsx';
+import SearchResults from './search/container/Search.jsx';
 
 const Routes = {
   component: Base,
@@ -12,7 +13,7 @@ const Routes = {
     },
     {
       path: '/drivers',
-      component: DriversPage
+      component: SearchResults
     },
     {
       path: '/circuits',
