@@ -6,7 +6,9 @@ import CircuitsMenu from './CircuitSearch.jsx';
 import DriverMenu from './driverSearch.jsx';
 import TeamMenu from './TeamSearch.jsx';
 import YearMenu from './YearSearch.jsx';
+import SearchDrivers from '../presentation/SearchDrivers.jsx';
 import '../../../../stylesheets/main.scss';
+
 
 class Search extends Component {
   constructor(props) {
@@ -21,26 +23,7 @@ class Search extends Component {
 
   render() {
     return (
-    <div className="resultSearch">
-      <div className="container-fluid">
-        <Card>
-          <div className="row">
-            <div className="col-sm-3">
-              <YearMenu callback={this.onChildUpdate}/>
-            </div>
-            <div className="col-sm-3">
-              <DriverMenu callback={this.onChildUpdate}/>
-            </div>
-            <div className="col-sm-3">
-              <TeamMenu callback={this.onChildUpdate}/>
-            </div>
-            <div className="col-sm-3">
-              <CircuitsMenu callback={this.onChildUpdate}/>
-            </div>
-          </div>
-        </Card>
-      </div>
-    </div>
+      <SearchDrivers callback={this.onChildUpdate}/>
     );
   }
 }

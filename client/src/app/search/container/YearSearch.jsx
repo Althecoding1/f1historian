@@ -49,6 +49,10 @@ class YearSearch extends Component {
   updateAllQueryInfo(year, circuit, driver, team) {
     axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit)
     .then( (res) => {
+      let data = res.data;
+      for(var i = 0; i < data.length; i++) {
+        console.log(data[i].forename + ' ' + data[i].surname);
+      }
       this.props.callback(res);
     })
   }

@@ -77,7 +77,58 @@ module.exports = {
       driver: "Drivers",
       team: "Constructors",
       circuit: "Circuits"
+    };
+    let driverName = req.params.driver;
+    let yearQuery = '', driverQuery = '', teamQuery = '', circuitQuery = '', definedQueries = [],
+    whereClause = ' WHERE ';
+    if(defaultParams.year !== req.params.year) {
+      yearQuery = ' year=' + req.params.year;
+      console.log(yearQuery);
+      definedQueries.push(yearQuery);
     }
-    res.send(req.params);
+    if(defaultParams.driver !== req.params.driver) {
+      let forename = '', surname = '', middleIndex;
+      for(let i = 0; i < driverName.length; i++) {
+        if(i > middleIndex) { surname += driverName[i]; }
+        if(driverName[i] !== ' ') { forename += driverName[i];
+          if(driverName === ' ') { middleIndex = i; }
+        }
+      }
+      driverQuery = ' forename=' + '"' + forename + '"' + ' AND surname=' + '"' + surname + '"';
+      definedQueries.push(driverQuery);
+    }
+    if(defaultParams.circuit !== req.params.circuit) {
+      circuitQuery = ' C.name=' + '+"' + req.params.circuit + '"';
+      definedQueries.push(circuitQuery);
+    }
+    if(defaultParams.team !== req.params.team) {
+      teamQuery = ' CON.name=' + '"' + req.params.team + '"';
+      definedQueries.push(teamQuery);
+    }
+
+    let query = 'SELECT * FROM races AS R' +
+    ' JOIN f1sqldata.driverStandings AS DS ON R.raceId = DS.raceId' +
+    ' JOIN f1sqldata.drivers AS D ON D.driverId = DS.driverId' +
+    ' JOIN f1sqldata.circuits AS C ON R.circuitId=C.circuitId' +
+    ' JOIN f1sqldata.constructorStandings AS CS ON R.raceId = CS.raceId' +
+    ' JOIN f1sqldata.constructors AS CON ON CS.constructorId = CON.constructorId';
+
+    for(var j = 0; j < definedQueries.length; j++) {
+      if(j === 0) {
+        whereClause += definedQueries[j];
+      } else {
+        whereClause += ' AND ' + definedQueries[j];
+      }
+    }
+    query += whereClause;
+    console.log(query);
+    db.query(query, (err, rows, fields) => {
+      if(err) {
+        console.log(err);
+      }
+      var newRows = JSON.stringify(rows);
+      newRows = JSON.parse(newRows);
+      res.send(newRows);
+    });
   }
  };

@@ -27,6 +27,26 @@ class DriverSearch extends Component {
     this.getInitialDrivers();
   }
 
+  updateDriverList() {
+    this.setState({driverList: this.state.drivers.map((driver) => {
+      return(
+        <div className="col-sm-3" key={driver.driverId}>
+          <div className="drivers hvr-grow-shadow">
+            <div className="driverInfo">
+              <a href={driver.url}>
+                <Driver driver={driver}/>
+              </a>
+            </div>
+            <div className="driverImage">
+              <img src={driver.imageUrl}/>
+            </div>
+          </div>
+        </div>
+      );
+    })
+  })
+  }
+
   getInitialDrivers() {
     let count = 0;
     axios.get('/api/drivers')

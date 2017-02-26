@@ -6,31 +6,37 @@ import CircuitsMenu from '../container/CircuitSearch.jsx';
 import DriverMenu from '../container/driverSearch.jsx';
 import TeamMenu from '../container/TeamSearch.jsx';
 import YearMenu from '../container/YearSearch.jsx';
+import DriversPage from '../../drivers/container/Drivers.jsx';
 import '../../../../stylesheets/main.scss';
 
-const SearchDrivers = () => (
+const SearchDrivers = ({ callback }) => (
 
-<div className="container-fluid">
-  <Card>
-    <div className="row">
-      <div className="col-sm-3">
-        <YearMenu />
-      </div>
-      <div className="col-sm-3">
-        <DriverMenu />
-      </div>
-      <div className="col-sm-3">
-        <TeamMenu />
-      </div>
-      <div className="col-sm-3">
-        <CircuitsMenu />
-      </div>
+  <div className="resultSearch">
+    <div className="container-fluid">
+      <Card>
+        <div className="row">
+          <div className="col-sm-3">
+            <YearMenu callback={callback}/>
+          </div>
+          <div className="col-sm-3">
+            <DriverMenu callback={callback}/>
+          </div>
+          <div className="col-sm-3">
+            <TeamMenu callback={callback}/>
+          </div>
+          <div className="col-sm-3">
+            <CircuitsMenu callback={callback}/>
+          </div>
+        </div>
+      </Card>
+      <DriversPage />
     </div>
-  </Card>
-</div>
+  </div>
+
 );
 
 SearchDrivers.propTypes = {
+  callback: PropTypes.func.isRequired,
 }
 
 export default SearchDrivers;
