@@ -13,17 +13,39 @@ import '../../../../stylesheets/main.scss';
 class Search extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      driverInfo: {},
+      teamInfo: {},
+      circuitInfo: {},
+      events: {
+        triggered: {
+          drivers: false,
+          teams: false,
+          circuits: false
+        }
+      }
+    };
     this.onChildUpdate = this.onChildUpdate.bind(this);
   }
 
-  onChildUpdate(newState) {
-    console.log(newState);
+  onChildUpdate(inputEvents, driverInfo, teamInfo, circuitInfo) {
+    let events = this.state.events;
+    for(let key in events.triggered) {
+      let newKey;
+      if(events.triggered[key] !== inputEvents.triggered[key]) {
+        newKey = inputEvents.triggered[key];
+        events.triggered[key] = newKey;
+      }
+    }
+    console.log(events);
+    this.setState({events, driverInfo, teamInfo, circuitInfo});
   }
 
   render() {
     return (
-      <SearchDrivers callback={this.onChildUpdate}/>
+      <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo}
+        teams={this.state.teamInfo} circuits={this.state.circuitInfo}
+        events={this.state.events}/>
     );
   }
 }

@@ -50,10 +50,33 @@ class YearSearch extends Component {
     axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit)
     .then( (res) => {
       let data = res.data;
-      for(var i = 0; i < data.length; i++) {
-        console.log(data[i].forename + ' ' + data[i].surname);
+      let driverInfo = {
+        drivers: [],
+        driverNames: [],
+      },
+      teamInfo = {
+        teams: [],
+        teamNames: [],
+      },
+      circuitInfo = {
+        circuits: [],
+        circuitNames: [],
       }
-      this.props.callback(res);
+      for(var i = 0; i < data.length; i++) {
+        let name = data[i].forename + ' ' + data[i].surname;
+        let team = data[i].name;
+        let circuit = data[i].circuitName;
+        if(driverInfo.driverNames.indexOf(name) === -1) {
+          driverInfo.driverNames.push(name);
+        }
+        if(teamInfo.teamNames.indexOf(team) === -1) {
+          teamInfo.teamNames.push(team);
+        }
+        if(circuitInfo.circuitNames.indexOf(circuit) === -1) {
+          circuitInfo.circuitNames.push(circuit);
+        }
+      }
+      this.props.callback(events, driverInfo, teamInfo, circuitInfo);
     })
   }
 

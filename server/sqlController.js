@@ -83,22 +83,21 @@ module.exports = {
     whereClause = ' WHERE ';
     if(defaultParams.year !== req.params.year) {
       yearQuery = ' year=' + req.params.year;
-      console.log(yearQuery);
       definedQueries.push(yearQuery);
     }
     if(defaultParams.driver !== req.params.driver) {
       let forename = '', surname = '', middleIndex;
       for(let i = 0; i < driverName.length; i++) {
-        if(i > middleIndex) { surname += driverName[i]; }
-        if(driverName[i] !== ' ') { forename += driverName[i];
-          if(driverName === ' ') { middleIndex = i; }
-        }
+        if(!middleIndex) {
+          if(driverName[i] !== ' ') { forename += driverName[i];  }
+          if(driverName[i] === ' ') { middleIndex = i; }
+        } else if(i > middleIndex) { surname += driverName[i]; }
       }
       driverQuery = ' forename=' + '"' + forename + '"' + ' AND surname=' + '"' + surname + '"';
       definedQueries.push(driverQuery);
     }
     if(defaultParams.circuit !== req.params.circuit) {
-      circuitQuery = ' C.name=' + '+"' + req.params.circuit + '"';
+      circuitQuery = ' C.circuitName=' + '"' + req.params.circuit + '"';
       definedQueries.push(circuitQuery);
     }
     if(defaultParams.team !== req.params.team) {
@@ -119,6 +118,9 @@ module.exports = {
       } else {
         whereClause += ' AND ' + definedQueries[j];
       }
+    }
+    if(whereClause === ' WHERE ') {
+      res.end();
     }
     query += whereClause;
     console.log(query);

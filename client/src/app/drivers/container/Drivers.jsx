@@ -22,10 +22,7 @@ class Drivers extends Component {
     };
 
     this.updateText = this.updateText.bind(this);
-    this.getInitialDrivers = this.getInitialDrivers.bind(this);
     this.updateDriverList = this.updateDriverList.bind(this);
-    this.searchSort = this.searchSort.bind(this);
-    this.sortDriverByNum = this.sortDriverByNum.bind(this);
 
   }
 
@@ -33,75 +30,9 @@ class Drivers extends Component {
     this.updateDriverList();
   }
 
-  collectDriverNames(drivers) {
-    let count = 0;
-    let driverNames = drivers.map( (driver) => {
-      count++;
-      return <MenuItem value={count} primaryText={driver.forename + ' ' + driver.surname} key={count}/>;
-    })
-    driverNames.unshift(<MenuItem value={0} primaryText="Drivers" key={0}/>);
-    return driverNames;
-  }
-
-  sortDriverByNum(list) {
-    let resultNums = [];
-    let resultNoNums = []
-    for (let i = 0; i < list.length; i++) {
-      if(list[i] !== undefined) {
-        if(list[i].number !== null) {
-          resultNums.push(list[i]);
-        } else {
-          resultNoNums.push(list[i]);
-        }
-      }
-    }
-    return resultNums.concat(resultNoNums);
-  }
-
-  searchSort(search, obj) {
-    search = search.toLowerCase();
-    let name = (obj.forename + obj.surname).toLowerCase();
-    for(let i = 0; i < search.length; i++) {
-      if(name.indexOf(search[i]) === -1 && search[i] !== ' ') {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  getInitialDrivers() {
-    let count = 0;
-    axios.get('/api/drivers')
-    .then( (res) => {
-      this.setState({
-        driverList: res.data.map((driver) => {
-          return(
-            <div className="col-sm-3" key={driver.driverId}>
-              <div className="drivers hvr-grow-shadow">
-                <div className="driverInfo">
-                  <a href={driver.url}>
-                    <Driver driver={driver}/>
-                  </a>
-                  </div>
-                  <div className="driverImage">
-                    <img src={driver.imageUrl}/>
-                  </div>
-              </div>
-            </div>
-          );
-        }),
-        drivers: res.data,
-        driverNames: this.collectDriverNames(res.data),
-      })
-    }).catch( (err) => {
-      console.log(`Error occured fetching drivers: ${err}`);
-    });
-  }
-
   updateDriverList() {
     if(!this.state.updated) {
-      this.setState({driverList: this.sortDriverByNum(this.state.drivers.map((driver) => {
-        if(this.searchSort(this.state.text, driver)) {
+      this.setState({driverList: this.state.drivers.map((driver) => {
           return(
             <div className="col-sm-3" key={driver.driverId}>
               <div className="drivers hvr-grow-shadow">
@@ -116,8 +47,7 @@ class Drivers extends Component {
               </div>
             </div>
           );
-        }
-      })), updated: true})
+      }), updated: true})
     }
   }
 

@@ -12,7 +12,8 @@ class CircuitSearch extends Component {
       circuits: [],
       year: '',
       driver: '',
-      team: ''
+      team: '',
+      triggered: false
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -21,13 +22,26 @@ class CircuitSearch extends Component {
     this.generateCircuits();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.circuits.circuitNames.length >= 1) {
+      let value = nextProps.events.triggered.circuits ? 1 : 0;
+      let count = 0;
+      let circuits = nextProps.circuits.circuitNames.map( (circuits) => {
+        count++;
+        return <MenuItem value={count} primaryText={circuits} key={count}/>;
+      })
+      circuits.unshift(<MenuItem value={0} primaryText="Circuits" key={0} />);
+      this.setState({value, circuits});
+    }
+  }
+
   generateCircuits() {
     let count = 0;
     axios.get('/api/circuits')
     .then( (res) => {
       let circuits = res.data.map( (circuit) => {
         count++;
-        return <MenuItem value={count} primaryText={circuit.name} key={count} />;
+        return <MenuItem value={count} primaryText={circuit.circuitName} key={count} />;
       })
       circuits.unshift(<MenuItem value={0} primaryText="Circuits" key={0} />);
       this.setState({circuits});
@@ -46,7 +60,41 @@ class CircuitSearch extends Component {
   updateAllQueryInfo(year, circuit, driver, team) {
     axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit)
     .then( (res) => {
-      this.props.callback(res);
+      let data = res.data;
+      let driverInfo = {
+        drivers: [],
+        driverNames: [],
+      },
+      teamInfo = {
+        teams: [],
+        teamNames: [],
+      },
+      circuitInfo = {
+        circuits: [],
+        circuitNames: [],
+      }
+
+      for(var i = 0; i < data.length; i++) {
+        let name = data[i].forename + ' ' + data[i].surname;
+        let team = data[i].name;
+        let circuit = data[i].circuitName;
+        if(driverInfo.driverNames.indexOf(name) === -1) {
+          driverInfo.driverNames.push(name);
+        }
+        if(teamInfo.teamNames.indexOf(team) === -1) {
+          teamInfo.teamNames.push(team);
+        }
+        if(circuitInfo.circuitNames.indexOf(circuit) === -1) {
+          circuitInfo.circuitNames.push(circuit);
+        }
+      }
+      if(circuit === "Circuits") {
+        this.props.events.triggered.circuits = false;
+      } else {
+        this.props.events.triggered.circuits = true;
+      }
+      let events = this.props.events;
+      this.props.callback(events, driverInfo, teamInfo, circuitInfo);
     })
   }
 
