@@ -17,19 +17,23 @@ class Search extends Component {
       driverInfo: {},
       teamInfo: {},
       circuitInfo: {},
+      yearInfo: {},
       events: {
         triggered: {
           drivers: false,
           teams: false,
-          circuits: false
+          circuits: false,
+          years: false
         }
       }
     };
     this.onChildUpdate = this.onChildUpdate.bind(this);
   }
 
-  onChildUpdate(inputEvents, driverInfo, teamInfo, circuitInfo) {
+  onChildUpdate(inputEvents, driverInfo, teamInfo, circuitInfo, yearInfo) {
+
     let events = this.state.events;
+    if(inputEvents === null) { return this.setState({driverInfo, teamInfo, circuitInfo})}
     for(let key in events.triggered) {
       let newKey;
       if(events.triggered[key] !== inputEvents.triggered[key]) {
@@ -37,15 +41,14 @@ class Search extends Component {
         events.triggered[key] = newKey;
       }
     }
-    console.log(events);
-    this.setState({events, driverInfo, teamInfo, circuitInfo});
+    this.setState({events, driverInfo, teamInfo, circuitInfo, yearInfo});
   }
 
   render() {
     return (
       <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo}
         teams={this.state.teamInfo} circuits={this.state.circuitInfo}
-        events={this.state.events}/>
+        events={this.state.events} years={this.state.yearInfo}/>
     );
   }
 }

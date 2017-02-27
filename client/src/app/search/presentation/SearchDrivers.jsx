@@ -9,14 +9,15 @@ import YearMenu from '../container/YearSearch.jsx';
 import DriversPage from '../../drivers/container/Drivers.jsx';
 import '../../../../stylesheets/main.scss';
 
-const SearchDrivers = ({ callback, drivers, teams, circuits, events }) => (
+const SearchDrivers = ({ callback, drivers, teams, circuits, years, events }) => (
 
   <div className="resultSearch">
     <div className="container-fluid">
       <Card>
         <div className="row">
           <div className="col-sm-3">
-            <YearMenu callback={callback}/>
+            <YearMenu callback={callback} years={years}
+              events={events}/>
           </div>
           <div className="col-sm-3">
             <DriverMenu callback={callback} drivers={drivers}

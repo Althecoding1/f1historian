@@ -78,9 +78,13 @@ module.exports = {
       team: "Constructors",
       circuit: "Circuits"
     };
+    const finalQuery = {
+      drivers: {},
+      teams: {},
+      circuits: {}
+    };
     let driverName = req.params.driver;
-    let yearQuery = '', driverQuery = '', teamQuery = '', circuitQuery = '', definedQueries = [],
-    whereClause = ' WHERE ';
+    let yearQuery = '', driverQuery = '', teamQuery = '', circuitQuery = '', definedQueries = [];
     if(defaultParams.year !== req.params.year) {
       yearQuery = ' year=' + req.params.year;
       definedQueries.push(yearQuery);
@@ -96,41 +100,66 @@ module.exports = {
       driverQuery = ' forename=' + '"' + forename + '"' + ' AND surname=' + '"' + surname + '"';
       definedQueries.push(driverQuery);
     }
-    if(defaultParams.circuit !== req.params.circuit) {
-      circuitQuery = ' C.circuitName=' + '"' + req.params.circuit + '"';
-      definedQueries.push(circuitQuery);
-    }
     if(defaultParams.team !== req.params.team) {
-      teamQuery = ' CON.name=' + '"' + req.params.team + '"';
+      teamQuery = ' T.name=' + '"' + req.params.team + '"';
       definedQueries.push(teamQuery);
     }
-
-    let query = 'SELECT * FROM races AS R' +
-    ' JOIN f1sqldata.driverStandings AS DS ON R.raceId = DS.raceId' +
-    ' JOIN f1sqldata.drivers AS D ON D.driverId = DS.driverId' +
-    ' JOIN f1sqldata.circuits AS C ON R.circuitId=C.circuitId' +
-    ' JOIN f1sqldata.constructorStandings AS CS ON R.raceId = CS.raceId' +
-    ' JOIN f1sqldata.constructors AS CON ON CS.constructorId = CON.constructorId';
-
-    for(var j = 0; j < definedQueries.length; j++) {
-      if(j === 0) {
-        whereClause += definedQueries[j];
+    let queries = {
+      builtDriverQuery: 'SELECT DISTINCT' +
+      ' D.number, forename, surname, dob, nationality, D.url, imageUrl FROM drivers AS D' +
+      ' JOIN results AS R ON D.driverId = R.driverId' +
+      ' JOIN races AS Races ON Races.raceId = R.raceId' +
+      ' JOIN constructors AS T ON T.constructorId = R.constructorId',
+      builtCircuitQuery: 'SELECT DISTINCT circuitName, location, country, lat, lng, C.url, C.imageUrl' +
+      ' FROM circuits AS C' +
+      ' JOIN races AS Races ON Races.circuitId = C.circuitId' +
+      ' JOIN f1sqldata.constructorStandings AS CS ON Races.raceId = CS.raceId' +
+      ' JOIN f1sqldata.results AS RES ON Races.raceId = RES.raceId' +
+      ' JOIN f1sqldata.drivers AS D ON RES.driverId = D.driverId' +
+      ' JOIN f1sqldata.constructors AS T ON CS.constructorId = T.constructorId',
+      builtTeamQuery: 'SELECT DISTINCT T.name, teamNationality, T.url FROM constructors AS T' +
+      ' JOIN results AS R ON T.constructorId = R.constructorId' +
+      ' JOIN drivers AS D ON R.driverId = D.driverId' +
+      ' JOIN races AS Races ON Races.raceId = R.raceId'
+    }
+    let finalQueryBuilds = {};
+    for(let key in queries) {
+      whereClause = ' WHERE ';
+      for(var j = 0; j < definedQueries.length; j++) {
+        if(j === 0) {
+          whereClause += definedQueries[j];
+        } else {
+          whereClause += ' AND ' + definedQueries[j];
+        }
+      }
+      let finalQuery;
+      if(whereClause === ' WHERE ') {
+        queries[key] = queries[key];
+         finalQuery = queries[key];
       } else {
-        whereClause += ' AND ' + definedQueries[j];
+         finalQuery = queries[key] += whereClause;
       }
+      finalQueryBuilds[key] = finalQuery;
     }
-    if(whereClause === ' WHERE ') {
-      res.end();
-    }
-    query += whereClause;
-    console.log(query);
-    db.query(query, (err, rows, fields) => {
-      if(err) {
-        console.log(err);
-      }
-      var newRows = JSON.stringify(rows);
+    let resultObj = {};
+    db.query(finalQueryBuilds.builtDriverQuery, (err, rows, fields) => {
+      if(err) {console.log(finalQueryBuilds.builtDriverQuery, err)}
+      let newRows = JSON.stringify(rows);
       newRows = JSON.parse(newRows);
-      res.send(newRows);
+      resultObj.drivers = newRows;
+      db.query(finalQueryBuilds.builtTeamQuery, (err, rows, fields) => {
+        if(err) {console.log(finalQueryBuilds.builtTeamQuery, err)}
+        let newRows = JSON.stringify(rows);
+        newRows = JSON.parse(newRows);
+        resultObj.teams = newRows;
+        db.query(finalQueryBuilds.builtCircuitQuery, (err, rows, fields) => {
+          if(err) {console.log(finalQueryBuilds.builtCircuitQuery, err)}
+          let newRows = JSON.stringify(rows);
+          newRows = JSON.parse(newRows);
+          resultObj.circuits = newRows;
+          res.send(resultObj);
+        })
+      })
     });
   }
  };

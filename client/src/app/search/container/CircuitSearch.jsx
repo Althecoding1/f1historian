@@ -58,12 +58,16 @@ class CircuitSearch extends Component {
   }
 
   updateAllQueryInfo(year, circuit, driver, team) {
-    axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit)
+    let options = {headers: {'typeofsearch': 'circuit'}};
+    axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit, options)
     .then( (res) => {
       let data = res.data;
       let driverInfo = {
         drivers: [],
         driverNames: [],
+      },
+      yearInfo = {
+        years: []
       },
       teamInfo = {
         teams: [],
@@ -73,19 +77,30 @@ class CircuitSearch extends Component {
         circuits: [],
         circuitNames: [],
       }
-
-      for(var i = 0; i < data.length; i++) {
-        let name = data[i].forename + ' ' + data[i].surname;
-        let team = data[i].name;
-        let circuit = data[i].circuitName;
-        if(driverInfo.driverNames.indexOf(name) === -1) {
-          driverInfo.driverNames.push(name);
+      for(let key in data) {
+        if(key === "drivers") {
+          data[key].forEach( (driver) => {
+            let name = driver.forename + ' ' + driver.surname;
+            if(driverInfo.driverNames.indexOf(name) === -1) {
+              driverInfo.driverNames.push(name);
+            }
+          });
         }
-        if(teamInfo.teamNames.indexOf(team) === -1) {
-          teamInfo.teamNames.push(team);
+        if(key === "teams") {
+          data[key].forEach( (team) => {
+            let name = team.name;
+            if(teamInfo.teamNames.indexOf(name) === -1) {
+              teamInfo.teamNames.push(name);
+            }
+          });
         }
-        if(circuitInfo.circuitNames.indexOf(circuit) === -1) {
-          circuitInfo.circuitNames.push(circuit);
+        if(key === "circuits") {
+          data[key].forEach( (circuit) => {
+            let name = circuit.circuitName;
+            if(circuitInfo.circuitNames.indexOf(name) === -1) {
+              circuitInfo.circuitNames.push(name);
+            }
+          })
         }
       }
       if(circuit === "Circuits") {
@@ -94,7 +109,7 @@ class CircuitSearch extends Component {
         this.props.events.triggered.circuits = true;
       }
       let events = this.props.events;
-      this.props.callback(events, driverInfo, teamInfo, circuitInfo);
+      this.props.callback(events, driverInfo, teamInfo, circuitInfo, yearInfo);
     })
   }
 

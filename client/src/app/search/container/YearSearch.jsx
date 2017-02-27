@@ -24,6 +24,19 @@ class YearSearch extends Component {
     this.generateYears();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.years.length >= 1) {
+      let value = nextProps.events.triggered.years ? 1 : 0;
+      let count = 0;
+      let years = nextProps.years.years.map( (year) => {
+        count++;
+        return <MenuItem value={count} primaryText={year} key={count}/>;
+      })
+      years.unshift(<MenuItem value={0} primaryText="Years" key={0}/>);
+      this.setState({value, years});
+    }
+  }
+
   generateYears() {
     let year = new Date().getFullYear();
     let years = [];
@@ -46,13 +59,44 @@ class YearSearch extends Component {
     this.setState({value, circuit, driver, team});
   }
 
+  grabNameValues(currObj) {
+    if(currObj === drivers) {
+      drivers.forEach( (driver) => {
+        let name = driver.forename + ' ' + driver.surname;
+        if(driverInfo.driverNames.indexOf(name) === -1) {
+          driverInfo.driverNames.push(name);
+        }
+      });
+    }
+    if(currObj === teams) {
+      teams.forEach( (team) => {
+        let name = team.name;
+        if(teamInfo.teamNames.indexOf(name) === -1) {
+          teamInfo.teamNames.push(name);
+        }
+      });
+    }
+    if(currObj === circuits) {
+      circuits.forEach( (circuit) => {
+        let name = circuit.circuitName;
+        if(circuitInfo.circuitNames.indexOf(name) === -1) {
+          circuitInfo.circuitNames.push(name);
+        }
+      })
+    }
+  }
+
   updateAllQueryInfo(year, circuit, driver, team) {
-    axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit)
+    let options = {headers: {'typeofsearch': 'year'}};
+    axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit, options)
     .then( (res) => {
       let data = res.data;
       let driverInfo = {
         drivers: [],
         driverNames: [],
+      },
+      yearInfo = {
+        years: []
       },
       teamInfo = {
         teams: [],
@@ -61,22 +105,40 @@ class YearSearch extends Component {
       circuitInfo = {
         circuits: [],
         circuitNames: [],
+      };
+      for(let key in data) {
+        if(key === "drivers") {
+          data[key].forEach( (driver) => {
+            let name = driver.forename + ' ' + driver.surname;
+            if(driverInfo.driverNames.indexOf(name) === -1) {
+              driverInfo.driverNames.push(name);
+            }
+          });
+        }
+        if(key === "teams") {
+          data[key].forEach( (team) => {
+            let name = team.name;
+            if(teamInfo.teamNames.indexOf(name) === -1) {
+              teamInfo.teamNames.push(name);
+            }
+          });
+        }
+        if(key === "circuits") {
+          data[key].forEach( (circuit) => {
+            let name = circuit.circuitName;
+            if(circuitInfo.circuitNames.indexOf(name) === -1) {
+              circuitInfo.circuitNames.push(name);
+            }
+          })
+        }
       }
-      for(var i = 0; i < data.length; i++) {
-        let name = data[i].forename + ' ' + data[i].surname;
-        let team = data[i].name;
-        let circuit = data[i].circuitName;
-        if(driverInfo.driverNames.indexOf(name) === -1) {
-          driverInfo.driverNames.push(name);
-        }
-        if(teamInfo.teamNames.indexOf(team) === -1) {
-          teamInfo.teamNames.push(team);
-        }
-        if(circuitInfo.circuitNames.indexOf(circuit) === -1) {
-          circuitInfo.circuitNames.push(circuit);
-        }
+      if(year === "Years") {
+        this.props.events.triggered.years = false;
+      } else {
+        this.props.events.triggered.years = true;
       }
-      this.props.callback(events, driverInfo, teamInfo, circuitInfo);
+      let events = this.props.events;
+      this.props.callback(events, driverInfo, teamInfo, circuitInfo, yearInfo);
     })
   }
 
