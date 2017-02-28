@@ -83,6 +83,7 @@ module.exports = {
       teams: {},
       circuits: {}
     };
+
     let driverName = req.params.driver;
     let yearQuery = '', driverQuery = '', teamQuery = '', circuitQuery = '', definedQueries = [];
     if(defaultParams.year !== req.params.year) {
@@ -104,12 +105,15 @@ module.exports = {
       teamQuery = ' T.name=' + '"' + req.params.team + '"';
       definedQueries.push(teamQuery);
     }
+
     let queries = {
+
       builtDriverQuery: 'SELECT DISTINCT' +
       ' D.number, forename, surname, dob, nationality, D.url, imageUrl FROM drivers AS D' +
       ' JOIN results AS R ON D.driverId = R.driverId' +
       ' JOIN races AS Races ON Races.raceId = R.raceId' +
       ' JOIN constructors AS T ON T.constructorId = R.constructorId',
+
       builtCircuitQuery: 'SELECT DISTINCT circuitName, location, country, lat, lng, C.url, C.imageUrl' +
       ' FROM circuits AS C' +
       ' JOIN races AS Races ON Races.circuitId = C.circuitId' +
@@ -117,11 +121,14 @@ module.exports = {
       ' JOIN f1sqldata.results AS RES ON Races.raceId = RES.raceId' +
       ' JOIN f1sqldata.drivers AS D ON RES.driverId = D.driverId' +
       ' JOIN f1sqldata.constructors AS T ON CS.constructorId = T.constructorId',
+
       builtTeamQuery: 'SELECT DISTINCT T.name, teamNationality, T.url FROM constructors AS T' +
       ' JOIN results AS R ON T.constructorId = R.constructorId' +
       ' JOIN drivers AS D ON R.driverId = D.driverId' +
       ' JOIN races AS Races ON Races.raceId = R.raceId'
-    }
+
+    };
+
     let finalQueryBuilds = {};
     for(let key in queries) {
       whereClause = ' WHERE ';
@@ -141,6 +148,7 @@ module.exports = {
       }
       finalQueryBuilds[key] = finalQuery;
     }
+    console.log(finalQueryBuilds);
     let resultObj = {};
     db.query(finalQueryBuilds.builtDriverQuery, (err, rows, fields) => {
       if(err) {console.log(finalQueryBuilds.builtDriverQuery, err)}
@@ -157,9 +165,11 @@ module.exports = {
           let newRows = JSON.stringify(rows);
           newRows = JSON.parse(newRows);
           resultObj.circuits = newRows;
+          console.log(resultObj.drivers);
           res.send(resultObj);
         })
       })
     });
   }
+
  };

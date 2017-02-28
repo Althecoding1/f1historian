@@ -23,6 +23,7 @@ class CircuitSearch extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
     if(nextProps.circuits.circuitNames.length >= 1) {
       let value = nextProps.events.triggered.circuits ? 1 : 0;
       let count = 0;

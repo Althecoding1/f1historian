@@ -4,7 +4,6 @@ import axios from 'axios';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import Driver from './driverSearch.jsx';
-import SearchResults from '../presentation/SearchResults.jsx';
 
 class YearSearch extends Component {
   constructor(props) {

@@ -36,9 +36,14 @@ class DriverSearch extends Component {
         count++;
         return <MenuItem value={count} primaryText={driver} key={count}/>;
       })
+      console.log(driverNames);
       driverNames.unshift(<MenuItem value={0} primaryText="Drivers" key={0}/>);
       this.setState({value, driverNames});
     }
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.driverNames);
   }
 
   updateDriverList() {
@@ -105,8 +110,9 @@ class DriverSearch extends Component {
     let circuit = document.getElementsByClassName('circuit')[0].children[0].children[1].innerHTML;
     let year = document.getElementsByClassName('year')[0].children[0].children[1].innerHTML;
     let driver = this.state.driverNames[value].props.primaryText;
+    let loading = true;
     this.updateAllQueryInfo(year, circuit, driver, team);
-    this.setState({team, circuit, year, value});
+    this.setState({team, circuit, year, value, loading});
   }
 
   updateAllQueryInfo(year, circuit, driver, team) {
