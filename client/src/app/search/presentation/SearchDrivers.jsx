@@ -34,8 +34,7 @@ const SearchDrivers = ({ callback, isLoading, drivers, teams, circuits, years, e
           </div>
         </div>
       </Card>
-      <LoadingModal />
-      <DriversPage />
+      <DriversPage drivers={drivers}/>
     </div>
   </div>
 

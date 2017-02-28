@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
 import MenuItem from 'material-ui/MenuItem';
+import Driver from '../../drivers/presentation/Driver.jsx';
 import DropDownMenu from 'material-ui/DropDownMenu';
 
 class CircuitSearch extends Component {
@@ -11,6 +12,7 @@ class CircuitSearch extends Component {
       value: 0,
       circuits: [],
       year: '',
+      circuit: '',
       driver: '',
       team: '',
       triggered: false
@@ -23,17 +25,40 @@ class CircuitSearch extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
+    let htmlCircuit = document.getElementsByClassName('circuit')[0].children[0].children[1].innerHTML;
     if(nextProps.circuits.circuitNames.length >= 1) {
-      let value = nextProps.events.triggered.circuits ? 1 : 0;
       let count = 0;
       let circuits = nextProps.circuits.circuitNames.map( (circuits) => {
         count++;
         return <MenuItem value={count} primaryText={circuits} key={count}/>;
       })
       circuits.unshift(<MenuItem value={0} primaryText="Circuits" key={0} />);
+      let value;
+      circuits.filter( (circuit, index) => {
+        if(circuit.props.primaryText === htmlCircuit) {
+          return value = index;
+        }});
       this.setState({value, circuits});
     }
+  }
+
+  updateDriverList(data) {
+    return data.map((driver) => {
+      return(
+        <div className="col-sm-3" key={driver.driverId}>
+          <div className="drivers hvr-grow-shadow">
+            <div className="driverInfo">
+              <a href={driver.url}>
+                <Driver driver={driver}/>
+              </a>
+            </div>
+            <div className="driverImage">
+              <img src={driver.imageUrl}/>
+            </div>
+          </div>
+        </div>
+      );
+    })
   }
 
   generateCircuits() {
@@ -55,7 +80,7 @@ class CircuitSearch extends Component {
     let team = document.getElementsByClassName('team')[0].children[0].children[1].innerHTML;
     let circuit = this.state.circuits[value].props.primaryText;
     this.updateAllQueryInfo(year, circuit, driver, team);
-    this.setState({year, driver, team, value});
+    this.setState({year, driver, team, value, circuit});
   }
 
   updateAllQueryInfo(year, circuit, driver, team) {
@@ -78,8 +103,11 @@ class CircuitSearch extends Component {
         circuits: [],
         circuitNames: [],
       }
+      let driverList;
       for(let key in data) {
         if(key === "drivers") {
+          driverList = this.updateDriverList(data[key]);
+          driverInfo.drivers = driverList;
           data[key].forEach( (driver) => {
             let name = driver.forename + ' ' + driver.surname;
             if(driverInfo.driverNames.indexOf(name) === -1) {

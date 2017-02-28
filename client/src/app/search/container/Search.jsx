@@ -34,7 +34,7 @@ class Search extends Component {
   }
 
   isLoading(loading) {
-    this.setState({loading})
+    this.setState({loading: loading})
   }
 
   onChildUpdate(inputEvents, driverInfo, teamInfo, circuitInfo, yearInfo) {
@@ -52,11 +52,15 @@ class Search extends Component {
   render() {
     if(this.state.loading) {
       return (
-        <RefreshIndicator size={50} left={70} top={0} loadingColor="#FF9800"
-          status="loading"/>
+        <div>
+          <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo}
+            teams={this.state.teamInfo} circuits={this.state.circuitInfo}
+            events={this.state.events} years={this.state.yearInfo} isLoading={this.isLoading}/>
+          <RefreshIndicator size={50} left={70} top={0} loadingColor="#FF9800"
+            status="loading"/>
+        </div>
       );
     } else {
-      console.log(this.state.driverInfo);
       return (
         <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo}
           teams={this.state.teamInfo} circuits={this.state.circuitInfo}

@@ -36,18 +36,13 @@ class DriverSearch extends Component {
         count++;
         return <MenuItem value={count} primaryText={driver} key={count}/>;
       })
-      console.log(driverNames);
       driverNames.unshift(<MenuItem value={0} primaryText="Drivers" key={0}/>);
       this.setState({value, driverNames});
     }
   }
 
-  componentDidUpdate() {
-    console.log(this.state.driverNames);
-  }
-
-  updateDriverList() {
-    this.setState({driverList: this.state.drivers.map((driver) => {
+  updateDriverList(data) {
+    return data.map((driver) => {
       return(
         <div className="col-sm-3" key={driver.driverId}>
           <div className="drivers hvr-grow-shadow">
@@ -63,7 +58,6 @@ class DriverSearch extends Component {
         </div>
       );
     })
-  })
   }
 
   getInitialDrivers() {
@@ -111,12 +105,13 @@ class DriverSearch extends Component {
     let year = document.getElementsByClassName('year')[0].children[0].children[1].innerHTML;
     let driver = this.state.driverNames[value].props.primaryText;
     let loading = true;
-    this.updateAllQueryInfo(year, circuit, driver, team);
-    this.setState({team, circuit, year, value, loading});
+    let driverList = this.updateAllQueryInfo(year, circuit, driver, team);
+    this.setState({team, circuit, year, value, loading, driverList});
   }
 
   updateAllQueryInfo(year, circuit, driver, team) {
     let options = {headers: {'typeofsearch': 'driver'}};
+
     axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit, options)
     .then( (res) => {
       let data = res.data;
@@ -135,9 +130,11 @@ class DriverSearch extends Component {
         circuits: [],
         circuitNames: [],
       }
-
+      let driverList;
       for(let key in data) {
         if(key === "drivers") {
+          driverList = this.updateDriverList(data[key]);
+          driverInfo.drivers = driverList;
           data[key].forEach( (driver) => {
             let name = driver.forename + ' ' + driver.surname;
             if(driverInfo.driverNames.indexOf(name) === -1) {
@@ -169,6 +166,7 @@ class DriverSearch extends Component {
       }
       let events = this.props.events;
       this.props.callback(events, driverInfo, teamInfo, circuitInfo, yearInfo);
+      return driverList;
     })
   }
 

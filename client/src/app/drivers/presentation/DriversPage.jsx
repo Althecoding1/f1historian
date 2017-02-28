@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import SearchDrivers from '../../search/presentation/SearchDrivers.jsx';
 
-const DriversPage = ({ drivers, updateText, text, driversList }) => (
+const DriversPage = ({ drivers, updateText, text }) => (
 
   <div className="driversPage">
     <form>

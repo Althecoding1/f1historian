@@ -148,7 +148,6 @@ module.exports = {
       }
       finalQueryBuilds[key] = finalQuery;
     }
-    console.log(finalQueryBuilds);
     let resultObj = {};
     db.query(finalQueryBuilds.builtDriverQuery, (err, rows, fields) => {
       if(err) {console.log(finalQueryBuilds.builtDriverQuery, err)}
@@ -165,7 +164,6 @@ module.exports = {
           let newRows = JSON.stringify(rows);
           newRows = JSON.parse(newRows);
           resultObj.circuits = newRows;
-          console.log(resultObj.drivers);
           res.send(resultObj);
         })
       })

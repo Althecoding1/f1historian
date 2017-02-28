@@ -3,7 +3,7 @@ import { render, findDOMNode } from 'react-dom';
 import axios from 'axios';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
-import Driver from './driverSearch.jsx';
+import Driver from '../../drivers/presentation/Driver.jsx';
 
 class YearSearch extends Component {
   constructor(props) {
@@ -13,7 +13,8 @@ class YearSearch extends Component {
       years: [],
       circuit: '',
       driver: '',
-      team: ''
+      team: '',
+      driverList: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.updateAllQueryInfo = this.updateAllQueryInfo.bind(this);
@@ -36,6 +37,25 @@ class YearSearch extends Component {
     }
   }
 
+  updateDriverList(data) {
+    return data.map((driver) => {
+      return(
+        <div className="col-sm-3" key={driver.driverId}>
+          <div className="drivers hvr-grow-shadow">
+            <div className="driverInfo">
+              <a href={driver.url}>
+                <Driver driver={driver}/>
+              </a>
+            </div>
+            <div className="driverImage">
+              <img src={driver.imageUrl}/>
+            </div>
+          </div>
+        </div>
+      );
+    })
+  }
+
   generateYears() {
     let year = new Date().getFullYear();
     let years = [];
@@ -54,8 +74,8 @@ class YearSearch extends Component {
     let driver = document.getElementsByClassName("driver")[0].children[0].children[1].innerHTML;
     let team = document.getElementsByClassName("team")[0].children[0].children[1].innerHTML;
     let year = this.state.years[value].props.primaryText;
-    this.updateAllQueryInfo(year, circuit, driver, team);
-    this.setState({value, circuit, driver, team});
+    let driverList = this.updateAllQueryInfo(year, circuit, driver, team);
+    this.setState({value, circuit, driver, team, driverList});
   }
 
   grabNameValues(currObj) {
@@ -105,8 +125,11 @@ class YearSearch extends Component {
         circuits: [],
         circuitNames: [],
       };
+      let driverList;
       for(let key in data) {
         if(key === "drivers") {
+          driverList = this.updateDriverList(data[key]);
+          driverInfo.drivers = driverList;
           data[key].forEach( (driver) => {
             let name = driver.forename + ' ' + driver.surname;
             if(driverInfo.driverNames.indexOf(name) === -1) {

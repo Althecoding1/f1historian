@@ -56,9 +56,10 @@ class Drivers extends Component {
   }
 
   render() {
+    console.log(this.props.drivers);
     return(
-      <DriversPage updateText={this.updateText} drivers={this.state.driverList}
-        text={this.state.text} driversList={this.state.driverNames}/>
+      <DriversPage updateText={this.updateText}
+        text={this.state.text} drivers={this.props.drivers.drivers}/>
     );
   }
 }

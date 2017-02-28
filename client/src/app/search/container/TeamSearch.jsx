@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import axios from 'axios';
 import MenuItem from 'material-ui/MenuItem';
+import Driver from '../../drivers/presentation/Driver.jsx';
 import DropDownMenu from 'material-ui/DropDownMenu';
 
 class TeamSearch extends Component {
@@ -33,6 +34,25 @@ class TeamSearch extends Component {
       teams.unshift(<MenuItem value={0} primaryText="Constructors" key={0}/>);
       this.setState({value, teams});
     }
+  }
+
+  updateDriverList(data) {
+    return data.map((driver) => {
+      return(
+        <div className="col-sm-3" key={driver.driverId}>
+          <div className="drivers hvr-grow-shadow">
+            <div className="driverInfo">
+              <a href={driver.url}>
+                <Driver driver={driver}/>
+              </a>
+            </div>
+            <div className="driverImage">
+              <img src={driver.imageUrl}/>
+            </div>
+          </div>
+        </div>
+      );
+    })
   }
 
   generateConstructors() {
@@ -68,8 +88,11 @@ class TeamSearch extends Component {
         circuits: [],
         circuitNames: [],
       }
+      let driverList;
       for(let key in data) {
         if(key === "drivers") {
+          driverList = this.updateDriverList(data[key]);
+          driverInfo.drivers = driverList;
           data[key].forEach( (driver) => {
             let name = driver.forename + ' ' + driver.surname;
             if(driverInfo.driverNames.indexOf(name) === -1) {
