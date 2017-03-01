@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { render, findDOMNode } from 'react-dom';
 import axios from 'axios';
+import createFragment from 'react-addons-create-fragment'
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import DriversPage from '../presentation/DriversPage.jsx';
+import DriverFlipPage from './FlipDriver.jsx';
 import CircularProgress from 'material-ui/CircularProgress';
+import FlipDriverView from '../presentation/FlipDriverView.jsx';
 import Driver from '../presentation/Driver.jsx';
 import '../../../../stylesheets/main.scss';
 
@@ -19,11 +22,25 @@ class Drivers extends Component {
       flags: '',
       driverList: [],
       driverNames: [],
+      flipped: false,
+      driverStats: []
     };
 
     this.updateText = this.updateText.bind(this);
     this.updateDriverList = this.updateDriverList.bind(this);
 
+  }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.driverStats.body) {
+      let childElements = nextProps.driverStats.getElementsByTagName('p');
+      console.log(childElements);
+      let flipped = true;
+      let statsKeys = Object.keys(childElements);
+      let driverStats = statsKeys.map( (el) => {
+        return childElements[el].innerText;
+      });
+      this.setState({driverStats, flipped});
+    }
   }
 
   componentDidUpdate() {
@@ -56,9 +73,18 @@ class Drivers extends Component {
   }
 
   render() {
-    console.log(this.props.drivers);
+    if(this.state.flipped) {
+      let driverStats = this.state.driverStats.map( (el, i) => {
+        return(
+          <div key={i} className="textBlock">{el}</div>
+          )
+        });
+      return (
+        <FlipDriverView docElements={driverStats}/>
+      );
+    }
     return(
-      <DriversPage updateText={this.updateText}
+      <DriversPage updateText={this.updateText} onClick={this.flipDriverCard}
         text={this.state.text} drivers={this.props.drivers.drivers}/>
     );
   }

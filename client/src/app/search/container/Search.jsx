@@ -27,14 +27,16 @@ class Search extends Component {
           years: false
         }
       },
-      loading: false
+      loading: false,
+      driverStats: []
     };
     this.onChildUpdate = this.onChildUpdate.bind(this);
-    this.isLoading = this.isLoading.bind(this);
+    this.returnWikiPage = this.returnWikiPage.bind(this);
   }
 
-  isLoading(loading) {
-    this.setState({loading: loading})
+  returnWikiPage(pageInfo) {
+    let driverStats = pageInfo;
+    this.setState({driverStats});
   }
 
   onChildUpdate(inputEvents, driverInfo, teamInfo, circuitInfo, yearInfo) {
@@ -50,23 +52,12 @@ class Search extends Component {
   }
 
   render() {
-    if(this.state.loading) {
-      return (
-        <div>
-          <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo}
-            teams={this.state.teamInfo} circuits={this.state.circuitInfo}
-            events={this.state.events} years={this.state.yearInfo} isLoading={this.isLoading}/>
-          <RefreshIndicator size={50} left={70} top={0} loadingColor="#FF9800"
-            status="loading"/>
-        </div>
-      );
-    } else {
-      return (
-        <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo}
-          teams={this.state.teamInfo} circuits={this.state.circuitInfo}
-          events={this.state.events} years={this.state.yearInfo} isLoading={this.isLoading}/>
-      );
-    }
+    return (
+      <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo}
+        teams={this.state.teamInfo} circuits={this.state.circuitInfo}
+        events={this.state.events} years={this.state.yearInfo} returnWiki={this.returnWikiPage}
+        driverStats={this.state.driverStats}/>
+    );
   }
 }
 

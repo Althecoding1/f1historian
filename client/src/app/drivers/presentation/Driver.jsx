@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-const Driver = ({ driver }) => (
+const Driver = ({ driver, onClick }) => (
 
-  <div>
+  <div onClick={onClick}>
     <div className="driverName">
       <div className="firstName">
         {driver.forename}

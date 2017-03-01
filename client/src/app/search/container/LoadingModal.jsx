@@ -9,6 +9,9 @@ class LoadingModal extends Component {
     }
     this.setToLoading = this.setToLoading.bind(this);
   }
+  isLoading(loading) {
+    this.setState({loading})
+  }
 
   setToLoading() {
     if(this.props.loading) {

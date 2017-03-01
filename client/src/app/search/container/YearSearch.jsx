@@ -14,10 +14,13 @@ class YearSearch extends Component {
       circuit: '',
       driver: '',
       team: '',
-      driverList: []
+      driverList: [],
+      flipped: false,
+      driverWikis: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.updateAllQueryInfo = this.updateAllQueryInfo.bind(this);
+    this.flipDriverCard = this.flipDriverCard.bind(this);
   }
 
   componentWillMount() {
@@ -36,16 +39,24 @@ class YearSearch extends Component {
       this.setState({value, years});
     }
   }
+  flipDriverCard(e) {
+    let pageData;
+    let parser = new DOMParser();
+    axios.get('/wiki/driverData')
+    .then( (res) => {
+      let driverKey = Object.keys(res.data);
+      pageData = parser.parseFromString(res.data[driverKey[0]].extract, "text/html");
+      this.props.returnWikiPage(pageData);
+    })
+  }
 
   updateDriverList(data) {
-    return data.map((driver) => {
+    return data.map((driver, index) => {
       return(
-        <div className="col-sm-3" key={driver.driverId}>
+        <div className="col-sm-3" key={index}>
           <div className="drivers hvr-grow-shadow">
             <div className="driverInfo">
-              <a href={driver.url}>
-                <Driver driver={driver}/>
-              </a>
+              <Driver driver={driver} onClick={this.flipDriverCard}/>
             </div>
             <div className="driverImage">
               <img src={driver.imageUrl}/>
