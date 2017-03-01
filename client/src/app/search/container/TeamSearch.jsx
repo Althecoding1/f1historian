@@ -37,7 +37,12 @@ class TeamSearch extends Component {
   }
 
   updateDriverList(data) {
-    return data.map((driver) => {
+    let year = new Date().getYear() + 1900;
+    let month = new Date().getMonth();
+    return data.map((driver, index) => {
+      let dobYear = Number(driver.dob.slice(0, 4)), dobMonth = Number(driver.dob.slice(5,7));
+      let age = year - dobYear;
+      driver.age = age;
       return(
         <div className="col-sm-3" key={driver.driverId}>
           <div className="drivers hvr-grow-shadow">

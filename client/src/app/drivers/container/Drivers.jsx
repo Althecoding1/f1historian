@@ -32,13 +32,14 @@ class Drivers extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if(nextProps.driverStats.body) {
-      let childElements = nextProps.driverStats.getElementsByTagName('p');
-      console.log(childElements);
+      let childElements = nextProps.driverStats.getElementsByTagName('tb');
       let flipped = true;
       let statsKeys = Object.keys(childElements);
       let driverStats = statsKeys.map( (el) => {
         return childElements[el].innerText;
       });
+      console.log(driverStats);
+
       this.setState({driverStats, flipped});
     }
   }

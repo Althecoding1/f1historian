@@ -39,11 +39,18 @@ class YearSearch extends Component {
       this.setState({value, years});
     }
   }
+
   flipDriverCard(e) {
+    console.log(e.target)
+  }
+
+  expandDriverInfo(e) {
+    console.log(e.target);
     let pageData;
     let parser = new DOMParser();
     axios.get('/wiki/driverData')
     .then( (res) => {
+      console.log(res);
       let driverKey = Object.keys(res.data);
       pageData = parser.parseFromString(res.data[driverKey[0]].extract, "text/html");
       this.props.returnWikiPage(pageData);
@@ -51,7 +58,13 @@ class YearSearch extends Component {
   }
 
   updateDriverList(data) {
+    console.log(data);
+    let year = new Date().getYear() + 1900;
+    let month = new Date().getMonth();
     return data.map((driver, index) => {
+      let dobYear = Number(driver.dob.slice(0, 4)), dobMonth = Number(driver.dob.slice(5,7));
+      let age = year - dobYear;
+      driver.age = age;
       return(
         <div className="col-sm-3" key={index}>
           <div className="drivers hvr-grow-shadow">
