@@ -9,7 +9,7 @@
 
 .driverNavTopBar {
   background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dark-heavypaper_zpsh5rvorqy.png');
-  height: 80px;
+  height: 70px;
   position: absolute;
   width: 100%;
   z-index: 0;
@@ -21,6 +21,26 @@
       text-align: center;
       color: white;
       transition: width .5s ease;
+    }
+    .driver-right {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      background: rgba(255, 255, 255, 0.7);
+      width: 50px;
+      height: 50px;
+      display: block;
+      text-decoration: none;
+      -webkit-border-radius: 35px;
+      -moz-border-radius: 35px;
+      border-radius: 35px;
+      display: none;
+      -webkit-transition: all 0.3s linear;
+      -moz-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease;
     }
   }
 }
@@ -34,7 +54,7 @@
 .driverNavTopBar.driverScroll {
   background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dark-heavypaper_zpsh5rvorqy.png');
   opacity: 1;
-  height: 60px;
+  height: 50px;
   top: 91px;
   transition: all 0.5s ease;
   border-bottom: 1px solid rgba(200, 200, 200, 0.8);
@@ -42,9 +62,52 @@
   position: fixed;
   .driverNavTitle {
     h3 {
-      font-size: 20px;
-      width: 15%;
+      font-size: 18px;
+      width: 20%;
       transition: font, width .5s ease;
+    }
+    .driver-right {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      background: white;
+      background: rgba(255, 255, 255, 0.7);
+      width: 30px;
+      height: 30px;
+      display: block;
+      text-decoration: none;
+      -webkit-border-radius: 35px;
+      -moz-border-radius: 35px;
+      border-radius: 35px;
+      -webkit-transition: all 0.3s linear;
+      -moz-transition: all 0.3s ease;
+      -ms-transition: all 0.3s ease;
+      -o-transition: all 0.3s ease;
+      transition: all 0.3s ease;
+    }
+    .driver-right {
+      i {
+        color: #fff;
+        margin: 0;
+        position: relative;
+        left: 8px;
+        top: 4px;
+        font-size: 16px;
+        -webkit-transition: all 0.3s ease;
+        -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+      }
+    }
+    .driver-right:hover {
+      background: rgba(0, 0, 0, 0.9);
+    }
+    .driver-right:hover {
+      i {
+        color: #fff;
+        top: 5px;
+      }
     }
   }
 }

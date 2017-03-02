@@ -8,12 +8,6 @@ const DriversPage = ({ drivers, updateText, text, years, year }) => (
     <div className="driversPage">
       <div className="driverSeasonTitle">
       </div>
-      <form>
-        <div className="form-group">
-          <label htmlFor="driverName">Driver</label>
-          <input className="form-control" value={text} onChange={updateText} id="driverNmae"/>
-        </div>
-      </form>
       <div className="container-fluid">
         <div className="row">
           <div className='applyTodrivers'>{drivers}</div>

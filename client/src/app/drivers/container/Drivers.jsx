@@ -28,6 +28,7 @@ class Drivers extends Component {
 
     this.updateText = this.updateText.bind(this);
     this.updateDriverList = this.updateDriverList.bind(this);
+    this.scrollToTop = this.scrollToTop.bind(this);
 
   }
   componentWillReceiveProps(nextProps) {
@@ -73,11 +74,18 @@ class Drivers extends Component {
     this.setState({text: e.target.value, updated: false});
   }
 
+  scrollToTop(e) {
+    document.body.scrollTop = 0;
+  }
+
   render() {
     let yearKeys = Object.keys(this.props.years);
     let year = (
       <div className="driverNavTopBar">
         <div className="driverNavTitle">
+          <div className="driver-right" onClick={this.scrollToTop}>
+            <i className="icon-chevron-up"></i>
+          </div>
           <h3>{this.props.years[yearKeys[0]]} Season Drivers</h3>
         </div>
       </div>
