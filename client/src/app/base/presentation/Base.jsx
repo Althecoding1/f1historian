@@ -41,10 +41,8 @@ const Base = ({ children }) => (
           </div>
       </div>
     </div>
-    <div className="container-fluid">
-      <div className="row">
-        { children }
-      </div>
+    <div>
+      { children }
     </div>
   </div>
 ) ;

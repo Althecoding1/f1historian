@@ -45,12 +45,10 @@ class YearSearch extends Component {
   }
 
   expandDriverInfo(e) {
-    console.log(e.target);
     let pageData;
     let parser = new DOMParser();
     axios.get('/wiki/driverData')
     .then( (res) => {
-      console.log(res);
       let driverKey = Object.keys(res.data);
       pageData = parser.parseFromString(res.data[driverKey[0]].extract, "text/html");
       this.props.returnWikiPage(pageData);
@@ -58,7 +56,6 @@ class YearSearch extends Component {
   }
 
   updateDriverList(data) {
-    console.log(data);
     let year = new Date().getYear() + 1900;
     let month = new Date().getMonth();
     return data.map((driver, index) => {
@@ -101,34 +98,7 @@ class YearSearch extends Component {
     let driverList = this.updateAllQueryInfo(year, circuit, driver, team);
     this.setState({value, circuit, driver, team, driverList});
   }
-
-  grabNameValues(currObj) {
-    if(currObj === drivers) {
-      drivers.forEach( (driver) => {
-        let name = driver.forename + ' ' + driver.surname;
-        if(driverInfo.driverNames.indexOf(name) === -1) {
-          driverInfo.driverNames.push(name);
-        }
-      });
-    }
-    if(currObj === teams) {
-      teams.forEach( (team) => {
-        let name = team.name;
-        if(teamInfo.teamNames.indexOf(name) === -1) {
-          teamInfo.teamNames.push(name);
-        }
-      });
-    }
-    if(currObj === circuits) {
-      circuits.forEach( (circuit) => {
-        let name = circuit.circuitName;
-        if(circuitInfo.circuitNames.indexOf(name) === -1) {
-          circuitInfo.circuitNames.push(name);
-        }
-      })
-    }
-  }
-
+  
   updateAllQueryInfo(year, circuit, driver, team) {
     let options = {headers: {'typeofsearch': 'year'}};
     axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit, options)
@@ -150,6 +120,9 @@ class YearSearch extends Component {
         circuitNames: [],
       };
       let driverList;
+      if(year !== "Years") {
+        yearInfo.years = year;
+      }
       for(let key in data) {
         if(key === "drivers") {
           driverList = this.updateDriverList(data[key]);

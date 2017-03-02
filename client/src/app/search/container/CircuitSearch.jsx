@@ -50,7 +50,7 @@ class CircuitSearch extends Component {
       let age = year - dobYear;
       driver.age = age;
       return(
-        <div className="col-sm-3" key={driver.driverId}>
+        <div className="col-sm-3" key={index}>
           <div className="drivers hvr-grow-shadow">
             <div className="driverInfo">
               <a href={driver.url}>
@@ -107,6 +107,9 @@ class CircuitSearch extends Component {
       circuitInfo = {
         circuits: [],
         circuitNames: [],
+      }
+      if(year !== "Years") {
+        yearInfo.years = year;
       }
       let driverList;
       for(let key in data) {

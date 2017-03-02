@@ -13,7 +13,7 @@ const Driver = ({ driver, onClick }) => (
       <div className="nationality">{driver.nationality}</div>
     </div>
     <div className="back">
-
+      
     </div>
   </div>
 

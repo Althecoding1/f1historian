@@ -23,7 +23,7 @@ class Drivers extends Component {
       driverList: [],
       driverNames: [],
       flipped: false,
-      driverStats: []
+      driverStats: [],
     };
 
     this.updateText = this.updateText.bind(this);
@@ -74,15 +74,20 @@ class Drivers extends Component {
   }
 
   render() {
-    if(this.state.flipped) {
-      let driverStats = this.state.driverStats.map( (el, i) => {
-        return(
-          <div key={i} className="textBlock">{el}</div>
-          )
-        });
+    let yearKeys = Object.keys(this.props.years);
+    let year = (
+      <div className="driverNavTopBar">
+        <div className="driverNavTitle">
+          <h3>{this.props.years[yearKeys[0]]} Season Drivers</h3>
+        </div>
+      </div>
+    );
+    if(yearKeys.length === 1) {
       return (
-        <FlipDriverView docElements={driverStats}/>
-      );
+        <DriversPage updateText={this.updateText} onClick={this.flipDriverCard}
+          text={this.state.text} drivers={this.props.drivers.drivers}
+          year={year} />
+      )
     }
     return(
       <DriversPage updateText={this.updateText} onClick={this.flipDriverCard}

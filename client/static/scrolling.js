@@ -1,0 +1,36 @@
+let navBottom;
+let driverNavTop;
+window.onscroll = (e) => {
+  let nav = document.getElementsByClassName("top-bar")[0],
+      banner = document.getElementsByClassName("big-banner")[0],
+      scrollArrow = document.getElementsByClassName("arrow")[0],
+      driverNav = document.getElementsByClassName('driverNavTopBar')[0],
+      range = 70,
+      navRange = nav.getBoundingClientRect(),
+      scrollTop = document.body.scrollTop,
+      driverNavRange = driverNav.getBoundingClientRect();
+      if(!navBottom && !driverNavTop) {
+        navBottom = navRange.bottom;
+        driverNavTop = driverNavRange.top;
+      }
+  if (scrollTop > range) {
+      nav.classList.add("scrollNav");
+      if(scrollArrow) {
+        scrollArrow.style.display = 'none';
+      }
+    } else {
+        nav.classList.remove("scrollNav");
+        if(scrollArrow) {
+          scrollArrow.style.display = "block";
+        }
+      }
+  if(navBottom + scrollTop >= driverNavTop) {
+    if(!driverNav.classList.contains('driverScroll')) {
+      driverNav.classList.add('driverScroll');
+    }
+  } else {
+    if(driverNav.classList.contains('driverScroll')) {
+      driverNav.classList.remove('driverScroll');
+    }
+  }
+};

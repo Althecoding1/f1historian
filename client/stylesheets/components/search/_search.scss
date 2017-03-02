@@ -1,3 +1,50 @@
 .resultSearch {
   margin-top: 10em;
 }
+
+.container-fluid {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.driverNavTopBar {
+  background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dark-heavypaper_zpsh5rvorqy.png');
+  height: 80px;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.5s ease;
+  .driverNavTitle {
+    h3 {
+      width: 100%;
+      text-align: center;
+      color: white;
+      transition: width .5s ease;
+    }
+  }
+}
+
+.driverNavTopBar::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.driverNavTopBar.driverScroll {
+  background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dark-heavypaper_zpsh5rvorqy.png');
+  opacity: 1;
+  height: 60px;
+  top: 91px;
+  transition: all 0.5s ease;
+  border-bottom: 1px solid rgba(200, 200, 200, 0.8);
+  z-index: 4000;
+  position: fixed;
+  .driverNavTitle {
+    h3 {
+      font-size: 20px;
+      width: 15%;
+      transition: font, width .5s ease;
+    }
+  }
+}
