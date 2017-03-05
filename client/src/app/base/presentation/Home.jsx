@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import '../../../../stylesheets/main.scss';
+import { Parallax, Background } from 'react-parallax';
 
 const Home = () => (
   <div>

@@ -1,5 +1,7 @@
-let navBottom;
-let driverNavTop;
+let navBottom,
+    driverNavTop,
+    speed = 0.5;
+    let parallax = document.querySelectorAll('.parallax');
 window.onscroll = (e) => {
   navScrolling();
   if(document.getElementsByClassName('driverNavTopBar')[0]) {
