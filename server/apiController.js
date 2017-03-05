@@ -16,7 +16,7 @@ module.exports = {
   },
 
   getGoogleGeoCodeLoc: (req, res) => {
-    let url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&location_type=ROOFTOP&result_type=street_address&key=AIzaSyCFnnRuEyWLpL54VOTYFtcQ3NrvnNL_G_I';
+    let url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&location_type=ROOFTOP&result_type=street_address&key=';
     axios.get(url)
     .then((result) => {
       console.log(result);
