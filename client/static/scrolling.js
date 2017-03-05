@@ -13,16 +13,23 @@ const navScrolling = () => {
   let nav = document.getElementsByClassName("top-bar")[0],
       banner = document.getElementsByClassName("big-banner")[0],
       scrollArrow = document.getElementsByClassName("arrow")[0],
+      overlay = document.getElementsByClassName('banner-container')[0],
       range = 70,
       scrollTop = document.body.scrollTop;
   if (scrollTop > range) {
     nav.classList.add("scrollNav");
+    if(overlay) {
+      overlay.classList.add('blurred');
+    }
     if(scrollArrow) {
       scrollArrow.style.display = 'none';
     }
   }
   else {
     nav.classList.remove("scrollNav");
+    if(overlay) {
+      overlay.classList.remove("blurred");
+    }
       if(scrollArrow) {
         scrollArrow.style.display = "block";
       }

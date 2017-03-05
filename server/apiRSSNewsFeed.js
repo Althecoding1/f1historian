@@ -6,17 +6,20 @@ const request = require('request'),
 module.exports = {
 
   aggregateNewsArticles: (req, res) => {
-    let feeds = ['http://feeds.bbci.co.uk/sport/formula1/rss.xml?edition=uk#',
-    'http://en.espnf1.com/rss/motorsport/story/feeds/0.xml?type=2'];
-    let promise = new Promise((resolve, reject) => {
-      module.exports.fetch(feeds[0]).then( (result) => {resolve(result)});
-    }).then( (prom1result) => {
-      let secondPromise = new Promise((resolve, reject) => {
-        module.exports.fetch(feeds[1]).then( (result) => {resolve(result)});
-      }).then((prom2result) => {
-        res.send(prom1result.concat(prom2result));
-      })
-    })
+    let feeds = ['http://feeds.bbci.co.uk/sport/formula1/rss.xml?edition=uk#'];
+    let promiseOne = new Promise((resolve, reject) => {
+      module.exports.fetch(feeds[0]).then( (result) => { res.send(result)});
+    });
+
+    // let promise = new Promise((resolve, reject) => {
+    //   module.exports.fetch(feeds[0]).then( (result) => {resolve(result)});
+    // }).then( (prom1result) => {
+    //   let secondPromise = new Promise((resolve, reject) => {
+    //     module.exports.fetch(feeds[1]).then( (result) => {resolve(result)});
+    //   }).then((prom2result) => {
+    //     res.send(prom1result.concat(prom2result));
+    //   })
+    // })
   },
 
   fetch: (feed) => {

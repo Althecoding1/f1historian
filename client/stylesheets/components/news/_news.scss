@@ -2,15 +2,21 @@
   position: relative;
   text-align: center;
   display: inline-block;
-  margin-bottom: 1em;
+  margin-bottom: 5em;
   width: 100%;
   height: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+  border-left: 2px solid grey;
+  border-right: 2px solid grey;
 
   .articleImage {
     width: 100%;
     height: 100%;
     display: inline-block;
-
+    a {
+      text-decoration: none;
+    }
     img {
       width: 100%;
     }
@@ -18,18 +24,21 @@
     .articleTitle {
       position: relative;
       color: white;
+      font-family: 'PT Serif', serif;
+      font-size: 1.7em;
     }
 
     .articleDesc {
       position: relative;
       color: white;
+      font-family: 'PT Serif', serif;
+      font-size: 1em;
     }
   }
 }
 
 .articleLarge {
   margin-bottom: 1em;
-  text-align: center;
   position: relative;
   display: inline-block;
   height: 100%;
@@ -40,33 +49,109 @@
     width: 100%;
     display: inline-block;
 
-    img {
-      width: 100%;
+    .articleTitle {
+      text-align: right;
+      text-shadow: 1px 1px 2px black;
+      position: relative;
+      display: inline-block;
+      width: 50%;
+      color: white;
+      font-size: 3.3em;
+      font-family: 'PT Serif', serif;
+      bottom: 700px;
+      left: 200px;
     }
 
-    .articleTitle {
-      position: absolute;
-      display: inline-block;
-      width: 30%;
-      color: white;
-      font-size: 36px;
-      font-family: 'PT Serif', serif;
-      bottom: 20em;
-      left: 10em;
-    }
-    
     .articleDesc {
       position: relative;
+      text-shadow: 1px 1px 2px black;
       display: inline-block;
       width: 80%;
       color: white;
-      font-size: 24px;
+      text-align: center;
+      font-size: 2em;
       font-family: 'PT Serif', serif;
-      bottom: 10em;
+      bottom: 250px;
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1400px) {
+  .articleLarge {
+    .articleImage {
+      .articleTitle {
+        font-size: 2.5em;
+        bottom: 550px;
+      }
+      .articleDesc {
+        font-size: 1.8em;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 771px) and (max-width: 999px) {
+  .articleLarge {
+    .articleImage {
+      .articleTitle {
+        font-size: 2em;
+        bottom: 400px;
+        left:100px;
+      }
+      .articleDesc {
+        font-size: 1.4em;
+        bottom: 200px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 770px) {
+
+  .article {
+    border-left: none;
+    border-right: none;
+  }
+
+  .articleLarge {
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+
+    .articleImage {
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      a {
+        text-decoration: none;
+      }
+      img {
+        width: 100%;
+      }
+
+      .articleTitle {
+        position: relative;
+        width: 100%;
+        font-size: 1.7em;
+        bottom: 0;
+        left: 0;
+        text-align: center;
+      }
+
+      .articleDesc {
+        position: relative;
+        color: white;
+        width: 100%;
+        font-size: 1em;
+        bottom: 0;
+      }
     }
   }
 }
 
 .news {
+  position: relative;
   margin-top: 2em;
 }

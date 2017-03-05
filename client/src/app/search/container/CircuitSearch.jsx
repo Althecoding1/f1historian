@@ -50,7 +50,7 @@ class CircuitSearch extends Component {
       let age = year - dobYear;
       driver.age = age;
       return(
-        <div className="col-sm-3" key={index}>
+        <div className="col-xs-12 col-md-2 col-sm-4" key={index}>
           <div className="drivers hvr-grow-shadow">
             <div className="driverInfo">
               <a href={driver.url}>
