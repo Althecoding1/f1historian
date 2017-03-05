@@ -10,7 +10,7 @@ const DriversPage = ({ drivers, updateText, text, years, year }) => (
       </div>
       <div className="container-fluid">
         <div className="row">
-          <div className='applyTodrivers'>{drivers}</div>
+          {drivers}
         </div>
       </div>
     </div>

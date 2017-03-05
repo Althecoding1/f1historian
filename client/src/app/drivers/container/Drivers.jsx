@@ -78,6 +78,10 @@ class Drivers extends Component {
     document.body.scrollTop = 0;
   }
 
+  updateDriverNav() {
+
+  }
+
   render() {
     let yearKeys = Object.keys(this.props.years);
     let year = (
@@ -86,7 +90,7 @@ class Drivers extends Component {
           <div className="driver-right" onClick={this.scrollToTop}>
             <i className="icon-chevron-up"></i>
           </div>
-          <h3>{this.props.years[yearKeys[0]]} Season Drivers</h3>
+          <h3>{this.props.years[yearKeys[0]]} Drivers</h3>
         </div>
       </div>
     );

@@ -17,9 +17,13 @@
   transition: all 0.5s ease;
   .driverNavTitle {
     h3 {
-      width: 100%;
+      color: #d8d8d8;
       text-align: center;
-      color: white;
+      font-family: 'PT Serif', serif;
+      line-height: 22px;
+      width: 100%;
+      font-size: 18px;
+      text-align: center;
       transition: width .5s ease;
     }
     .driver-right {
@@ -50,6 +54,17 @@
   display: block;
   clear: both;
 }
+@media screen and (max-width: 770px) {
+  .driverNavTopBar.driverScroll.responsive {
+    height: 60px;
+    top: 91px;
+    .driverNavTitle {
+      h3 {
+        width: 100%;
+      }
+    }
+  }
+}
 
 .driverNavTopBar.driverScroll {
   background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dark-heavypaper_zpsh5rvorqy.png');
@@ -58,12 +73,12 @@
   top: 91px;
   transition: all 0.5s ease;
   border-bottom: 1px solid rgba(200, 200, 200, 0.8);
-  z-index: 4000;
+  z-index: 3000;
   position: fixed;
   .driverNavTitle {
     h3 {
       font-size: 18px;
-      width: 20%;
+      width: 15%;
       transition: font, width .5s ease;
     }
     .driver-right {
@@ -90,7 +105,6 @@
         color: #fff;
         margin: 0;
         position: relative;
-        left: 8px;
         top: 4px;
         font-size: 16px;
         -webkit-transition: all 0.3s ease;

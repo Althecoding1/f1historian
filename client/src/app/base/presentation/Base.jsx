@@ -18,13 +18,6 @@ const Base = ({ children }) => (
                     </div>
                   </Link>
                 </div>
-                <div className="col-sm-6">
-                  <Link to="/circuits">
-                    <div className="circuitButton hvr-grow-rotate">
-                      <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/circuitLink_zpsqs1rkoqb.png"/>
-                    </div>
-                  </Link>
-                </div>
               </div>
             </div>
             <div className="top-bar-center">
@@ -40,9 +33,9 @@ const Base = ({ children }) => (
             </div>
           </div>
       </div>
-    </div>
-    <div>
-      { children }
+      <div className="row">
+        { children }
+      </div>
     </div>
   </div>
 ) ;

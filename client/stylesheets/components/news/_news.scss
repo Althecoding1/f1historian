@@ -1,0 +1,17 @@
+.article {
+  .articleImage {
+    img {
+      width: 100%;
+    }
+    .articleTitle {
+      position: relative;
+      color: white;
+      bottom: 90%;
+    }
+    .articleDesc {
+      position: relative;
+      color: white;
+      bottom: 80%;
+    }
+  }
+}

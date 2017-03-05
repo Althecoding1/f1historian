@@ -41,10 +41,16 @@ const navScrolling = () => {
   if(navBottom + scrollTop >= driverNavTop) {
    if(!driverNav.classList.contains('driverScroll')) {
      driverNav.classList.add('driverScroll');
+     if(window.outerWidth < 781 && !driverNav.classList.contains('responsive')) {
+       driverNav.classList.add('responsive');
+     }
    }
   } else {
    if(driverNav.classList.contains('driverScroll')) {
      driverNav.classList.remove('driverScroll');
+     if(driverNav.classList.contains('responsive')) {
+       driverNav.classList.remove('responsive');
+     }
    }
   }
  };

@@ -1,4 +1,13 @@
-body { background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dark-heavypaper_zpsh5rvorqy.png'); }
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dark-heavypaper_zpsh5rvorqy.png') center top;
+}
 
 @function black($opacity) {
   @return rgba(black, $opacity);
@@ -33,3 +42,4 @@ body { background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dar
 @import 'components/base/base';
 @import 'components/base/footer';
 @import 'components/search/search';
+@import 'components/news/news';
