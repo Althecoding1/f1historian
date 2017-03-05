@@ -20,6 +20,7 @@ app.get('/api/teams', sql.getAllTeamNames);
 app.get('/api/search/:year/:driver/:team/:circuit', sql.getCompiledSearch);
 app.get('/wiki/driverData', api.getWikiDataForDriver);
 app.get('/api/news', rss.aggregateNewsArticles);
+app.get('/api/location', api.getGoogleGeoCodeLoc);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('client/static', 'index.html'));

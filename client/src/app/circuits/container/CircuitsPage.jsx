@@ -8,47 +8,36 @@ class CircuitsPage extends Component {
     super(props);
     this.state = {
       text: '',
-      circuits: []
+      circuits: [],
+      displayCircuits: []
     };
-    this.updateStateText = this.updateStateText.bind(this);
-    this.getInitialCircuits = this.getInitialCircuits.bind(this);
+    this.getGoogleMaps = this.getGoogleMaps.bind(this);
   }
 
-  componentDidMount() {
-    this.getInitialCircuits();
+  getGoogleMaps(track) {
+      axios.get('/api/location')
+      .then( (res) => {
+        console.log(res);
+      })
   }
-
-  getInitialCircuits() {
-    axios.get('/api/circuits')
-    .then( (res) => {
-      this.setState({circuits: res.data.map( (circuit) => {
-        return(
-        <div key={circuit.circuitId}>
-          <a href={circuit.url}>
-            <img src={circuit.imageUrl}/>
-            <h1>{circuit.name}</h1>
-          </a>
+  
+  componentWillReceiveProps(nextProps) {
+    let displayCircuits = nextProps.circuits.circuits.map( (circuit, index) => {
+      this.getGoogleMaps(circuit);
+      return (
+        <div className="circuit" key={index}>
+          <div className="circuitImg">
+            <img src={circuit.imageUrl} />
+          </div>
         </div>
       )
-      })})
-    })
-    .catch( (err) => {
-      console.log(`Error occured fetching circuits: ${err}`);
-    })
-  }
-
-  updateInitialCircuits() {
-
-  }
-
-  updateStateText(e) {
-    this.setState({text: e.target.value, updated: false});
+    });
+    this.setState({displayCircuits});
   }
 
   render() {
     return(
-      <Circuits circuits={this.state.circuits} updateText={this.updateStateText}
-        text={this.state.text}/>
+      <Circuits circuits={this.state.displayCircuits} />
     );
   }
 }

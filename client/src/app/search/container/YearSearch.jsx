@@ -147,6 +147,7 @@ class YearSearch extends Component {
             let name = circuit.circuitName;
             if(circuitInfo.circuitNames.indexOf(name) === -1) {
               circuitInfo.circuitNames.push(name);
+              circuitInfo.circuits.push(circuit);
             }
           })
         }

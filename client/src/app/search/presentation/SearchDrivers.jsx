@@ -8,9 +8,10 @@ import TeamMenu from '../container/TeamSearch.jsx';
 import YearMenu from '../container/YearSearch.jsx';
 import LoadingModal from '../container/LoadingModal.jsx';
 import DriversPage from '../../drivers/container/Drivers.jsx';
+import CircuitsPage from '../../circuits/container/CircuitsPage.jsx';
 import '../../../../stylesheets/main.scss';
 
-const SearchDrivers = ({ callback, returnWiki, drivers, teams, circuits, years, events, driverStats, year }) => (
+const SearchDrivers = ({ callback, returnWiki, drivers, currentCircuits, teams, circuits, years, events, driverStats, year }) => (
 
   <div>
     <div className="resultSearch">
@@ -38,6 +39,7 @@ const SearchDrivers = ({ callback, returnWiki, drivers, teams, circuits, years, 
       </div>
     </div>
     <DriversPage drivers={drivers} years={years} driverStats={driverStats}/>
+    <CircuitsPage circuits={circuits}/>
   </div>
 
 );

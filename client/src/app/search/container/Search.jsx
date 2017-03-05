@@ -56,7 +56,7 @@ class Search extends Component {
       <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo}
         teams={this.state.teamInfo} circuits={this.state.circuitInfo}
         events={this.state.events} years={this.state.yearInfo} returnWiki={this.returnWikiPage}
-        driverStats={this.state.driverStats}/>
+        driverStats={this.state.driverStats} />
     );
   }
 }
