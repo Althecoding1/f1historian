@@ -14,10 +14,6 @@ class NewsPage extends Component {
     this.grabNewsFeed = this.grabNewsFeed.bind(this);
   }
 
-  componentDidMount() {
-
-  }
-
   componentWillMount() {
     this.grabNewsFeed();
   }

@@ -55,12 +55,15 @@
   display: block;
   clear: both;
 }
-@media screen and (max-width: 770px) {
-  .driverNavTopBar.driverScroll.responsive {
+@media screen and (max-width: 830px) {
+  .driverNavTopBar.driverScroll {
     height: 60px;
-    top: 91px;
+    top: 66px;
     .driverNavTitle {
+
+      text-align: center;
       h3 {
+        display: inline-block;
         width: 100%;
       }
     }
@@ -71,7 +74,7 @@
   background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dark-heavypaper_zpsh5rvorqy.png');
   opacity: 1;
   height: 50px;
-  top: 91px;
+  top: 66px;
   transition: all 0.5s ease;
   border-bottom: 1px solid rgba(200, 200, 200, 0.8);
   z-index: 3000;

@@ -3,7 +3,7 @@ import SearchDrivers from '../../search/presentation/SearchDrivers.jsx';
 
 const DriversPage = ({ drivers, updateText, text, years, year }) => (
 
-  <div>
+  <div className="driverResults">
     {year}
     <div className="driversPage">
       <div className="driverSeasonTitle">
