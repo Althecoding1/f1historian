@@ -24,27 +24,27 @@ class CircuitsPage extends Component {
   }
 
   renderFullCircuit(i, bool) {
-    let circuits = this.state.circuits;
+    for( var j = 0; j < this.state.circuitsSmall.length; j++) {
+      if(j === i) {
+      console.log('found', this.state.circuitsSmall[j].props.children.props.className);
+    } else {
+      console.log('initial', this.state.circuitsSmall[j].props.children.props.className);
+    }
+    }
     let displayedCircuits = this.state.displayedCircuits;
     let fullCircuitWindow;
     if(bool) {
       fullCircuitWindow = this.state.circuitsFull[i];
-      circuits[i].fullSize = true;
     }
     else {
       fullCircuitWindow = this.state.circuitsSmall[i];
-      circuits[i].fullSize = false;
     }
-    console.log(fullCircuitWindow);
     displayedCircuits[i] = fullCircuitWindow;
-    this.setState({circuits, displayedCircuits});
+    this.setState({displayedCircuits});
   }
 
   componentWillReceiveProps(nextProps) {
-    let circuits = [];
     let circuitsSmall = nextProps.circuits.circuits.map( (circuit, index) => {
-      circuit.fullSize = false;
-      circuits.push(circuit);
       return (
         <div className="col-sm-12" key={index}>
           <div className="circuitResultSm" value={index} onClick={() => this.renderFullCircuit(index, true)}>
@@ -58,7 +58,20 @@ class CircuitsPage extends Component {
         </div>
       )
     });
-    let displayedCircuits = circuitsSmall;
+    let displayedCircuits = nextProps.circuits.circuits.map( (circuit, index) => {
+      return (
+        <div className="col-sm-12" key={index}>
+          <div className="circuitResultSm" value={index} onClick={() => this.renderFullCircuit(index, true)}>
+            <div className="circuitSmImg">
+              <img src={circuit.image_backgrounds} />
+            </div>
+            <div className="circuitTitleSm">
+              {circuit.circuitName}
+            </div>
+          </div>
+        </div>
+      )
+    });
     let circuitsFull = nextProps.circuits.circuits.map( (circuit, index) => {
       this.getGoogleMaps(circuit);
       return (
@@ -76,11 +89,10 @@ class CircuitsPage extends Component {
         </div>
       )
     });
-    this.setState({circuits, circuitsFull, circuitsSmall, displayedCircuits});
+    this.setState({circuitsFull, circuitsSmall, displayedCircuits});
   }
 
   render() {
-
     return(
       <Circuits circuits={this.state.displayedCircuits} />
     );
