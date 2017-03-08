@@ -1,13 +1,25 @@
+.circuitNavigation {
+  margin-top: 5em;
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}
+
 .allCircuits {
-  margin-top: 10em;
+  margin-top: 2em;
+  position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .circuitResult {
   position: relative;
-  margin-top: 10em;
-  height: 100%;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  margin: 2em;
+  height: 70%;
 }
 
 .circuitImg {
@@ -16,38 +28,55 @@
   img {
     position: relative;
     width: 100%;
-    height: 100%;
     background-size: cover;
     background-position: 50% 50%;
     background-repeat:   no-repeat;
   }
 }
 
-.circuitTitle {
-  text-align: center;
-  display: inline-block;
-  text-shadow: 1px 1px 2px black;
-  bottom: 300px;
+.map {
   position: relative;
+}
+
+.circuitTitle {
+  text-align: left;
+  right: 50%;
+  bottom: 10em;
+  display: inline-block;
+  text-shadow: 2px 2px 3px black;
+  position: absolute;
   color: white;
   font-family: 'PT Serif', serif;
   font-size: 3.5em;
 }
 
 .circuitResultSm {
+  position: relative;
   height: 10vh;
+  margin: 1em;
   .circuitSmImg {
     border: 2px solid white;
     display: inline-block;
-    overflow-y: hidden;
+    overflow: hidden;
     position: relative;
     width: 100%;
     height: 10vh;
     img {
       width: 100%;
-      background-size: cover;
       position: relative;
       overflow: hidden;
+      -moz-transition: all 1s;
+      -webkit-transition: all 1s;
+      transition: all 1s ease;
+    }
+  }
+  .circuitResultSm:hover {
+    .circuitSmImg {
+      img {
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
     }
   }
   .circuitTitleSm {
@@ -62,20 +91,8 @@
   }
 }
 
-.example-enter {
-  opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+@media screen and (max-width: 800px) {
+  img.react-parallax-bgimage {
+    height: 520px;
+  }
 }

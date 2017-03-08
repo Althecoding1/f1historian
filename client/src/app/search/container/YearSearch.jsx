@@ -40,8 +40,8 @@ class YearSearch extends Component {
     }
   }
 
-  flipDriverCard(e) {
-    console.log(e.target)
+  flipDriverCard(i) {
+    console.log(i);
   }
 
   expandDriverInfo(e) {
@@ -63,13 +63,15 @@ class YearSearch extends Component {
       let age = year - dobYear;
       driver.age = age;
       return(
-        <div className="col-xs-12 col-md-2 col-sm-4" key={index}>
-          <div className="drivers hvr-grow-shadow">
-            <div className="driverInfo">
-              <Driver driver={driver} onClick={this.flipDriverCard}/>
-            </div>
-            <div className="driverImage">
-              <img src={driver.imageUrl}/>
+        <div className="col-xs-12 col-sm-6 col-md-4 col-lg-2" key={index} onClick={() => this.flipDriverCard(index)}>
+          <div className="driverBorders">
+            <div className="drivers hvr-grow-shadow">
+              <div className="driverInfo">
+                <Driver driver={driver}/>
+              </div>
+              <div className="driverImage">
+                <img src={driver.imageUrl}/>
+              </div>
             </div>
           </div>
         </div>

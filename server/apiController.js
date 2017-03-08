@@ -1,4 +1,5 @@
 const axios = require('axios');
+const keys = require('../.config.js');
 
 module.exports = {
 
@@ -16,11 +17,12 @@ module.exports = {
   },
 
   getGoogleGeoCodeLoc: (req, res) => {
-    let url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&location_type=ROOFTOP&result_type=street_address&key=';
+    console.log(req.params);
+    let url = 'https://maps.googleapis.com/maps/api/js?key=' + keys.MAPS_API_KEY + '&callback=initMap';
     axios.get(url)
     .then((result) => {
-      console.log(result);
-      res.send(result);
+      console.log(result.data);
+      res.send(result.data);
     })
   }
 

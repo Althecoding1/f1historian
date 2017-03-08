@@ -1,12 +1,21 @@
 let navBottom,
     driverNavTop,
     speed = 0.5;
-    let parallax = document.querySelectorAll('.parallax');
+let circuitNavRange = false;
+
 window.onscroll = (e) => {
   navScrolling();
   if(document.getElementsByClassName('driverNavTopBar')[0]) {
     driverSearchScrolling();
   }
+  // if(document.getElementsByClassName('circuitNavTopBar')[0]) {
+  //   if(!circuitNavRange) {
+  //     let circuitNav = document.getElementsByClassName('circuitNavTopBar')[0];
+  //     circuitNavRange = circuitNav.getBoundingClientRect().top;
+  //     circuitSearchScrolling();
+  //   } else {
+  //   }
+  // }
 };
 
 const navScrolling = () => {
@@ -62,4 +71,24 @@ const navScrolling = () => {
      }
    }
   }
+ };
+
+ const circuitSearchScrolling = () => {
+   let nav = document.getElementsByClassName("top-bar")[0],
+   circuitNav = document.getElementsByClassName('circuitNavTopBar')[0],
+   navRange = nav.getBoundingClientRect(),
+   scrollTop = document.body.scrollTop;
+   console.log(window.pageYOffset);
+   console.log(circuitNavRange);
+   if((window.pageYOffset) > circuitNavRange) {
+     if(!circuitNav.classList.contains('circuitScroll')) {
+       circuitNav.classList.add('circuitScroll');
+       circuitNav.style.top = circuitNavRange + 100;
+   }
+ } else {
+   if(circuitNav.classList.contains('circuitScroll')) {
+     circuitNav.classList.remove('circuitScroll');
+
+   }
+ }
  };

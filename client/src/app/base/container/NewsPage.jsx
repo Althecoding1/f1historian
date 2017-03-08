@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import axios from 'axios';
 import News from '../presentation/News.jsx';
 import { Parallax, Background } from 'react-parallax';
+import LazyLoad from 'react-lazy-load';
 
 class NewsPage extends Component {
   constructor(props) {
@@ -30,15 +31,15 @@ class NewsPage extends Component {
     let articles = this.state.articles.map( (article, index) => {
       if(index % 5 === 0) {
         return(
-          <div className="col-sm-12 parallax" key={index}>
-            <div className="articleLarge">
-              <div className="articleImage">
-                <div className="linkToArticle"><a href={article.link}>
-                  <Parallax bgImage={article.image.url} strength={100} bgStyle={{position: 'relative'}}>
-                    <div className="articleTitle">{article.title}</div>
-                    <div className="articleDesc">{article.summary}</div>
-                  </Parallax>
-                </a>
+            <div className="col-sm-12 parallax" key={index}>
+              <div className="articleLarge">
+                <div className="articleImage">
+                  <div className="linkToArticle"><a href={article.link}>
+                    <Parallax bgImage={article.image.url} strength={100} bgStyle={{position: 'relative'}}>
+                      <div className="articleTitle">{article.title}</div>
+                      <div className="articleDesc">{article.summary}</div>
+                    </Parallax>
+                  </a>
                 </div>
               </div>
             </div>
@@ -46,13 +47,13 @@ class NewsPage extends Component {
         )
       } else {
         return (
-          <div className="col-sm-3" key={index}>
-            <div className="article">
-              <div className="articleImage">
-                <div className="linkToArticle"><a href={article.link}>
-                  <img src={article.image.url} />
-                  <div className="articleTitle">{article.title}</div>
-                  <div className="articleDesc">{article.summary}</div>
+            <div className="col-sm-3" key={index}>
+              <div className="article">
+                <div className="articleImage">
+                  <div className="linkToArticle"><a href={article.link}>
+                    <img src={article.image.url} />
+                    <div className="articleTitle">{article.title}</div>
+                    <div className="articleDesc">{article.summary}</div>
                   </a>
                 </div>
               </div>

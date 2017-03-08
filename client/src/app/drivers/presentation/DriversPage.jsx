@@ -8,9 +8,11 @@ const DriversPage = ({ drivers, updateText, text, years, year }) => (
     <div className="driversPage">
       <div className="driverSeasonTitle">
       </div>
-      <div className="container-fluid">
-        <div className="row">
-          {drivers}
+      <div className="driverListings">
+        <div className="container-fluid">
+          <div className="row">
+            {drivers}
+          </div>
         </div>
       </div>
     </div>
