@@ -20,6 +20,7 @@
   position: relative;
   margin: 2em;
   height: 70%;
+  transition-duration: 0.9s;
 }
 
 .circuitImg {
@@ -54,6 +55,7 @@
   position: relative;
   height: 10vh;
   margin: 1em;
+  transition-duration: 0.9s;
   .circuitSmImg {
     border: 2px solid white;
     display: inline-block;
@@ -61,18 +63,15 @@
     position: relative;
     width: 100%;
     height: 10vh;
+    transition-duration: 0.9s;
     img {
       width: 100%;
       position: relative;
-      overflow: hidden;
-      -moz-transition: all 1s;
-      -webkit-transition: all 1s;
-      transition: all 1s ease;
     }
   }
-  .circuitResultSm:hover {
+  .circuitResultSm {
     .circuitSmImg {
-      img {
+      img:hover {
         -moz-transform: scale(1.1);
         -webkit-transform: scale(1.1);
         transform: scale(1.1);
@@ -94,5 +93,34 @@
 @media screen and (max-width: 800px) {
   img.react-parallax-bgimage {
     height: 520px;
+  }
+}
+
+.cirSm.expandCircuit {
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+  transition-duration: 0.4s;
+  .circuitResultSm {
+    height: 90vh;
+    .circuitSmImg {
+      height: 100%;
+    }
+  }
+}
+
+.cirLg.shrinkCircuit {
+  height: 10vh;
+  width: 50%;
+  overflow: hidden;
+  transition-duration: 0.4s;
+  .circuitResult {
+    border: 2px solid white;
+    height: 100%;
+    margin: 1em;
+    transition-duration: 0.4s;
+    img {
+      width: 100%;
+    }
   }
 }

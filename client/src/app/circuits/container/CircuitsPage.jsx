@@ -36,6 +36,18 @@ class CircuitsPage extends Component {
   }
 
   renderFullCircuit(i, bool, longitude, latitude) {
+    console.log(this.state.displayedCircuits[i].props.className);
+    if(this.state.displayedCircuits[i].props.className === "col-sm-6 cirSm") {
+      let currCircuit = document.getElementsByClassName('cirSm')[i];
+      if(currCircuit.classList.contains('col-sm-6')) {
+        currCircuit.classList.add('expandCircuit');
+      }
+    } else {
+      console.log(document.getElementsByClassName('cirLg'));
+      let currCircuit = document.getElementsByClassName('cirLg')[0];
+      currCircuit.classList.remove('expandCircuit');
+      currCircuit.classList.add('shrinkCircuit');
+    }
     if(longitude && latitude) {
     }
     let displayedCircuits = this.state.displayedCircuits;
@@ -47,10 +59,12 @@ class CircuitsPage extends Component {
       fullCircuitWindow = this.state.circuitsSmall[i];
     }
     displayedCircuits[i] = fullCircuitWindow;
-    this.setState({displayedCircuits});
+    setTimeout(function() {
+      this.setState({displayedCircuits});
+    }.bind(this), 1000);
   }
-  scrollToTop() {
 
+  scrollToTop() {
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,8 +72,8 @@ class CircuitsPage extends Component {
       let long = circuit.lng;
       let lat = circuit.lat;
       return (
-        <div className="col-sm-6" key={index}>
-          <div className="circuitResultSm" value={index} onClick={() => this.renderFullCircuit(index, true, long, lat)}>
+        <div className="col-sm-6 cirSm" key={index} onClick={() => this.renderFullCircuit(index, true, long, lat)}>
+          <div className="circuitResultSm" value={index}>
             <div className="circuitSmImg">
               <img src={circuit.image_backgrounds} />
             </div>
@@ -74,8 +88,8 @@ class CircuitsPage extends Component {
       let long = circuit.lng;
       let lat = circuit.lat;
       return (
-        <div className="col-sm-6" key={index}>
-          <div className="circuitResultSm" value={index} onClick={() => this.renderFullCircuit(index, true, long, lat)}>
+        <div className="col-sm-6 cirSm" key={index} onClick={() => this.renderFullCircuit(index, true, long, lat)}>
+          <div className="circuitResultSm" value={index}>
             <div className="circuitSmImg">
               <img src={circuit.image_backgrounds} />
             </div>
@@ -88,7 +102,7 @@ class CircuitsPage extends Component {
     });
     let circuitsFull = nextProps.circuits.circuits.map( (circuit, index) => {
       return (
-        <div className="col-sm-12" key={index}>
+        <div className="col-sm-12 cirLg" key={index}>
           <div className="circuitResult" onClick={() => this.renderFullCircuit(index, false)}>
             <div className="circuitImg">
               <Parallax strength={100} bgImage={circuit.image_backgrounds} bgHeight={'720px'}

@@ -12,8 +12,9 @@
   height: 70px;
   position: absolute;
   width: 100%;
-  z-index: 0;
+  z-index: 1;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 2px 2px 3px black;
   transition: all 0.5s ease;
   .driverNavTitle {
     h3 {
@@ -57,14 +58,16 @@
 }
 @media screen and (max-width: 830px) {
   .driverNavTopBar.driverScroll {
-    height: 60px;
+    height: 80px;
     top: 66px;
     .driverNavTitle {
-
       text-align: center;
+      width:100%;
+      display: inline-block;
       h3 {
-        display: inline-block;
+        font-size: 16px;
         width: 100%;
+        display: inline-block;
       }
     }
   }
@@ -82,9 +85,11 @@
   position: fixed;
   .driverNavTitle {
     h3 {
-      font-size: 18px;
-      width: 15%;
+      font-size: 16px;
+      width: 100%;
       transition: font, width .5s ease;
+      font-style: italic;
+      left: 1em;
     }
     .driver-right {
       position: absolute;
