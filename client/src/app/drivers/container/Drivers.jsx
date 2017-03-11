@@ -77,7 +77,8 @@ class Drivers extends Component {
   scrollToTop(e) {
     e.preventDefault();
     let body = document.body;
-    body.animate({scrollTop: 0}, 2000)
+    console.log(body);
+    body.scrollTop = 0;
   }
 
   updateDriverNav() {

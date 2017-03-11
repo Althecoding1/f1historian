@@ -59,6 +59,14 @@
   border-bottom: 1px solid rgba(200, 200, 200, 0.8);
 }
 
+.newsIcon {
+  position: fixed;
+  display: inline-block;
+  color: white;
+  bottom: 50px;
+  margin-left:-20px;
+}
+
 .bounce {
   @include animation(bounce 2s infinite);
 }

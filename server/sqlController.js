@@ -114,7 +114,7 @@ module.exports = {
       ' JOIN races AS Races ON Races.raceId = R.raceId' +
       ' JOIN constructors AS T ON T.constructorId = R.constructorId',
 
-      builtCircuitQuery: 'SELECT DISTINCT circuitName, location, country, lat, lng, C.image_backgrounds, C.url, C.imageUrl' +
+      builtCircuitQuery: 'SELECT DISTINCT circuitName, location, country, lat, lng, C.image_backgrounds, C.url, C.imageUrl, circuitRef' +
       ' FROM circuits AS C' +
       ' JOIN races AS Races ON Races.circuitId = C.circuitId' +
       ' JOIN f1sqldata.constructorStandings AS CS ON Races.raceId = CS.raceId' +

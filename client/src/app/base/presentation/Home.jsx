@@ -11,7 +11,11 @@ const Home = () => (
         </div>
         <div className="CTA">
         </div>
-        <div className="arrow bounce"/>
+        <div className="newsIcon">
+          <h4>Formula 1 News</h4>
+        </div>
+        <div className="arrow bounce">
+        </div>
       </div>
   </div>
 );
