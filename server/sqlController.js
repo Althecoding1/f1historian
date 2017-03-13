@@ -114,7 +114,7 @@ module.exports = {
       ' JOIN races AS Races ON Races.raceId = R.raceId' +
       ' JOIN constructors AS T ON T.constructorId = R.constructorId',
 
-      builtCircuitQuery: 'SELECT DISTINCT circuitName, location, country, lat, lng, C.image_backgrounds, C.url, C.imageUrl, circuitRef' +
+      builtCircuitQuery: 'SELECT DISTINCT circuitName, location, country, lat, lng, C.image_backgrounds, C.url, C.imageUrl, circuitRef, Races.name' +
       ' FROM circuits AS C' +
       ' JOIN races AS Races ON Races.circuitId = C.circuitId' +
       ' JOIN f1sqldata.constructorStandings AS CS ON Races.raceId = CS.raceId' +
@@ -167,6 +167,22 @@ module.exports = {
           res.send(resultObj);
         })
       })
+    });
+  },
+
+  collectCircuitRaceResults: (req, res) => {
+    let dataQuery = 'SELECT Res.positionText, Res.fastestLap, Res.time, Res.grid, D.forename, D.surname, R.name, ' + 'C.circuitName, Con.name FROM f1sqldata.results AS Res ' +
+    'JOIN f1sqldata.races AS R ON Res.raceId = R.raceId ' +
+    'JOIN f1sqldata.drivers AS D ON Res.driverId = D.driverId ' +
+    'JOIN f1sqldata.circuits AS C ON R.circuitId = C.circuitId ' +
+    'JOIN f1sqldata.constructors AS Con ON Con.constructorId = Res.constructorId ' +
+    'WHERE R.year = ' + req.params.year + ' AND C.circuitName = ' + '"' + req.params.circuit + '"';
+    console.log(dataQuery);
+    db.query(dataQuery, (err, rows, fields) => {
+      if(err) {console.log(err)}
+      let newRows = JSON.stringify(rows);
+      newRows = JSON.parse(newRows);
+      res.send(newRows);
     });
   }
 

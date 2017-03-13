@@ -10,7 +10,7 @@ class Map extends Component {
   componentDidMount() {
     this.map = new google.maps.Map(this.mapInput, {
       center: {lat: this.props.lat, lng: this.props.lng},
-      zoom: 12,
+      zoom: 14,
     });
     this.marker = new google.maps.Marker({
       position: {lat: this.props.lat, lng: this.props.lng},

@@ -16,9 +16,73 @@ class CircuitsPage extends Component {
       circuits: [],
       displayedCircuits: [],
       clickedCircuits: {},
-      referencedCircuits: {}
+      referencedCircuits: {},
+      showingSummaries: {},
+      raceSummaries: {},
+      circuitTableResult: {}
     };
     this.renderFullCircuit = this.renderFullCircuit.bind(this);
+    this.fetchCircuitSummary = this.fetchCircuitSummary.bind(this);
+    this.fetchYearRaceInfo = this.fetchYearRaceInfo.bind(this);
+  }
+
+  fetchCircuitSummary(circuits) {
+    let showingSummaries = {};
+    let raceSummaries = {};
+    circuits.map((circuit) => {
+      axios.get('/api/wiki/' + circuit.circuitName)
+      .then( (result) => {
+        showingSummaries[circuit.circuitRef] = result.data;
+        axios.get('/api/wiki/' + circuit.name)
+        .then( (response) => {
+          raceSummaries[circuit.circuitRef] = response.data;
+        })
+      });
+    });
+    this.setState({showingSummaries, raceSummaries});
+  }
+
+  fetchYearRaceInfo(circuits) {
+    let circuitTableResult = {};
+    let year = document.getElementsByClassName('year')[0].children[0].children[1].innerHTML;
+    circuits.map( (circuit) => {
+      axios.get('/api/circuits/results/' + year + '/' + circuit.circuitName)
+      .then( (result) => {
+        let res = result.data;
+        let driverList = res.map( (driver, index) => {
+          return (
+            <tr key={index}>
+              <th scope="row">{driver.forename + " " + driver.surname}</th>
+              <td>{driver.name}</td>
+              <td>{driver.grid}</td>
+              <td>{driver.positionText}</td>
+              <td>{driver.fastestLap}</td>
+              <td>{driver.time}</td>
+            </tr>
+          )
+        });
+        circuitTableResult[circuit.circuitRef] = (
+            <div className="circuitRaceStats">
+              <table className="table statsTable">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Constructor</th>
+                    <th>Grid</th>
+                    <th>Final</th>
+                    <th>Fastest Lap</th>
+                    <th>Finishing Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {driverList}
+                </tbody>
+              </table>
+            </div>
+          )
+      });
+    });
+    this.setState({circuitTableResult});
   }
 
   renderFullCircuit(i, longitude, latitude, cirRef, circuit) {
@@ -53,13 +117,26 @@ class CircuitsPage extends Component {
         style={{float: index % 2 === 0 ? "left" : "right"}}>
         <div className="circuitResultSm">
           <div className="circuitSmImg">
+            <div className="opacityCover" />
             <img src={circuit.image_backgrounds} />
+            <div className={circuitRef} ref={(input) => {this.currMap = input}}>
+              <Map lat={lat} lng={long}/>
+            </div>
+            {this.state.circuitTableResult[circuitRef]}
           </div>
-          <div className="circuitTitleSm">
-            {circuit.circuitName}
-          </div>
-          <div className={circuitRef} ref={(input) => {this.currMap = input}}>
-            <Map lat={lat} lng={long}/>
+          <div className="circuitTextArea">
+            <div className="circuitTitleSm">
+              {circuit.circuitName}
+            </div>
+            <div className="circuitSummary">
+              <h4>{this.state.showingSummaries[circuitRef]}</h4>
+            </div>
+            <div className="raceName">
+              {circuit.name}
+            </div>
+            <div className="raceSummary">
+              <h4>{this.state.raceSummaries[circuitRef]}</h4>
+            </div>
           </div>
         </div>
       </div>
@@ -67,7 +144,9 @@ class CircuitsPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let clickedCircuits;
+    this.fetchCircuitSummary(nextProps.circuits.circuits);
+    this.fetchYearRaceInfo(nextProps.circuits.circuits);
+    console.log(nextProps);
     let displayedCircuits = nextProps.circuits.circuits.map( (circuit, index) => {
       let long = circuit.lng;
       let lat = circuit.lat;
