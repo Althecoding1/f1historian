@@ -1,5 +1,4 @@
 const axios = require('axios');
-const keys = require('../.config.js');
 
 module.exports = {
 
