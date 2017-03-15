@@ -9,7 +9,6 @@
   "scripts": {
     "watch": "webpack -d --watch",
     "start": "node server/server.js"
-
   },
   "author": "",
   "license": "ISC",
@@ -25,6 +24,7 @@
     "axios": "^0.15.3",
     "bootstrap": "^3.3.7",
     "compass-mixins": "^0.12.10",
+    "express": "^4.15.2",
     "feedparser": "^2.1.0",
     "fs": "0.0.1-security",
     "google-maps-react": "^1.0.19",
