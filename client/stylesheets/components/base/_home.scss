@@ -39,6 +39,22 @@
   { @include transform(translateY(-30px)); } 60%
   { @include transform(translateY(-15px)); }
 }
+#background-video {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.5;
+}
+.driverButton {
+  position: absolute;
+  bottom: 25%;
+  left: 2%;
+  z-index: 3000;
+  img {
+    height: 15em;
+    width: 20em;
+  }
+}
 
 .arrow {
   position: fixed;

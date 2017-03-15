@@ -32,21 +32,15 @@ class Drivers extends Component {
 
   }
   componentWillReceiveProps(nextProps) {
-    if(nextProps.driverStats.body) {
-      let childElements = nextProps.driverStats.getElementsByTagName('tb');
-      let flipped = true;
-      let statsKeys = Object.keys(childElements);
-      let driverStats = statsKeys.map( (el) => {
-        return childElements[el].innerText;
-      });
-      console.log(driverStats);
 
-      this.setState({driverStats, flipped});
-    }
   }
 
   componentDidUpdate() {
     this.updateDriverList();
+  }
+
+  flipDriverCard() {
+    console.log('here');
   }
 
   updateDriverList() {
@@ -54,7 +48,7 @@ class Drivers extends Component {
       this.setState({driverList: this.state.drivers.map((driver) => {
           return(
             <div className="col-sm-3" key={driver.driverId}>
-              <div className="drivers hvr-grow-shadow">
+              <div className="drivers hvr-grow-shadow" onClick={() => this.flipDriverCard()}>
                 <div className="driverInfo">
                   <a href={driver.url}>
                     <Driver driver={driver}/>
@@ -77,7 +71,6 @@ class Drivers extends Component {
   scrollToTop(e) {
     e.preventDefault();
     let body = document.body;
-    console.log(body);
     body.scrollTop = 0;
   }
 

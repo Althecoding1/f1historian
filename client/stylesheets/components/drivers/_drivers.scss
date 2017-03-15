@@ -47,6 +47,11 @@
   }
 }
 
+.drivers.flipped {
+  transform: scaleX(-1);
+  transition-duration: 0.5s;
+}
+
 .hvr-grow-shadow {
   display: inline-block;
   vertical-align: middle;

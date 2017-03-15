@@ -85,11 +85,13 @@
   position: fixed;
   .driverNavTitle {
     h3 {
+      display: inline-block;
       font-size: 16px;
       width: 100%;
       transition: font, width .5s ease;
       font-style: italic;
       left: 1em;
+      bottom: 50%;
     }
     .driver-right {
       position: absolute;

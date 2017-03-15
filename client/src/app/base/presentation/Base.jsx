@@ -12,11 +12,6 @@ const Base = ({ children }) => (
             <div className="top-bar-left">
               <div className="row">
                 <div className="col-sm-6">
-                  <Link to="/drivers">
-                    <div className="driverButton hvr-grow-rotate">
-                      <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/DriverHelmet_zpsevk2wbqr.png" />
-                    </div>
-                  </Link>
                 </div>
               </div>
             </div>

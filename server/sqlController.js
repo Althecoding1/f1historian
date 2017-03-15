@@ -177,7 +177,6 @@ module.exports = {
     'JOIN f1sqldata.circuits AS C ON R.circuitId = C.circuitId ' +
     'JOIN f1sqldata.constructors AS Con ON Con.constructorId = Res.constructorId ' +
     'WHERE R.year = ' + req.params.year + ' AND C.circuitName = ' + '"' + req.params.circuit + '"';
-    console.log(dataQuery);
     db.query(dataQuery, (err, rows, fields) => {
       if(err) {console.log(err)}
       let newRows = JSON.stringify(rows);

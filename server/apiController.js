@@ -8,7 +8,6 @@ module.exports = {
     let options = {headers: {'Api-User-Agent': 'F1Historian/v1 (https://localhost:3001 Artielivingston1@gmail.com to contact)'}};
     axios.get('https://en.wikipedia.org/w/api.php?action=parse&text='+ driver +'&format=json', options)
     .then( (data) => {
-      console.log(data.data);
       res.send(data.data);
     })
     .catch( (err) => {
@@ -31,11 +30,9 @@ module.exports = {
   },
 
   getGoogleGeoCodeLoc: (req, res) => {
-    console.log(req.params);
     let url = 'https://maps.googleapis.com/maps/api/js?key=' + keys.MAPS_API_KEY + '&callback=initMap';
     axios.get(url)
     .then((result) => {
-      console.log(result.data);
       res.send(result.data);
     })
   }

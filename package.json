@@ -4,8 +4,10 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
+    "heroku-prebuild": "webpack",
     "watch": "webpack -d --watch",
-    "start": "nodemon server/server.js"
+    "start": "node server/server.js"
+
   },
   "author": "",
   "license": "ISC",

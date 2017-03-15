@@ -41,7 +41,12 @@ class YearSearch extends Component {
   }
 
   flipDriverCard(i) {
-    console.log(i);
+    let driver = document.getElementsByClassName('drivers')[i];
+    if(driver.classList.contains('flipped')) {
+      driver.classList.remove('flipped');
+    } else {
+      driver.classList.add('flipped');
+    }
   }
 
   expandDriverInfo(e) {
@@ -76,7 +81,7 @@ class YearSearch extends Component {
           </div>
         </div>
       );
-    })
+    });
   }
 
   generateYears() {
