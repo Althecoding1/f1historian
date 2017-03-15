@@ -24,9 +24,15 @@ let config = {
       {
         test: /\.scss$/,
         include: STYLE_DIR,
-        loaders: ["style-loader", "css-loader", "sass-loader?includePaths[]=" + path.resolve(__dirname, "./node_modules/compass-mixins/lib")]  
+        loaders: ["style-loader", "css-loader", "sass-loader?includePaths[]=" + path.resolve(__dirname, "./node_modules/compass-mixins/lib")]
       }
     ],
+    resolve: {
+        extensions: ['', '.js', '.jsx', '.css'],
+        modulesDirectories: [
+          'node_modules'
+        ]
+    }
   }
 };
 
