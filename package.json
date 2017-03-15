@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",
     "compass-mixins": "^0.12.10",
     "express": "^4.15.2",
