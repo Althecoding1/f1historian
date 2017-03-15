@@ -8,6 +8,7 @@ const connection = mysql.createConnection({
 connection.connect((err) => {
   if(err) {
     console.log(`There was an error connecting to the DB, ${err}`);
+    console.log(process.env.DB_USERNAME);
   } else {
     console.log(`Successfully connected to database!`);
   }
