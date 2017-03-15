@@ -9,8 +9,7 @@
   "scripts": {
     "postinstall": "webpack -p",
     "watch": "webpack -d --watch",
-    "start": "node server/server.js",
-    "prod": "NODE_ENV=production node server/server.js",
+    "start": "webpack -p && node server/server.js"
   },
   "author": "",
   "license": "ISC",
