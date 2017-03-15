@@ -28,7 +28,7 @@ let config = {
       }
     ],
   },
-  resolve: {
+  resolver: {
     extensions: ['', '.js', '.jsx', '.css'],
     modulesDirectories: [
       'node_modules'
