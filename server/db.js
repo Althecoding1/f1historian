@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-  host: 'f1historiandata.c7dt2jerhu7u.us-west-2.rds.amazonaws.com:3306',
+  host: 'f1historiandata.c7dt2jerhu7u.us-west-2.rds.amazonaws.com',
   database: 'f1historiandata',
   user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD
