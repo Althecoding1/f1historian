@@ -117,10 +117,10 @@ module.exports = {
       builtCircuitQuery: 'SELECT DISTINCT circuitName, location, country, lat, lng, C.image_backgrounds, C.url, C.imageUrl, circuitRef, Races.name' +
       ' FROM circuits AS C' +
       ' JOIN races AS Races ON Races.circuitId = C.circuitId' +
-      ' JOIN f1sqldata.constructorStandings AS CS ON Races.raceId = CS.raceId' +
-      ' JOIN f1sqldata.results AS RES ON Races.raceId = RES.raceId' +
-      ' JOIN f1sqldata.drivers AS D ON RES.driverId = D.driverId' +
-      ' JOIN f1sqldata.constructors AS T ON CS.constructorId = T.constructorId',
+      ' JOIN constructorStandings AS CS ON Races.raceId = CS.raceId' +
+      ' JOIN results AS RES ON Races.raceId = RES.raceId' +
+      ' JOIN drivers AS D ON RES.driverId = D.driverId' +
+      ' JOIN constructors AS T ON CS.constructorId = T.constructorId',
 
       builtTeamQuery: 'SELECT DISTINCT T.name, teamNationality, T.url FROM constructors AS T' +
       ' JOIN results AS R ON T.constructorId = R.constructorId' +
@@ -171,11 +171,11 @@ module.exports = {
   },
 
   collectCircuitRaceResults: (req, res) => {
-    let dataQuery = 'SELECT Res.positionText, Res.fastestLap, Res.time, Res.grid, D.forename, D.surname, R.name, ' + 'C.circuitName, Con.name FROM f1sqldata.results AS Res ' +
-    'JOIN f1sqldata.races AS R ON Res.raceId = R.raceId ' +
-    'JOIN f1sqldata.drivers AS D ON Res.driverId = D.driverId ' +
-    'JOIN f1sqldata.circuits AS C ON R.circuitId = C.circuitId ' +
-    'JOIN f1sqldata.constructors AS Con ON Con.constructorId = Res.constructorId ' +
+    let dataQuery = 'SELECT Res.positionText, Res.fastestLap, Res.time, Res.grid, D.forename, D.surname, R.name, ' + 'C.circuitName, Con.name FROM results AS Res ' +
+    'JOIN races AS R ON Res.raceId = R.raceId ' +
+    'JOIN drivers AS D ON Res.driverId = D.driverId ' +
+    'JOIN circuits AS C ON R.circuitId = C.circuitId ' +
+    'JOIN constructors AS Con ON Con.constructorId = Res.constructorId ' +
     'WHERE R.year = ' + req.params.year + ' AND C.circuitName = ' + '"' + req.params.circuit + '"';
     db.query(dataQuery, (err, rows, fields) => {
       if(err) {console.log(err)}

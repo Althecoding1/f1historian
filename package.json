@@ -8,7 +8,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "watch": "webpack -d --watch",
-    "start": "node server/server.js"
+    "start": "nodemon server/server.js",
+    "build": "nodemon server/server.js"
   },
   "author": "",
   "license": "ISC",
