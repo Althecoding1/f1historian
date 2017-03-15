@@ -5,7 +5,6 @@ const connection = mysql.createConnection({
   user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD
 });
-console.log(connection);
 connection.connect((err) => {
   if(err) {
     console.log(`There was an error connecting to the DB, ${err}`);
