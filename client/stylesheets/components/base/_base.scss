@@ -74,13 +74,25 @@
 }
 
 .webTitle {
+  display: inline-block;
   position: absolute;
-  left: 45%;
+  left: 38%;
+  bottom: 13%;
   h3 {
     color: #d8d8d8;
     text-align: center;
     font-family: 'PT Serif', serif;
     line-height: 22px;
     letter-spacing: 0.2em;
+  }
+}
+@media screen and (min-width: 800px) {
+  .webTitle {
+    left: 43%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .webTitle {
+    left: 25%;
   }
 }

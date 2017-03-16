@@ -77,21 +77,24 @@
   background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dark-heavypaper_zpsh5rvorqy.png');
   opacity: 1;
   height: 50px;
-  top: 66px;
+  top: 64px;
   transition: all 0.5s ease;
   border-bottom: 1px solid rgba(200, 200, 200, 0.8);
   box-shadow: 2px 2px 3px black;
   z-index: 3000;
   position: fixed;
   .driverNavTitle {
-    h3 {
+    .driverYear {
       display: inline-block;
-      font-size: 16px;
-      width: 100%;
-      transition: font, width .5s ease;
-      font-style: italic;
-      left: 1em;
-      bottom: 50%;
+      h3 {
+        display: inline-block;
+        font-size: 16px;
+        width: 100%;
+        transition: font, width .5s ease;
+        font-style: italic;
+        left: 1em;
+        bottom: 50%;
+      }
     }
     .driver-right {
       position: absolute;

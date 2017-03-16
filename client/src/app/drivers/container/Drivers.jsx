@@ -86,7 +86,9 @@ class Drivers extends Component {
           <div className="driver-right" onClick={this.scrollToTop}>
             <i className="icon-chevron-up"></i>
           </div>
-          <h3>{this.props.years[yearKeys[0]]} Drivers</h3>
+          <div className="driverYear">
+            <h3>{this.props.years[yearKeys[0]]} Drivers</h3>
+          </div>
         </div>
       </div>
     );

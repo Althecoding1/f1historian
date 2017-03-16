@@ -143,6 +143,7 @@
         width: 100%;
         left: 0;
         top: 70%;
+        height: 30%;
       }
     }
   }
@@ -201,6 +202,9 @@
   margin-bottom: 2em;
 }
 
+.statsTable {
+  width: 100%;
+}
 .googleMap {
   position: absolute;
   height: 30%;
@@ -221,6 +225,7 @@
     font-size: 1.5em;
   }
   .raceSummary {
+    height: 100%;
     font-size: 0.8em;
   }
   .googleMap {
