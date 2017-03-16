@@ -7,7 +7,8 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "watch": "webpack -d --watch && nodemon server/server.js",
+    "watch": "webpack -d --watch",
+    "build": "nodemon server/server.js",
     "start": "node server/server.js",
     "postinstall": "webpack -p"
   },
