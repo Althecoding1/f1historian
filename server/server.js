@@ -8,7 +8,7 @@ const api = require('./apiController.js');
 const rss = require('./apiRSSNewsFeed.js');
 const app = express();
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
 
 app.use(express.static('./client/static/'));
 app.use(bodyParser.urlencoded({ extended: false }));
