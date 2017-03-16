@@ -114,7 +114,7 @@ class CircuitsPage extends Component {
     return (
       <div className="col-sm-6 cirSm" key={index}
         onClick={() => this.renderFullCircuit(index, long, lat, circuitRef, circuit)}
-        style={{float: index % 2 === 0 ? "left" : "right"}}>
+        style={{float: index % 2 === 0 ? "left" : "right", right: index % 2 === 0 ? 0 : "2em"}}>
         <div className="circuitResultSm">
           <div className="circuitSmImg">
             <div className="opacityCover" />
