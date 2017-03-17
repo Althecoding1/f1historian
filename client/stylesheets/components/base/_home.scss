@@ -39,20 +39,68 @@
   { @include transform(translateY(-30px)); } 60%
   { @include transform(translateY(-15px)); }
 }
-#background-video {
+
+@keyframes expandHelmetSearch {
+  from {
+    height: 0;
+    width: 0;
+    z-index: 3000;
+  }
+  to {
+    height: 13em;
+    width: 17em;
+    z-index: 3000;
+    display: inline-block;
+  }
+}
+
+.hoverHelmetText {
   position: absolute;
-  width: 100vw;
-  height: 100vh;
-  opacity: 0.5;
+  height: 0;
+  width: 0;
+  img {
+    height: 0px;
+    width: 0px;
+    display: none;
+  }
 }
 .driverButton {
   position: absolute;
-  bottom: 25%;
-  left: 2%;
+  bottom: 60%;
+  left: 40%;
   z-index: 3000;
+  transition: 0.5s;
   img {
-    height: 15em;
-    width: 20em;
+    height: 13em;
+    width: 17em;
+  }
+}
+.driverButton:hover {
+  transform: rotateZ(-20deg);
+}
+@media screen and (max-width: 1025px) {
+  .driverButton {
+    left: 33%;
+  }
+}
+@media screen and (max-width: 720px) {
+  .driverButton {
+    bottom: 60%;
+    left: 30%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .driverButton {
+    left: 17%;
+  }
+}
+@media screen and (max-height: 760px) {
+  .driverButton {
+    left: 24%;
+    img {
+      height: 10em;
+      width: 15em;
+    }
   }
 }
 
