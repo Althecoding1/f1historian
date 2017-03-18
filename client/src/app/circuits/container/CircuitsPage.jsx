@@ -122,8 +122,10 @@ class CircuitsPage extends Component {
             <div className={circuitRef} ref={(input) => {this.currMap = input}}>
               <Map lat={lat} lng={long}/>
             </div>
-            {this.state.circuitTableResult[circuitRef]}
           </div>
+        </div>
+        <div className="allcircuitInfo">
+          {this.state.circuitTableResult[circuitRef]}
           <div className="circuitTextArea">
             <div className="circuitTitleSm">
               {circuit.circuitName}
