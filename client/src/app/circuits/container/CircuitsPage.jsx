@@ -19,7 +19,12 @@ class CircuitsPage extends Component {
       referencedCircuits: {},
       showingSummaries: {},
       raceSummaries: {},
-      circuitTableResult: {}
+      circuitTableResult: {},
+      circuitButtons: {
+        mapButton: false,
+        infoButton: false,
+        statsButton: false
+      }
     };
     this.renderFullCircuit = this.renderFullCircuit.bind(this);
     this.fetchCircuitSummary = this.fetchCircuitSummary.bind(this);
@@ -100,6 +105,9 @@ class CircuitsPage extends Component {
         if(!clickedCircuits[cirRef].index) {
           currCircuit.classList.add('expandCircuit');
           clickedCircuits[cirRef].index = true;
+          clickedCircuits[cirRef].mapButton = false;
+          clickedCircuits[cirRef].infoButton = false;
+          clickedCircuits[cirRef].statsButton = false;
         } else {
           currCircuit.classList.remove('expandCircuit');
           displayedCircuits[i] = clickedCircuits[cirRef].oldCircuitBuild;
@@ -107,7 +115,8 @@ class CircuitsPage extends Component {
         }
       } else {
         currCircuit.classList.add('expandCircuit');
-        clickedCircuits[cirRef] = {index: true, oldCircuitBuild: referenceCircuit};
+        clickedCircuits[cirRef] = {index: true, oldCircuitBuild: referenceCircuit,
+                                    mapButton: false, infoButton: false, statsButton: false};
 
     }
     this.setState({displayedCircuits, clickedCircuits});
@@ -127,6 +136,7 @@ class CircuitsPage extends Component {
             <div className={circuitRef} ref={(input) => {this.currMap = input}}>
               <Map lat={lat} lng={long}/>
             </div>
+
           </div>
         </div>
         <div className="expandedCardTitle">
@@ -138,9 +148,9 @@ class CircuitsPage extends Component {
           </div>
         </div>
         <div className="expandedCardButtons">
-          <div className="showMapsButton">Map</div>
-          <div className="showCircuitInfoButton">More Info</div>
-          <div className="showTableDataButton">Race Stats</div>
+          <div className="showMapsButton" onClick={() => this.renderMap(circuitRef, index)}>Map</div>
+          <div className="showCircuitInfoButton" onClick={() => this.renderInfo(circuitRef, index)}>More Info</div>
+          <div className="showTableDataButton" onClick={() => this.renderData(circuitRef, index)}>Race Stats</div>
         </div>
         <div className="allcircuitInfo">
           {this.state.circuitTableResult[circuitRef]}
@@ -155,6 +165,27 @@ class CircuitsPage extends Component {
         </div>
       </div>
     )
+  }
+
+  renderMap(cirRef, index) {
+    console.log(cirRef);
+    let clickedCircuits = this.state.clickedCircuits;
+    if(!clickedCircuits[cirRef].mapButton) {
+      this.currMap.style.height = "100%";
+      this.currMap.getElementsByClassName('googleMap')[0].style.display = "inline-block";
+      clickedCircuits[cirRef].mapButton = true;
+      this.setState({clickedCircuits});
+    } else {
+      this.currMap.getElementsByClassName('googleMap')[0].style.display = "none";
+      clickedCircuits[cirRef].mapButton = false;
+      this.setState({clickedCircuits});
+    }
+  }
+  renderInfo(cirRef, index) {
+
+  }
+  renderData(cirRef, index) {
+
   }
 
   componentWillReceiveProps(nextProps) {
