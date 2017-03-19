@@ -133,12 +133,14 @@ class CircuitsPage extends Component {
           <div className="circuitTitleSm">
             {circuit.circuitName}
           </div>
-          <div className="circuitTitleDivider">
-            <h1>/</h1>
-          </div>
           <div className="raceName">
             {circuit.name}
           </div>
+        </div>
+        <div className="expandedCardButtons">
+          <div className="showMapsButton">Map</div>
+          <div className="showCircuitInfoButton">More Info</div>
+          <div className="showTableDataButton">Race Stats</div>
         </div>
         <div className="allcircuitInfo">
           {this.state.circuitTableResult[circuitRef]}

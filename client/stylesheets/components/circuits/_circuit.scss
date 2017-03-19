@@ -115,7 +115,7 @@
     bottom: 0;
     color: black;
     display: inline-block;
-    font-size: 1.5em;
+    font-size: 2em;
     font-family: 'PT Serif', serif;
     text-align: center;
     text-decoration: underline;
@@ -183,7 +183,6 @@
       }
     }
   }
-
 }
 
 
@@ -194,7 +193,39 @@
   width: 95%;
   height: 15%;
   left: 5%;
+  box-shadow: 0 4px 2px -2px black;
+  z-index: 5;
   background-color: white;
+}
+.expandedCardButtons {
+  position: absolute;
+  display: inline-block;
+  height: 5%;
+  width: 80%;
+  top: 17.2%;
+  left: 13%;
+  background-color: #E9D699;
+  .showMapsButton {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 33.3%;
+    border: 2px solid white;
+  }
+  .showCircuitInfoButton {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 33.3%;
+    border: 2px solid white;
+  }
+  .showTableDataButton {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 33.3%;
+    border: 2px solid white;
+  }
 }
 
 
@@ -220,6 +251,7 @@
   font-size: 16px;
   text-shadow: 1px 1px 2px black;
   background: black(0.5);
+  display: none;
 }
 .statsTable {
   position: relative;
@@ -233,7 +265,7 @@
   color: black;
   display: inline-block;
   text-align: left;
-  font-size: 2em;
+  font-size: 3em;
   letter-spacing: 0.1em;
   line-height: 36px;
   left: 1.5em;
@@ -291,7 +323,7 @@
   }
   .circuitTextArea {
     position: absolute;
-    display: inline-block;
+    display: none;
     top: 10%;
     left: 13%;
     width: 80%;
@@ -302,9 +334,6 @@
     background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dark-heavypaper_zpsh5rvorqy.png');
     box-shadow: -8px 6px 20px 0px black;
   }
-  .raceName {
-    font-size: 1.5em;
-  }
   .raceSummary {
     height: 100%;
     font-size: 0.8em;
@@ -313,6 +342,7 @@
     width: 80%;
     height: 50%;
     top: 2em;
+    display: none;
   }
 @media screen and (min-width: 770px) {
   .cirSm.expandCircuit {
