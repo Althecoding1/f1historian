@@ -24,6 +24,7 @@ class CircuitsPage extends Component {
     this.renderFullCircuit = this.renderFullCircuit.bind(this);
     this.fetchCircuitSummary = this.fetchCircuitSummary.bind(this);
     this.fetchYearRaceInfo = this.fetchYearRaceInfo.bind(this);
+    this.swapTextCards = this.swapTextCards.bind(this);
   }
 
   fetchCircuitSummary(circuits) {
@@ -40,6 +41,10 @@ class CircuitsPage extends Component {
       });
     });
     this.setState({showingSummaries, raceSummaries});
+  }
+
+  swapTextCards() {
+    console.log('clicking')
   }
 
   fetchYearRaceInfo(circuits) {
@@ -62,7 +67,7 @@ class CircuitsPage extends Component {
           )
         });
         circuitTableResult[circuit.circuitRef] = (
-            <div className="circuitRaceStats">
+            <div className="circuitRaceStats" onClick={() => this.swapTextCards()}>
               <table className="table statsTable">
                 <thead>
                   <tr>
@@ -113,10 +118,10 @@ class CircuitsPage extends Component {
   loadMap(index, long, lat, circuit, circuitRef) {
     return (
       <div className="col-sm-6 cirSm" key={index}
-        onClick={() => this.renderFullCircuit(index, long, lat, circuitRef, circuit)}
         style={{float: index % 2 === 0 ? "left" : "right", right: index % 2 === 0 ? 0 : "2em"}}>
         <div className="circuitResultSm">
-          <div className="circuitSmImg">
+          <div className="circuitSmImg"
+            onClick={() => this.renderFullCircuit(index, long, lat, circuitRef, circuit)}>
             <div className="opacityCover" />
             <img src={circuit.image_backgrounds} />
             <div className={circuitRef} ref={(input) => {this.currMap = input}}>
@@ -124,17 +129,22 @@ class CircuitsPage extends Component {
             </div>
           </div>
         </div>
+        <div className="expandedCardTitle">
+          <div className="circuitTitleSm">
+            {circuit.circuitName}
+          </div>
+          <div className="circuitTitleDivider">
+            <h1>/</h1>
+          </div>
+          <div className="raceName">
+            {circuit.name}
+          </div>
+        </div>
         <div className="allcircuitInfo">
           {this.state.circuitTableResult[circuitRef]}
           <div className="circuitTextArea">
-            <div className="circuitTitleSm">
-              {circuit.circuitName}
-            </div>
             <div className="circuitSummary">
               <h4>{this.state.showingSummaries[circuitRef]}</h4>
-            </div>
-            <div className="raceName">
-              {circuit.name}
             </div>
             <div className="raceSummary">
               <h4>{this.state.raceSummaries[circuitRef]}</h4>
@@ -148,7 +158,6 @@ class CircuitsPage extends Component {
   componentWillReceiveProps(nextProps) {
     this.fetchCircuitSummary(nextProps.circuits.circuits);
     this.fetchYearRaceInfo(nextProps.circuits.circuits);
-    console.log(nextProps);
     let displayedCircuits = nextProps.circuits.circuits.map( (circuit, index) => {
       let long = circuit.lng;
       let lat = circuit.lat;
