@@ -115,13 +115,12 @@
 
   .circuitTitleSm {
     position: absolute;
-    bottom: 0;
+    top:60%;
     color: black;
     display: inline-block;
-    font-size: 1.7em;
+    font-size: 1.5em;
     font-family: 'PT Serif', serif;
     text-align: center;
-    line-height: 36px;
     letter-spacing: 0.1em;
     left: 4em;
   }
@@ -250,7 +249,28 @@
   }
 }
 
-
+@media screen and (max-height: 600px) {
+  .allCircuits {
+    .cirSm.expandCircuit {
+      .circuitResultSm {
+        .expandedCardTitle {
+          .raceName {
+            line-height: 0px;
+            top: 10px;
+            padding-top: 0;
+          }
+          .circuitTitleSm {
+            top: 17px;
+          }
+        }
+      }
+      .circuitRaceStats {
+        font-size: 7px;
+        height: 71%;
+      }
+    }
+  }
+}
 @media screen and (max-width: 720px) {
   .cirSm.expandCircuit {
     .circuitResultSm {
@@ -260,8 +280,21 @@
       margin-left: 0;
       margin-right: 0;
     }
+    .expandedCardButtons {
+      top: 14%;
+    }
     .expandedCardTitle {
-      font-size: 0.5em;
+      font-size: 0.8em;
+      .circuitTitleSm {
+        top: 40%;
+        font-size: 1.2em;
+      }
+      .raceName {
+        font-size: 1.5em;
+      }
+    }
+    .circuitRaceStats {
+      font-size: 10px;
     }
   }
   .expandedCardButtons {
@@ -293,13 +326,13 @@
 .raceName {
   position: absolute;
   font-family: 'PT Serif', serif;
-  padding-top: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   color: black;
   display: inline-block;
   text-align: left;
-  font-size: 2.4em;
-  letter-spacing: 0.1em;
-  line-height: 36px;
+  font-size: 2.1em;
+  letter-spacing: 0.2em;
   left: 1.5em;
   text-align: left;
   text-decoration: underline;
