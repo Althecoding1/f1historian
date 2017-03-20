@@ -6,7 +6,7 @@ module.exports = {
   getAllTracks: (req, res) => {
     db.query('SELECT * FROM circuits', (err, rows, fields) => {
       if(err) {
-        res.status(404).send(`No data retrieved!`, err);
+        res.status(404).send(err);
       } else {
         res.json(rows);
       }
@@ -15,7 +15,7 @@ module.exports = {
   getTrackInfo: (req, res) => {
     db.query('SELECT * FROM circuits WHERE circuitId=' + req.params.trackId, (err, rows, fields) => {
       if(err) {
-        res.status(404).send(`No circuit found!`, err);
+        res.status(404).send(err);
       }
       res.status(200).json(rows);
     });
