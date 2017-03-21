@@ -174,7 +174,13 @@ class CircuitsPage extends Component {
     let circuitIndex;
     let clickedCircuits = this.state.clickedCircuits;
     expandedCircuits.forEach( (item, i) => {if(index === item) {circuitIndex = i;}});
+    let mapButton = document.getElementsByClassName('showMapsButton')[circuitIndex];
+    let infoButton = document.getElementsByClassName('showCircuitInfoButton')[circuitIndex];
+    let dataButton = document.getElementsByClassName('showTableDataButton')[circuitIndex];
     if(!clickedCircuits[cirRef].mapButton) {
+      mapButton.classList.add('buttonClicked');
+      infoButton.classList.remove('buttonClicked');
+      dataButton.classList.remove('buttonClicked');
       let circuit = document.getElementsByClassName('googleMap')[circuitIndex];
       document.getElementsByClassName('circuitRaceStats')[circuitIndex].style.display = "none";
       document.getElementsByClassName('circuitTextArea')[circuitIndex].style.display = "none";
@@ -187,6 +193,7 @@ class CircuitsPage extends Component {
       clickedCircuits[cirRef].statsButton = false;
       this.setState({clickedCircuits});
     } else {
+      mapButton.classList.remove('buttonClicked');
       document.getElementsByClassName('googleMap')[circuitIndex].style.display = "none";
       clickedCircuits[cirRef].mapButton = false;
       this.setState({clickedCircuits});
@@ -197,7 +204,13 @@ class CircuitsPage extends Component {
     let circuitIndex;
     let clickedCircuits = this.state.clickedCircuits;
     expandedCircuits.forEach( (item, i) => {if(index === item) {circuitIndex = i;}});
+    let mapButton = document.getElementsByClassName('showMapsButton')[circuitIndex];
+    let infoButton = document.getElementsByClassName('showCircuitInfoButton')[circuitIndex];
+    let dataButton = document.getElementsByClassName('showTableDataButton')[circuitIndex];
     if(!clickedCircuits[cirRef].infoButton) {
+      infoButton.classList.add('buttonClicked');
+      mapButton.classList.remove('buttonClicked');
+      dataButton.classList.remove('buttonClicked');
       let circuit = document.getElementsByClassName('circuitTextArea')[circuitIndex].style.display = "inline-block";
       document.getElementsByClassName('googleMap')[circuitIndex].style.display = "none";
       document.getElementsByClassName('circuitRaceStats')[circuitIndex].style.display = "none";
@@ -206,6 +219,7 @@ class CircuitsPage extends Component {
       clickedCircuits[cirRef].statsButton = false;
       this.setState({clickedCircuits});
     } else {
+      infoButton.classList.remove('buttonClicked');
       let circuit = document.getElementsByClassName('circuitTextArea')[circuitIndex].style.display = "none";
       clickedCircuits[cirRef].infoButton = false;
       this.setState({clickedCircuits});
@@ -216,7 +230,13 @@ class CircuitsPage extends Component {
     let circuitIndex;
     let clickedCircuits = this.state.clickedCircuits;
     expandedCircuits.forEach( (item, i) => {if(index === item) {circuitIndex = i;}});
+    let mapButton = document.getElementsByClassName('showMapsButton')[circuitIndex];
+    let infoButton = document.getElementsByClassName('showCircuitInfoButton')[circuitIndex];
+    let dataButton = document.getElementsByClassName('showTableDataButton')[circuitIndex];
     if(!clickedCircuits[cirRef].statsButton) {
+      dataButton.classList.add('buttonClicked');
+      infoButton.classList.remove('buttonClicked');
+      mapButton.classList.remove('buttonClicked');
       document.getElementsByClassName('circuitRaceStats')[circuitIndex].style.display = "inline-block";
       document.getElementsByClassName('circuitTextArea')[circuitIndex].style.display = "none";
       document.getElementsByClassName('googleMap')[circuitIndex].style.display = "none";
@@ -225,6 +245,7 @@ class CircuitsPage extends Component {
       clickedCircuits[cirRef].infoButton = false;
       this.setState({clickedCircuits});
     } else {
+      dataButton.classList.remove('buttonClicked');
       document.getElementsByClassName('circuitRaceStats')[circuitIndex].style.display = "none";
       clickedCircuits[cirRef].statsButton = false;
       this.setState({clickedCircuits});
