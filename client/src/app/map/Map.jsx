@@ -22,7 +22,7 @@ class Map extends Component {
     let lng = this.props.lng;
     let lat = this.props.lat;
     return (
-      <div ref={(input) => {this.mapInput = input; }} className="googleMap"/>
+      <div ref={(input) => {this.mapInput = input; }} className="googleMap" />
     );
   }
 }
