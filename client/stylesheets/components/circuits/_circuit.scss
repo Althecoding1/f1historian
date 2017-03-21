@@ -248,6 +248,14 @@
     text-shadow: 2px 2px 5px black;
   }
 }
+.buttonClicked {
+  position: relative;
+  text-shadow: 2px 2px 5px black;
+  color: #d6dcf0;
+  text-decoration: underline;
+  height: 1px;
+  width: 100%;
+}
 
 @media screen and (max-height: 630px) {
   .allCircuits {
@@ -290,6 +298,7 @@
 @media screen and (max-width: 720px) {
   .cirSm.expandCircuit {
     .circuitResultSm {
+      font-size: 14px;
       height: 60vh;
       border:2px solid white;
       overflow: hidden;
@@ -307,6 +316,21 @@
       }
       .raceName {
         font-size: 1.5em;
+      }
+    }
+    .allcircuitInfo {
+      font-size: 14px;
+      .circuitTextArea {
+        .circuitSummary {
+          h4 {
+            font-size: 14px;
+          }
+        }
+        .raceSummary {
+          h4 {
+            font-size: 14px;
+          }
+        }
       }
     }
     .circuitRaceStats {
