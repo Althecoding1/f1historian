@@ -120,9 +120,6 @@ class CircuitsPage extends Component {
 
     }
     expandedCircuits.sort((a, b) => { return a - b});
-    console.log(expandedCircuits);
-    console.log(document.getElementsByClassName('expandCircuit'));
-    console.log(i);
     this.setState({displayedCircuits, clickedCircuits, expandedCircuits});
   }
 
@@ -176,7 +173,6 @@ class CircuitsPage extends Component {
     let expandedCircuits = this.state.expandedCircuits;
     let circuitIndex;
     let clickedCircuits = this.state.clickedCircuits;
-    console.log(this.currMap);
     expandedCircuits.forEach( (item, i) => {if(index === item) {circuitIndex = i;}});
     if(!clickedCircuits[cirRef].mapButton) {
       let circuit = document.getElementsByClassName('googleMap')[circuitIndex];

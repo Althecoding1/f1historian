@@ -249,7 +249,7 @@
   }
 }
 
-@media screen and (max-height: 600px) {
+@media screen and (max-height: 630px) {
   .allCircuits {
     .cirSm.expandCircuit {
       .circuitResultSm {
@@ -266,9 +266,25 @@
       }
       .circuitRaceStats {
         font-size: 7px;
-        height: 71%;
+        height: 70%;
+      }
+      .circuitTextArea {
+        height: 70%;
       }
     }
+  }
+}
+
+@media screen and (max-height: 670px) {
+  .allCircuits {
+      .cirSm.expandCircuit {
+        .circuitRaceStats {
+          height: 71%;
+        }
+        .circuitTextArea {
+          height: 71%;
+        }
+      }
   }
 }
 @media screen and (max-width: 720px) {
