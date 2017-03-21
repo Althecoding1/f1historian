@@ -20,7 +20,7 @@ class CircuitsPage extends Component {
       showingSummaries: {},
       raceSummaries: {},
       circuitTableResult: {},
-      count: 0
+      expandedCircuits: []
     };
     this.renderFullCircuit = this.renderFullCircuit.bind(this);
     this.fetchCircuitSummary = this.fetchCircuitSummary.bind(this);
@@ -92,36 +92,38 @@ class CircuitsPage extends Component {
   }
 
   renderFullCircuit(i, longitude, latitude, cirRef, circuit) {
+    let expandedCircuits = this.state.expandedCircuits;
     let displayedCircuits = this.state.displayedCircuits;
     let referenceCircuit = displayedCircuits[i];
-    let count = this.state.count;
     displayedCircuits[i] = this.loadMap(i, longitude, latitude, circuit, cirRef);
     let clickedCircuits = this.state.clickedCircuits;
     let currCircuit = document.getElementsByClassName('cirSm')[i];
       if(clickedCircuits[cirRef]) {
         if(!clickedCircuits[cirRef].index) {
-          count++;
           currCircuit.classList.add('expandCircuit');
+          expandedCircuits.push(i);
           clickedCircuits[cirRef].index = true;
           clickedCircuits[cirRef].mapButton = false;
           clickedCircuits[cirRef].infoButton = false;
           clickedCircuits[cirRef].statsButton = false;
         } else {
-          count--;
           currCircuit.classList.remove('expandCircuit');
-          displayedCircuits[i] = clickedCircuits[cirRef].oldCircuitBuild;
-          clickedCircuits.currOpen =
+          expandedCircuits.forEach( (item, index) => {if(item === i) {expandedCircuits.splice(index, 1)}});
           clickedCircuits[cirRef].index = false;
+          displayedCircuits[i] = clickedCircuits[cirRef].oldCircuitBuild;
         }
       } else {
-        count++;
         currCircuit.classList.add('expandCircuit');
-        clickedCircuits.currOpen = {cirRef: count};
+        expandedCircuits.push(i);
         clickedCircuits[cirRef] = {index: true, oldCircuitBuild: referenceCircuit,
                                     mapButton: false, infoButton: false, statsButton: false};
 
     }
-    this.setState({displayedCircuits, clickedCircuits});
+    expandedCircuits.sort((a, b) => { return a - b});
+    console.log(expandedCircuits);
+    console.log(document.getElementsByClassName('expandCircuit'));
+    console.log(i);
+    this.setState({displayedCircuits, clickedCircuits, expandedCircuits});
   }
 
 
@@ -135,10 +137,10 @@ class CircuitsPage extends Component {
             onClick={() => this.renderFullCircuit(index, long, lat, circuitRef, circuit)}>
             <div className="opacityCover" />
             <img src={circuit.image_backgrounds} />
-            <div className={circuitRef} ref={(input) => {this.currMap = input}}>
-              <Map lat={lat} lng={long}/>
+            <div className={circuitRef}>
+              <Map lat={lat} lng={long} ref={(input) => {this.currMap = input}}/>
             </div>
-
+            {this.state.circuitMap}
           </div>
         </div>
         <div className="expandedCardTitle"
@@ -171,52 +173,63 @@ class CircuitsPage extends Component {
   }
 
   renderMap(cirRef, index) {
-    console.log(cirRef);
+    let expandedCircuits = this.state.expandedCircuits;
+    let circuitIndex;
     let clickedCircuits = this.state.clickedCircuits;
+    console.log(this.currMap);
+    expandedCircuits.forEach( (item, i) => {if(index === item) {circuitIndex = i;}});
     if(!clickedCircuits[cirRef].mapButton) {
-      this.currMap.style.height = "100%";
-      this.currMap.getElementsByClassName('googleMap')[0].style.display = "inline-block";
-      document.getElementsByClassName('circuitTextArea')[0].style.display = "none";
-      document.getElementsByClassName('circuitRaceStats')[0].style.display = "none";
+      let circuit = document.getElementsByClassName('googleMap')[circuitIndex];
+      document.getElementsByClassName('circuitRaceStats')[circuitIndex].style.display = "none";
+      document.getElementsByClassName('circuitTextArea')[circuitIndex].style.display = "none";
+      let center = this.currMap.map.getCenter();
+      circuit.style.display = "inline-block";
+      google.maps.event.trigger(circuit, 'resize');
+      this.currMap.map.setCenter(center);
       clickedCircuits[cirRef].mapButton = true;
       clickedCircuits[cirRef].infoButton = false;
       clickedCircuits[cirRef].statsButton = false;
       this.setState({clickedCircuits});
     } else {
-      this.currMap.getElementsByClassName('googleMap')[0].style.display = "none";
+      document.getElementsByClassName('googleMap')[circuitIndex].style.display = "none";
       clickedCircuits[cirRef].mapButton = false;
       this.setState({clickedCircuits});
     }
   }
   renderInfo(cirRef, index) {
+    let expandedCircuits = this.state.expandedCircuits;
+    let circuitIndex;
     let clickedCircuits = this.state.clickedCircuits;
+    expandedCircuits.forEach( (item, i) => {if(index === item) {circuitIndex = i;}});
     if(!clickedCircuits[cirRef].infoButton) {
-      let circuit = document.getElementsByClassName('circuitTextArea')[0].style.display = "inline-block";
-      this.currMap.getElementsByClassName('googleMap')[0].style.display = "none";
-      document.getElementsByClassName('circuitRaceStats')[0].style.display = "none";
+      let circuit = document.getElementsByClassName('circuitTextArea')[circuitIndex].style.display = "inline-block";
+      document.getElementsByClassName('googleMap')[circuitIndex].style.display = "none";
+      document.getElementsByClassName('circuitRaceStats')[circuitIndex].style.display = "none";
       clickedCircuits[cirRef].infoButton = true;
       clickedCircuits[cirRef].mapButton = false;
       clickedCircuits[cirRef].statsButton = false;
       this.setState({clickedCircuits});
     } else {
-      let circuit = document.getElementsByClassName('circuitTextArea')[0].style.display = "none";
+      let circuit = document.getElementsByClassName('circuitTextArea')[circuitIndex].style.display = "none";
       clickedCircuits[cirRef].infoButton = false;
       this.setState({clickedCircuits});
     }
   }
   renderData(cirRef, index) {
+    let expandedCircuits = this.state.expandedCircuits;
+    let circuitIndex;
     let clickedCircuits = this.state.clickedCircuits;
+    expandedCircuits.forEach( (item, i) => {if(index === item) {circuitIndex = i;}});
     if(!clickedCircuits[cirRef].statsButton) {
-      console.log(document.getElementsByClassName('circuitRaceStats'));
-      let circuit = document.getElementsByClassName('circuitRaceStats')[0].style.display = "inline-block";
-      this.currMap.getElementsByClassName('googleMap')[0].style.display = "none";
-      document.getElementsByClassName('circuitTextArea')[0].style.display = "none";
+      document.getElementsByClassName('circuitRaceStats')[circuitIndex].style.display = "inline-block";
+      document.getElementsByClassName('circuitTextArea')[circuitIndex].style.display = "none";
+      document.getElementsByClassName('googleMap')[circuitIndex].style.display = "none";
       clickedCircuits[cirRef].statsButton = true;
       clickedCircuits[cirRef].mapButton = false;
       clickedCircuits[cirRef].infoButton = false;
       this.setState({clickedCircuits});
     } else {
-      let circuit = document.getElementsByClassName('circuitRaceStats')[0].style.display = "none";
+      document.getElementsByClassName('circuitRaceStats')[circuitIndex].style.display = "none";
       clickedCircuits[cirRef].statsButton = false;
       this.setState({clickedCircuits});
     }

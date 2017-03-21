@@ -343,6 +343,7 @@
   font-family: 'Droid Serif';
   font-size: 18px;
   text-align: left;
+  height: auto;
   color: white;
   text-shadow: 1px 1px 2px black;
   padding-right: 1em;
@@ -390,13 +391,13 @@
     display: none;
   }
   .raceSummary {
-    height: 100%;
+    height: auto;
     font-size: 0.8em;
   }
   .googleMap {
     width: 80%;
     height: 50%;
-    top: 60%;
+    top: 40%;
     display: none;
   }
 @media screen and (min-width: 770px) {

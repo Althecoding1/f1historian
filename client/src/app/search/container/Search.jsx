@@ -48,7 +48,6 @@ class Search extends Component {
           events.triggered[key] = newKey;
         }
       }
-      console.log(circuitInfo);
       this.setState({events, driverInfo, teamInfo, circuitInfo, yearInfo});
   }
 
