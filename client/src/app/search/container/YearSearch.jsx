@@ -121,6 +121,7 @@ class YearSearch extends Component {
       let driverInfo = {
         drivers: [],
         driverNames: [],
+        driverData: []
       },
       yearInfo = {
         years: []
@@ -142,6 +143,7 @@ class YearSearch extends Component {
           driverList = this.updateDriverList(data[key]);
           driverInfo.drivers = driverList;
           data[key].forEach( (driver) => {
+            driverInfo.driverData.push(driver);
             let name = driver.forename + ' ' + driver.surname;
             if(driverInfo.driverNames.indexOf(name) === -1) {
               driverInfo.driverNames.push(name);
