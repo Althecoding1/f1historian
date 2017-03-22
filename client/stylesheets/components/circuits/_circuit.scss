@@ -154,7 +154,7 @@
     }
     @media screen and (max-width: 720px) {
       .circuitTitleSm {
-        font-size: 1.5em;
+        font-size: 1.3em;
       }
       .circuitResultSm {
         height: 60vh;
@@ -294,6 +294,9 @@
           height: 71%;
         }
       }
+      .expandedCardButtons {
+        top: 20%;
+      }
   }
 }
 @media screen and (max-width: 720px) {
@@ -307,8 +310,8 @@
       margin-right: 0;
     }
     .expandedCardButtons {
-      top: 14%;
-      font-size: 1em;
+      top: 14.8%;
+      font-size: 0.8em;
     }
     .expandedCardTitle {
       font-size: 0.8em;
@@ -398,8 +401,8 @@
 }
 .googleMap {
   position: absolute;
-  height: 30%;
-  width: 30%;
+  height: 40%;
+  width: 40%;
   left: 10%;
   bottom: 0;
   border: 2px solid white;
