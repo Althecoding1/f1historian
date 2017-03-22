@@ -96,6 +96,11 @@
     left: 33%;
   }
 }
+@media screen and (min-width: 800px) and (max-width: 1023px) {
+  .driverButton {
+    left: 39%;
+  }
+}
 @media screen and (max-width: 720px) {
   .driverButton {
     bottom: 60%;
@@ -104,12 +109,11 @@
 }
 @media screen and (max-width: 500px) {
   .driverButton {
-    left: 17%;
+    left: 14%;
   }
 }
 @media screen and (max-height: 760px) {
   .driverButton {
-    left: 24%;
     img {
       height: 10em;
       width: 15em;
