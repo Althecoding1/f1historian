@@ -73,11 +73,17 @@ class YearSearch extends Component {
             <div className="drivers hvr-grow-shadow">
               <div className="driverInfo">
                 <Driver driver={driver}/>
+                <div className="driverInfoCard">
+                  <div className="textBlock">
+                    <p>Show More Info</p>
+                    <i className="fa fa-id-card" aria-hidden="true"></i>
+                  </div>
+                  <i className="fa fa-arrow-right moreInfoArrow" aria-hidden="true"></i>
+                </div>
               </div>
               <div className="driverImage">
                 <img src={driver.imageUrl}/>
               </div>
-              <div className="driverInfoCard"></div>
             </div>
           </div>
         </div>

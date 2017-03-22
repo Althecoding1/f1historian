@@ -52,6 +52,7 @@ class Search extends Component {
   }
 
   render() {
+    console.log(this.state.driverStats);
     return (
       <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo}
         teams={this.state.teamInfo} circuits={this.state.circuitInfo}
