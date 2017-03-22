@@ -73,6 +73,13 @@ class YearSearch extends Component {
             <div className="drivers hvr-grow-shadow">
               <div className="driverInfo">
                 <Driver driver={driver}/>
+                <div className="driverInfoCard">
+                  <div className="textBlock">
+                    <p>Show More Info</p>
+                    <i className="fa fa-id-card" aria-hidden="true"></i>
+                  </div>
+                  <i className="fa fa-arrow-right moreInfoArrow" aria-hidden="true"></i>
+                </div>
               </div>
               <div className="driverImage">
                 <img src={driver.imageUrl}/>
@@ -114,6 +121,7 @@ class YearSearch extends Component {
       let driverInfo = {
         drivers: [],
         driverNames: [],
+        driverData: []
       },
       yearInfo = {
         years: []
@@ -135,6 +143,7 @@ class YearSearch extends Component {
           driverList = this.updateDriverList(data[key]);
           driverInfo.drivers = driverList;
           data[key].forEach( (driver) => {
+            driverInfo.driverData.push(driver);
             let name = driver.forename + ' ' + driver.surname;
             if(driverInfo.driverNames.indexOf(name) === -1) {
               driverInfo.driverNames.push(name);

@@ -55,29 +55,42 @@
 }
 
 .hoverHelmetText {
-  position: absolute;
-  height: 0;
-  width: 0;
-  img {
-    height: 0px;
-    width: 0px;
-    display: none;
-  }
-}
-.driverButton {
-  position: absolute;
-  bottom: 60%;
-  left: 40%;
-  z-index: 3000;
-  transition: 0.5s;
+  position: relative;
+  margin: 1em;
+  border-radius: 50%;
+  transition: 0.2s;
   img {
     height: 13em;
     width: 17em;
   }
 }
-.driverButton:hover {
-  transform: rotateZ(-20deg);
+.driverButton {
+  position: absolute;
+  border-radius: 50%;
+  border: 5px;
+  top: 10%;
+  left: 40%;
+  z-index: 3000;
+  height: 14em;
+  width: 18em;
+  transition: 0.2s;
 }
+.hvr-grow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
 @media screen and (max-width: 1025px) {
   .driverButton {
     left: 33%;
