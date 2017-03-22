@@ -77,6 +77,7 @@ class YearSearch extends Component {
               <div className="driverImage">
                 <img src={driver.imageUrl}/>
               </div>
+              <div className="driverInfoCard"></div>
             </div>
           </div>
         </div>

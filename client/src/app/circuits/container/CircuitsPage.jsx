@@ -150,9 +150,9 @@ class CircuitsPage extends Component {
           </div>
         </div>
         <div className="expandedCardButtons">
-          <div className="showMapsButton" onClick={() => this.renderMap(circuitRef, index)}>Map</div>
-          <div className="showCircuitInfoButton" onClick={() => this.renderInfo(circuitRef, index)}>More Info</div>
-          <div className="showTableDataButton" onClick={() => this.renderData(circuitRef, index)}>Race Stats</div>
+          <div className="showMapsButton hvr-underline-from-center" onClick={() => this.renderMap(circuitRef, index)}>Map</div>
+          <div className="showCircuitInfoButton buttonClicked hvr-underline-from-center" onClick={() => this.renderInfo(circuitRef, index)}>More Info</div>
+          <div className="showTableDataButton hvr-underline-from-center" onClick={() => this.renderData(circuitRef, index)}>Race Stats</div>
         </div>
         <div className="allcircuitInfo">
           {this.state.circuitTableResult[circuitRef]}

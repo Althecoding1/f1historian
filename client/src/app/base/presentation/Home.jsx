@@ -13,10 +13,9 @@ const Home = () => (
         </div>
         <Link to="/drivers">
           <div className="driverButton">
-            <div className="hoverHelmetText">
-              <img src="https://image.ibb.co/nfWjTv/helmetlink.png"/>
+            <div className="hoverHelmetText hvr-grow">
+              <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/DriverHelmet6_zpsxtzyluoo.png" />
             </div>
-            <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/DriverHelmet4_zpso6lk9gsb.png" />
           </div>
         </Link>
         <div className="CTA">
