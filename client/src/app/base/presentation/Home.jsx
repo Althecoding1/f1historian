@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import '../../../../stylesheets/main.scss';
 import { Parallax, Background } from 'react-parallax';
-import smoothScroll from 'smoothScroll';
 
 const Home = ({ onClick }) => (
   <div>
@@ -21,8 +20,7 @@ const Home = ({ onClick }) => (
         </Link>
         <div className="CTA">
         </div>
-        <div className="newsIcon" onClick={onClick}>
-          <i className="fa fa-newspaper-o" aria-hidden="true"></i>
+        <div className="newsIcon">
         </div>
         <div className="arrow bounce">
         </div>
