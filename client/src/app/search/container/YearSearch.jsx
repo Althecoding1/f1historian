@@ -75,10 +75,8 @@ class YearSearch extends Component {
                 <Driver driver={driver}/>
                 <div className="driverInfoCard">
                   <div className="textBlock">
-                    <p>Show More Info</p>
-                    <i className="fa fa-id-card" aria-hidden="true"></i>
+                    <p>More Info</p>
                   </div>
-                  <i className="fa fa-arrow-right moreInfoArrow" aria-hidden="true"></i>
                 </div>
               </div>
               <div className="driverImage">

@@ -5,10 +5,8 @@
   .driverName {
     height: 5%;
     width: 100%;
-    color: #d6dcf0;
+    color: white;
     text-shadow: 1px 1px 2px black;
-    border: 1px solid white;
-    background-color: #dbcd9d;
     font-family: 'PT Serif', serif;
     font-size: 1.7em;
     .firstName {
@@ -20,8 +18,9 @@
     float: right;
     right: 0;
     position: absolute;
-    bottom: 28%;
+    bottom: 0.2em;
     font-size: 1.4em;
+    color: white;
     padding-right: 10px;
     font-family: 'PT Serif', serif;
     text-shadow: 2px 2px 3px black;
@@ -30,7 +29,8 @@
     float: left;
     left: 0;
     position: absolute;
-    bottom: 28%;
+    bottom: 0.2em;
+    color: white;
     font-size: 1.4em;
     padding-left: 10px;
     font-family: 'PT Serif', serif;
