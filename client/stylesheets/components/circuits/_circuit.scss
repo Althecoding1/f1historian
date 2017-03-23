@@ -112,7 +112,6 @@
 
 .cirSm.expandCircuit {
   overflow: visible;
-  transition-duration: 0.4s;
   width: 95%;
   height: 80%;
   margin-bottom: 2em;
@@ -220,30 +219,32 @@
   height: 5%;
   width: 80%;
   color: white;
-  border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 10px 10px;
   background-color:#dbcd9d;
   font-family: 'PT Serif', serif;
-  font-size: 1.4em;
-  top: 14%;
+  font-size: 1.2em;
+  top: 14.5%;
   left: 13%;
+  overflow: hidden;
+
   .showMapsButton {
     position: relative;
     display: inline-block;
-    height: 95%;
+    height: 90%;
     width: 33.3%;
     transition: 0.3s;
   }
   .showCircuitInfoButton {
     position: relative;
     display: inline-block;
-    height: 95%;
-    width: 33.3%;
+    height: 90%;
+    width: 33.4%;
     transition: 0.3s;
   }
   .showTableDataButton {
     position: relative;
     display: inline-block;
-    height: 95%;
+    height: 90%;
     width: 33.3%;
     transition: 0.3s;
   }
@@ -261,6 +262,7 @@
   position: relative;
   text-shadow: 1px 1px 2px black;
   color: #d6dcf0;
+  font-size: 1.1em;
   letter-spacing: 0.2em;
   height: 1px;
   width: 100%;
@@ -269,12 +271,10 @@
 .hvr-underline-from-center {
   display: inline-block;
   vertical-align: middle;
-  border-radius: 10%;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px transparent;
   position: relative;
-  overflow: hidden;
 }
 .hvr-underline-from-center:before {
   content: "";
@@ -287,14 +287,14 @@
   height: 4px;
   -webkit-transition-property: left, right;
   transition-property: left, right;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
   -webkit-transition-timing-function: ease-out;
   transition-timing-function: ease-out;
 }
 .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
-  left: 0;
-  right: 0;
+  left: 2px;
+  right: 2px;
 }
 
 @media screen and (max-height: 630px) {
