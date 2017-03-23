@@ -114,7 +114,7 @@ module.exports = {
       ' JOIN races AS Races ON Races.raceId = R.raceId' +
       ' JOIN constructors AS T ON T.constructorId = R.constructorId',
 
-      builtCircuitQuery: 'SELECT DISTINCT circuitName, location, country, lat, lng, C.image_backgrounds, C.url, C.imageUrl, circuitRef, Races.name' +
+      builtCircuitQuery: 'SELECT DISTINCT circuitName, round, location, country, lat, lng, C.image_backgrounds, C.url, C.imageUrl, circuitRef, Races.name' +
       ' FROM circuits AS C' +
       ' JOIN races AS Races ON Races.circuitId = C.circuitId' +
       ' JOIN constructorStandings AS CS ON Races.raceId = CS.raceId' +
@@ -127,6 +127,12 @@ module.exports = {
       ' JOIN drivers AS D ON R.driverId = D.driverId' +
       ' JOIN races AS Races ON Races.raceId = R.raceId'
 
+    };
+
+    let sortByQueries = {
+      driverSort: ' ORDER BY surname ASC',
+      circuitSort: ' ORDER BY round ASC',
+      teamSort: ' ORDER BY T.name ASC'
     };
 
     let finalQueryBuilds = {};
@@ -146,6 +152,11 @@ module.exports = {
       } else {
          finalQuery = queries[key] += whereClause;
       }
+
+      if(key === 'builtDriverQuery') { finalQuery = finalQuery + sortByQueries.driverSort }
+      if(key === 'builtCircuitQuery') { finalQuery = finalQuery + sortByQueries.circuitSort }
+      if(key === 'builtTeamQuery') { finalQuery = finalQuery + sortByQueries.teamSort }
+
       finalQueryBuilds[key] = finalQuery;
     }
     let resultObj = {};

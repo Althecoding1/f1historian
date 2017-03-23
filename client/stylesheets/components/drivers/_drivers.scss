@@ -20,11 +20,11 @@
 .drivers {
   width: 200px;
   height: 300px;
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 1em;
   overflow: hidden;
   object-fit: fill;
-  border: 5px solid white;
+  border: 2px solid white;
 
   .driverImage {
     height: 100%;
@@ -36,10 +36,10 @@
   }
   .driverInfoCard {
     position: absolute;
-    height: 25%;
-    width: 90%;
-    bottom: 0.4em;
-    left: 5%;
+    height: 10%;
+    width: 50%;
+    bottom: 3em;
+    right: 3.5em;
     z-index: 10;
     font-family: 'PT Serif', serif;
     text-align: center;
@@ -48,26 +48,25 @@
     text-shadow: 1px 1px 5px black;
     border-radius: 10px 10px 10px 10px;
     background-color: #d6dcf0;
-    transition: 0.3s;
+    transition: 0.2s;
     .textBlock {
       position: absolute;
       height: 100%;
       width: 100%;
       text-align: center;
       bottom: 0;
-      left: 0;
+      left: 0.4em;
+      top: 0.03em;
       p {
         top: 5%;
-        right: 10%;
         position: absolute;
-        font-size: 1.4em;
+        font-size: 1em;
         transition: 0.3s;
       }
       i {
         position: absolute;
-        top: 55%;
         left: 40%;
-        font-size: 1.9em;
+        font-size: 1em;
         transition: 0.3s;
       }
       @media screen and (max-width: 560px) {
@@ -82,6 +81,9 @@
     }
   }
   .driverInfoCard:hover {
+    background-color: #9eacdc;
+    border: 2px solid #9eacdc;
+    transition: 0.3s;
     .textBlock {
       p {
       }
@@ -128,6 +130,7 @@
 }
 
 .hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
+  border: 2px solid #9eacdc;
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
   .driverInfo {
