@@ -248,6 +248,17 @@
     width: 33.3%;
     transition: 0.3s;
   }
+  @media screen and (max-height: 700px) {
+    .showMapsButton {
+      top: 15%;
+    }
+    .showCircuitInfoButton {
+      top: 15%;
+    }
+    .showTableDataButton {
+      top: 15%;
+    }
+  }
   .showCircuitInfoButton:hover {
     text-shadow: 2px 2px 5px black;
   }
@@ -293,8 +304,8 @@
   transition-timing-function: ease-out;
 }
 .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
-  left: 2px;
-  right: 2px;
+  left: 4px;
+  right: 4px;
 }
 
 @media screen and (max-height: 630px) {
