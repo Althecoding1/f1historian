@@ -14,7 +14,7 @@ const Home = () => (
         <Link to="/drivers">
           <div className="driverButton">
             <div className="hoverHelmetText hvr-grow">
-              <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/DriverHelmet6_zpsxtzyluoo.png" />
+              <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/DriverHelmet7_zpstmakltg6.png" />
             </div>
           </div>
         </Link>
