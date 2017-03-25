@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../../../stylesheets/main.scss';
 
-const News = ({ articles, onClick }) => (
+const News = ({ articles }) => (
   <div className="news">
     <div className="container-fluid">
       <div className="row">

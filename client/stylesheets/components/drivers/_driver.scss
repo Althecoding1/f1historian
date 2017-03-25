@@ -9,6 +9,7 @@
     text-shadow: 1px 1px 2px black;
     font-family: 'PT Serif', serif;
     font-size: 1.7em;
+    z-index: 10;
     .firstName {
     }
     .lastName {
@@ -70,6 +71,47 @@
 .hvr-bubble-right:hover:before, .hvr-bubble-right:focus:before, .hvr-bubble-right:active:before {
   -webkit-transform: translateX(10px);
   transform: translateX(10px);
+}
+
+.initialDriverInfo {
+  .driverName {
+    top: 0.5em;
+    height: 5%;
+    width: 100%;
+    color: white;
+    letter-spacing: 0.1em;
+    text-decoration: underline;
+    text-shadow: 1px 1px 2px black;
+    font-family: 'PT Serif', serif;
+    font-size: 1.3em;
+    z-index: 10;
+    .firstName {
+    }
+    .lastName {
+    }
+  }
+  .driverAge {
+    float: right;
+    right: 0;
+    position: absolute;
+    bottom: 0.2em;
+    font-size: 1.2em;
+    color: white;
+    padding-right: 10px;
+    font-family: 'PT Serif', serif;
+    text-shadow: 2px 2px 3px black;
+  }
+  .nationality {
+    float: left;
+    left: 0;
+    position: absolute;
+    bottom: 0.2em;
+    color: white;
+    font-size: 1.2em;
+    padding-left: 10px;
+    font-family: 'PT Serif', serif;
+    text-shadow: 2px 2px 3px black;
+  }
 }
 
 .driverBorders {
