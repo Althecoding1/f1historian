@@ -78,12 +78,20 @@
   position: absolute;
   left: 38%;
   bottom: 13%;
+  transition: 0.2s;
   h3 {
     color: #d8d8d8;
     text-align: center;
     font-family: 'PT Serif', serif;
     line-height: 22px;
     letter-spacing: 0.2em;
+    transition: 0.2s;
+  }
+}
+
+.webTitle:hover {
+  h3 {
+    color: white;
   }
 }
 @media screen and (min-width: 800px) {

@@ -74,13 +74,15 @@
 }
 
 .initialDriverInfo {
+  color: #d8d8d8;
   .driverName {
     top: 0.5em;
     height: 5%;
     width: 100%;
-    color: white;
+    color: #d8d8d8;
     letter-spacing: 0.1em;
-    text-decoration: underline;
+    border-bottom: 1px solid #dbcd9d;
+    padding-bottom: 3px;
     text-shadow: 1px 1px 2px black;
     font-family: 'PT Serif', serif;
     font-size: 1.3em;
@@ -96,7 +98,7 @@
     position: absolute;
     bottom: 0.2em;
     font-size: 1.2em;
-    color: white;
+    color: #d8d8d8;
     padding-right: 10px;
     font-family: 'PT Serif', serif;
     text-shadow: 2px 2px 3px black;
@@ -106,7 +108,7 @@
     left: 0;
     position: absolute;
     bottom: 0.2em;
-    color: white;
+    color: #d8d8d8;
     font-size: 1.2em;
     padding-left: 10px;
     font-family: 'PT Serif', serif;
