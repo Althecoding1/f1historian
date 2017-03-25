@@ -68,11 +68,10 @@ class YearSearch extends Component {
       let age = year - dobYear;
       driver.age = age;
       return(
-        <div className="col-xs-12 col-sm-6 col-md-4 col-lg-2" key={index} onClick={() => this.flipDriverCard(index)}>
+        <div className="col-xs-12 col-sm-4 col-md-3 col-lg-3 padding-0" key={index} onClick={() => this.flipDriverCard(index)}>
           <div className="driverBorders">
             <div className="drivers hvr-grow-shadow">
               <div className="driverInfo">
-                <Driver driver={driver}/>
                 <div className="driverInfoCard">
                   <div className="textBlock">
                     <p>More Info</p>
@@ -81,6 +80,9 @@ class YearSearch extends Component {
               </div>
               <div className="driverImage">
                 <img src={driver.imageUrl}/>
+              </div>
+              <div className="initialDriverInfo">
+                <Driver driver={driver} />
               </div>
             </div>
           </div>
