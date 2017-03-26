@@ -49,15 +49,22 @@ class DriverSearch extends Component {
       let age = year - dobYear;
       driver.age = age;
       return(
-        <div className="col-xs-12 col-md-2 col-sm-4" key={index}>
-          <div className="drivers hvr-grow-shadow">
-            <div className="driverInfo">
-              <a href={driver.url}>
-                <Driver driver={driver}/>
-              </a>
-            </div>
-            <div className="driverImage">
-              <img src={driver.imageUrl}/>
+        <div className="col-xs-12 col-sm-4 col-md-3 col-lg-3 padding-0" key={index}>
+          <div className="driverBorders">
+            <div className="drivers hvr-grow-shadow">
+              <div className="driverInfo">
+                <div className="driverInfoCard">
+                  <div className="textBlock">
+                    <p>More Info</p>
+                  </div>
+                </div>
+              </div>
+              <div className="driverImage">
+                <img src={driver.imageUrl}/>
+              </div>
+              <div className="initialDriverInfo">
+                <Driver driver={driver} />
+              </div>
             </div>
           </div>
         </div>

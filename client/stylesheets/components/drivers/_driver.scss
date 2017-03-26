@@ -2,41 +2,6 @@
   font: arial;
   text-align: center;
   color: #faf8f3;
-  .driverName {
-    height: 5%;
-    width: 100%;
-    color: white;
-    text-shadow: 1px 1px 2px black;
-    font-family: 'PT Serif', serif;
-    font-size: 1.7em;
-    z-index: 10;
-    .firstName {
-    }
-    .lastName {
-    }
-  }
-  .driverAge {
-    float: right;
-    right: 0;
-    position: absolute;
-    bottom: 0.2em;
-    font-size: 1.4em;
-    color: white;
-    padding-right: 10px;
-    font-family: 'PT Serif', serif;
-    text-shadow: 2px 2px 3px black;
-  }
-  .nationality {
-    float: left;
-    left: 0;
-    position: absolute;
-    bottom: 0.2em;
-    color: white;
-    font-size: 1.4em;
-    padding-left: 10px;
-    font-family: 'PT Serif', serif;
-    text-shadow: 2px 2px 3px black;
-  }
 }
 
 .moreInfo {
@@ -44,33 +9,6 @@
   opacity: 0.5;
   text-align: center;
   bottom: 0;
-}
-.hvr-bubble-right {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px transparent;
-  position: relative;
-}
-.hvr-bubble-right:before {
-  pointer-events: none;
-  position: absolute;
-  z-index: -1;
-  content: '';
-  border-style: solid;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  top: calc(50% - 10px);
-  right: 0;
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent #e1e1e1;
-}
-.hvr-bubble-right:hover:before, .hvr-bubble-right:focus:before, .hvr-bubble-right:active:before {
-  -webkit-transform: translateX(10px);
-  transform: translateX(10px);
 }
 
 .initialDriverInfo {

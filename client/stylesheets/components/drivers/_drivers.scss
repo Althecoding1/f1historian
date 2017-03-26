@@ -11,9 +11,8 @@
 .driverListings {
 }
 .driverRows {
-  padding-left: 8%;
-  padding-right: 9%;
-
+  padding-left: 5%;
+  padding-right: 6%;
 }
 
 .driversPage {
@@ -62,7 +61,7 @@
     height: 10%;
     width: 50%;
     bottom: 1em;
-    right: 3.5em;
+    right: 3.82em;
     z-index: 10;
     font-family: 'PT Serif', serif;
     text-align: center;
@@ -105,7 +104,6 @@
   }
   .driverInfoCard:hover {
     background-color: #9eacdc;
-    border: 2px solid #9eacdc;
     transition: 0.3s;
     .textBlock {
       p {
@@ -154,9 +152,8 @@
 }
 
 .hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
-  border: 2px solid #9eacdc;
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
   .driverInfo {
     display: block;
     bottom: 0;

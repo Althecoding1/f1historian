@@ -17,65 +17,25 @@ class Drivers extends Component {
 
     this.state ={
       drivers: [],
-      text: '',
-      updated: false,
-      flags: '',
-      driverList: [],
-      driverNames: [],
-      flipped: false,
-      driverStats: [],
     };
 
-    this.updateText = this.updateText.bind(this);
-    this.updateDriverList = this.updateDriverList.bind(this);
     this.scrollToTop = this.scrollToTop.bind(this);
 
   }
   componentWillReceiveProps(nextProps) {
-
-  }
-
-  componentDidUpdate() {
-    this.updateDriverList();
-  }
-
-  flipDriverCard() {
-    console.log('here');
-  }
-
-  updateDriverList() {
-    if(!this.state.updated) {
-      this.setState({driverList: this.state.drivers.map((driver) => {
-          return(
-            <div className="col-sm-3" key={driver.driverId}>
-              <div className="drivers hvr-grow-shadow" onClick={() => this.flipDriverCard()}>
-                <div className="driverInfo">
-                  <a href={driver.url}>
-                    <Driver driver={driver}/>
-                  </a>
-                </div>
-                <div className="driverImage">
-                  <img src={driver.imageUrl}/>
-                </div>
-              </div>
-            </div>
-          );
-      }), updated: true})
-    }
-  }
-
-  updateText(e) {
-    this.setState({text: e.target.value, updated: false});
+    console.log(nextProps.drivers.drivers);
   }
 
   scrollToTop(e) {
     e.preventDefault();
-    let body = document.body;
+    let body = document.body;;
+    let circuitsTop = findDOMNode('.circuitNavigation');
     body.scrollTop = 0;
   }
-
-  updateDriverNav() {
-
+  scrollToCircuits(e) {
+    e.preventDefault();
+    let currPos = document.body.scroll
+    let circuitsTop = ReactDom.findDOMNode('.circuitNavigation');
   }
 
   render() {
@@ -94,14 +54,11 @@ class Drivers extends Component {
     );
     if(yearKeys.length === 1) {
       return (
-        <DriversPage updateText={this.updateText} onClick={this.flipDriverCard}
-          text={this.state.text} drivers={this.props.drivers.drivers}
-          year={year} />
+        <DriversPage drivers={this.props.drivers.drivers} year={year} />
       )
     }
-    return(
-      <DriversPage updateText={this.updateText} onClick={this.flipDriverCard}
-        text={this.state.text} drivers={this.props.drivers.drivers}/>
+    return (
+      <DriversPage drivers={this.props.drivers.drivers}/>
     );
   }
 }

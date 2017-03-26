@@ -28,7 +28,6 @@
   background: url('http://i393.photobucket.com/albums/pp19/Althecoding1/dark-heavypaper_zpsh5rvorqy.png');
   opacity: 1;
   overflow:hidden;
-
   transition: all 0.9s ease;
   border-bottom: 1px solid rgba(200, 200, 200, 0.8);
   box-shadow: 4px 4px 5px black;
@@ -54,25 +53,6 @@
   }
 }
 
-.hvr-grow-rotate {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px transparent;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-}
-.hvr-grow-rotate:hover, .hvr-grow-rotate:focus, .hvr-grow-rotate:active {
-  -webkit-transform: scale(1.1) rotate(4deg);
-  transform: scale(1.1) rotate(4deg);
-  h3 {
-
-  }
-}
-
 .webTitle {
   display: inline-block;
   position: absolute;
@@ -91,7 +71,7 @@
 
 .webTitle:hover {
   h3 {
-    color: white;
+    color: #C0C0C0;
   }
 }
 @media screen and (min-width: 800px) {
