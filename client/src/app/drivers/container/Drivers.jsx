@@ -4,6 +4,7 @@ import axios from 'axios';
 import createFragment from 'react-addons-create-fragment'
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
+import scrollToElement from 'scroll-to-element';
 import DriversPage from '../presentation/DriversPage.jsx';
 import DriverFlipPage from './FlipDriver.jsx';
 import CircularProgress from 'material-ui/CircularProgress';
@@ -17,65 +18,28 @@ class Drivers extends Component {
 
     this.state ={
       drivers: [],
-      text: '',
-      updated: false,
-      flags: '',
-      driverList: [],
-      driverNames: [],
-      flipped: false,
-      driverStats: [],
     };
 
-    this.updateText = this.updateText.bind(this);
-    this.updateDriverList = this.updateDriverList.bind(this);
     this.scrollToTop = this.scrollToTop.bind(this);
 
   }
   componentWillReceiveProps(nextProps) {
-
-  }
-
-  componentDidUpdate() {
-    this.updateDriverList();
-  }
-
-  flipDriverCard() {
-    console.log('here');
-  }
-
-  updateDriverList() {
-    if(!this.state.updated) {
-      this.setState({driverList: this.state.drivers.map((driver) => {
-          return(
-            <div className="col-sm-3" key={driver.driverId}>
-              <div className="drivers hvr-grow-shadow" onClick={() => this.flipDriverCard()}>
-                <div className="driverInfo">
-                  <a href={driver.url}>
-                    <Driver driver={driver}/>
-                  </a>
-                </div>
-                <div className="driverImage">
-                  <img src={driver.imageUrl}/>
-                </div>
-              </div>
-            </div>
-          );
-      }), updated: true})
-    }
-  }
-
-  updateText(e) {
-    this.setState({text: e.target.value, updated: false});
+    console.log(nextProps.drivers.drivers);
   }
 
   scrollToTop(e) {
     e.preventDefault();
-    let body = document.body;
-    body.scrollTop = 0;
+    scrollToElement('.resultSearch', {
+      offset: 0,
+      duration: 500
+    });
   }
-
-  updateDriverNav() {
-
+  scrollToCircuits(e) {
+    e.preventDefault();
+    scrollToElement('.circuitNavigation', {
+      offset: 0,
+      duration: 500
+    });
   }
 
   render() {
@@ -86,6 +50,9 @@ class Drivers extends Component {
           <div className="driver-right" onClick={this.scrollToTop}>
             <i className="icon-chevron-up"></i>
           </div>
+          <div className="scrollToCircuits" onClick={this.scrollToCircuits}>
+            <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/circuitLink_zpsqs1rkoqb.png" />
+          </div>
           <div className="driverYear">
             <h3>{this.props.years[yearKeys[0]]} Drivers</h3>
           </div>
@@ -94,14 +61,11 @@ class Drivers extends Component {
     );
     if(yearKeys.length === 1) {
       return (
-        <DriversPage updateText={this.updateText} onClick={this.flipDriverCard}
-          text={this.state.text} drivers={this.props.drivers.drivers}
-          year={year} />
+        <DriversPage drivers={this.props.drivers.drivers} year={year} />
       )
     }
-    return(
-      <DriversPage updateText={this.updateText} onClick={this.flipDriverCard}
-        text={this.state.text} drivers={this.props.drivers.drivers}/>
+    return (
+      <DriversPage drivers={this.props.drivers.drivers}/>
     );
   }
 }

@@ -11,9 +11,8 @@
 .driverListings {
 }
 .driverRows {
-  padding-left: 8%;
-  padding-right: 9%;
-
+  padding-left: 5%;
+  padding-right: 6%;
 }
 
 .driversPage {
@@ -33,7 +32,7 @@
 }
 
 .drivers {
-  width:  225px;
+  width:  200px;
   height: 350px;
   border-radius: 5px;
   margin: 1em;
@@ -62,7 +61,7 @@
     height: 10%;
     width: 50%;
     bottom: 1em;
-    right: 3.5em;
+    right: 3.82em;
     z-index: 10;
     font-family: 'PT Serif', serif;
     text-align: center;
@@ -105,7 +104,6 @@
   }
   .driverInfoCard:hover {
     background-color: #9eacdc;
-    border: 2px solid #9eacdc;
     transition: 0.3s;
     .textBlock {
       p {
@@ -154,17 +152,32 @@
 }
 
 .hvr-grow-shadow:hover, .hvr-grow-shadow:focus, .hvr-grow-shadow:active {
-  border: 2px solid #9eacdc;
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
   .driverInfo {
     display: block;
     bottom: 0;
     padding: 5px;
-    background: black(0.5);
+    background: black(0.7);
   }
 }
-
+.driverNavTitle {
+  position: absolute;
+  width: 100%;
+}
+.scrollToCircuits {
+  position: absolute;
+  display: inline-block;
+  height: 30px;
+  width: 35px;
+  right: 7em;
+  top: 0.9em;
+  img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+}
 .driverSeasonTitle {
   color: white;
 }

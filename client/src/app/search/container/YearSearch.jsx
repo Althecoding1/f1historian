@@ -9,7 +9,7 @@ class YearSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 0,
+      value: 1,
       years: [],
       circuit: '',
       driver: '',
@@ -68,7 +68,7 @@ class YearSearch extends Component {
       let age = year - dobYear;
       driver.age = age;
       return(
-        <div className="col-xs-12 col-sm-4 col-md-3 col-lg-3 padding-0" key={index} onClick={() => this.flipDriverCard(index)}>
+        <div className="col-xs-12 col-sm-4 col-md-3 col-lg-3 padding-0" key={index}>
           <div className="driverBorders">
             <div className="drivers hvr-grow-shadow">
               <div className="driverInfo">
@@ -95,7 +95,7 @@ class YearSearch extends Component {
     let year = new Date().getFullYear();
     let years = [];
     let count = 0;
-    for(let i = 1950; i <= year; i++) { years.push(i); }
+    for(let i = year; i >= 1950; i--) { years.push(i); }
     years = years.map( (year) => {
       count++;
       return <MenuItem value={count} primaryText={year} key={count} />;

@@ -78,8 +78,6 @@ const navScrolling = () => {
    circuitNav = document.getElementsByClassName('circuitNavTopBar')[0],
    navRange = nav.getBoundingClientRect(),
    scrollTop = document.body.scrollTop;
-   console.log(window.pageYOffset);
-   console.log(circuitNavRange);
    if((window.pageYOffset) > circuitNavRange) {
      if(!circuitNav.classList.contains('circuitScroll')) {
        circuitNav.classList.add('circuitScroll');

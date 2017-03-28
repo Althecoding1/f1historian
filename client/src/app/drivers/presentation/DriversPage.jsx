@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import SearchDrivers from '../../search/presentation/SearchDrivers.jsx';
 
-const DriversPage = ({ drivers, updateText, text, years, year }) => (
+const DriversPage = ({ drivers, year }) => (
 
   <div className="driverResults">
     {year}
@@ -13,7 +13,6 @@ const DriversPage = ({ drivers, updateText, text, years, year }) => (
           <div className="row driverRows">
             {drivers}
           </div>
-          <div className="driverBGfader"></div>
         </div>
       </div>
     </div>
@@ -22,8 +21,6 @@ const DriversPage = ({ drivers, updateText, text, years, year }) => (
 );
 
 DriversPage.propTypes = {
-  text: PropTypes.string.isRequired,
-  updateText: PropTypes.func.isRequired,
 }
 
 
