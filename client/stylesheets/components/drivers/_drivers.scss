@@ -32,7 +32,7 @@
 }
 
 .drivers {
-  width:  225px;
+  width:  200px;
   height: 350px;
   border-radius: 5px;
   margin: 1em;
@@ -161,7 +161,23 @@
     background: black(0.7);
   }
 }
-
+.driverNavTitle {
+  position: absolute;
+  width: 100%;
+}
+.scrollToCircuits {
+  position: absolute;
+  display: inline-block;
+  height: 30px;
+  width: 35px;
+  right: 7em;
+  top: 0.9em;
+  img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+}
 .driverSeasonTitle {
   color: white;
 }

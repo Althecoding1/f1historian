@@ -4,6 +4,7 @@ import axios from 'axios';
 import createFragment from 'react-addons-create-fragment'
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
+import scrollToElement from 'scroll-to-element';
 import DriversPage from '../presentation/DriversPage.jsx';
 import DriverFlipPage from './FlipDriver.jsx';
 import CircularProgress from 'material-ui/CircularProgress';
@@ -28,14 +29,17 @@ class Drivers extends Component {
 
   scrollToTop(e) {
     e.preventDefault();
-    let body = document.body;;
-    let circuitsTop = findDOMNode('.circuitNavigation');
-    body.scrollTop = 0;
+    scrollToElement('.resultSearch', {
+      offset: 0,
+      duration: 500
+    });
   }
   scrollToCircuits(e) {
     e.preventDefault();
-    let currPos = document.body.scroll
-    let circuitsTop = ReactDom.findDOMNode('.circuitNavigation');
+    scrollToElement('.circuitNavigation', {
+      offset: 0,
+      duration: 500
+    });
   }
 
   render() {
@@ -45,6 +49,9 @@ class Drivers extends Component {
         <div className="driverNavTitle">
           <div className="driver-right" onClick={this.scrollToTop}>
             <i className="icon-chevron-up"></i>
+          </div>
+          <div className="scrollToCircuits" onClick={this.scrollToCircuits}>
+            <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/circuitLink_zpsqs1rkoqb.png" />
           </div>
           <div className="driverYear">
             <h3>{this.props.years[yearKeys[0]]} Drivers</h3>
