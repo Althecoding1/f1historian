@@ -31,6 +31,17 @@
   margin-right: 0;
 }
 
+.driverTeamBackground {
+  position: absolute;
+  height: 100%;
+  width: 100vw;
+  left: -5em;
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
 .drivers {
   width:  200px;
   height: 350px;

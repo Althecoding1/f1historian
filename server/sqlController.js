@@ -109,7 +109,7 @@ module.exports = {
     let queries = {
 
       builtDriverQuery: 'SELECT DISTINCT' +
-      ' D.number, forename, surname, dob, nationality, D.url, imageUrl FROM drivers AS D' +
+      ' D.number, forename, surname, dob, teamImage, nationality, D.url, imageUrl FROM drivers AS D' +
       ' JOIN results AS R ON D.driverId = R.driverId' +
       ' JOIN races AS Races ON Races.raceId = R.raceId' +
       ' JOIN constructors AS T ON T.constructorId = R.constructorId',
@@ -187,7 +187,7 @@ module.exports = {
     'JOIN drivers AS D ON Res.driverId = D.driverId ' +
     'JOIN circuits AS C ON R.circuitId = C.circuitId ' +
     'JOIN constructors AS Con ON Con.constructorId = Res.constructorId ' +
-    'WHERE R.year = ' + req.params.year + ' AND C.circuitName = ' + '"' + req.params.circuit + '"';
+    'WHERE R.year = ' + req.params.year + ' AND C.circuitName = ' + '"' + req.params.circuit + '" ';
     db.query(dataQuery, (err, rows, fields) => {
       if(err) {console.log(err)}
       let newRows = JSON.stringify(rows);
