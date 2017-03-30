@@ -20,14 +20,17 @@ class YearSearch extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.updateAllQueryInfo = this.updateAllQueryInfo.bind(this);
-    this.flipDriverCard = this.flipDriverCard.bind(this);
   }
 
   componentWillMount() {
     this.generateYears();
   }
+  componentDidMount() {
+    this.initialDriverInfoCards();
+  }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     if(nextProps.years.length >= 1) {
       let value = nextProps.events.triggered.years ? 1 : 0;
       let count = 0;
@@ -37,15 +40,6 @@ class YearSearch extends Component {
       })
       years.unshift(<MenuItem value={0} primaryText="Years" key={0}/>);
       this.setState({value, years});
-    }
-  }
-
-  flipDriverCard(i) {
-    let driver = document.getElementsByClassName('drivers')[i];
-    if(driver.classList.contains('flipped')) {
-      driver.classList.remove('flipped');
-    } else {
-      driver.classList.add('flipped');
     }
   }
 
@@ -72,22 +66,9 @@ class YearSearch extends Component {
           <div className="driverTeamBackground">
             <img src={driver.teamImage} />
           </div>
-          <div className="driverBorders">
-            <div className="drivers hvr-grow-shadow">
-              <div className="driverInfo">
-                <div className="driverInfoCard">
-                  <div className="textBlock">
-                    <p>More Info</p>
-                  </div>
-                </div>
-              </div>
-              <div className="driverImage">
-                <img src={driver.imageUrl}/>
-              </div>
-              <div className="initialDriverInfo">
-                <Driver driver={driver} />
-              </div>
-            </div>
+          <div className="driverCardImage">
+            {driver.imageUrl == null || driver.imageUrl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={driver.imageUrl}/>
+            }
           </div>
         </div>
       );
@@ -105,6 +86,11 @@ class YearSearch extends Component {
     });
     years.unshift(<MenuItem value={0} primaryText="Years" key={0} />);
     this.setState({years: years});
+  }
+
+  initialDriverInfoCards() {
+    let driverList = this.updateAllQueryInfo(2017, 'Circuits', 'Drivers', 'Constructors');
+    this.setState({driverList});
   }
 
   handleChange(event, index, value) {

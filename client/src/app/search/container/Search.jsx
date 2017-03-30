@@ -18,7 +18,7 @@ class Search extends Component {
       driverInfo: {},
       teamInfo: {},
       circuitInfo: {},
-      yearInfo: {},
+      yearInfo: {years: 2017},
       events: {
         triggered: {
           drivers: false,
@@ -47,11 +47,11 @@ class Search extends Component {
           events.triggered[key] = newKey;
         }
       }
+      console.log(driverInfo, teamInfo, circuitInfo, yearInfo)
       this.setState({events, driverInfo, teamInfo, circuitInfo, yearInfo});
   }
 
   render() {
-    console.log(this.state.driverInfo);
     return (
       <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo}
         teams={this.state.teamInfo} circuits={this.state.circuitInfo}

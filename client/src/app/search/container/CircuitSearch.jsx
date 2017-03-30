@@ -50,7 +50,10 @@ class CircuitSearch extends Component {
       let age = year - dobYear;
       driver.age = age;
       return(
-        <div className="col-xs-12 col-sm-4 col-md-3 col-lg-3 padding-0" key={index}>
+        <div className="col-xs-12" key={index}>
+          <div className="driverTeamBackground">
+            <img src={driver.teamImage} />
+          </div>
           <div className="driverBorders">
             <div className="drivers hvr-grow-shadow">
               <div className="driverInfo">
@@ -61,7 +64,8 @@ class CircuitSearch extends Component {
                 </div>
               </div>
               <div className="driverImage">
-                <img src={driver.imageUrl}/>
+                {driver.imageUrl == null || driver.imageUrl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={driver.imageUrl}/>
+                }
               </div>
               <div className="initialDriverInfo">
                 <Driver driver={driver} />

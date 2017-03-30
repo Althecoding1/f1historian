@@ -7,6 +7,20 @@
   padding-bottom: 3em;
 }
 
+.driverCardImage {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  img {
+    position: absolute;
+    top: 23%;
+    height: 85%;
+    width: 35%;
+  }
+}
+
 
 .driverListings {
 }
@@ -17,7 +31,7 @@
 
 .driversPage {
   position: relative;
-  top: 7em;
+  top: 5.1em;
 }
 .driverBorders {
   width: 100%;
@@ -32,11 +46,12 @@
 }
 
 .driverTeamBackground {
-  position: absolute;
-  height: 100%;
+  position: relative;
+  height: 35em;
   width: 100vw;
-  left: -5em;
+  left: -6em;
   img {
+    position: relative;
     height: 100%;
     width: 100%;
   }
