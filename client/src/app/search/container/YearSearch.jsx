@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render, findDOMNode } from 'react-dom';
 import axios from 'axios';
+import { Parallax, Background } from 'react-parallax';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import Driver from '../../drivers/presentation/Driver.jsx';
@@ -61,14 +62,21 @@ class YearSearch extends Component {
       let dobYear = Number(driver.dob.slice(0, 4)), dobMonth = Number(driver.dob.slice(5,7));
       let age = year - dobYear;
       driver.age = age;
+      console.log(driver);
       return(
         <div className="col-xs-12" key={index}>
-          <div className="driverTeamBackground">
-            <img src={driver.teamImage} />
-          </div>
-          <div className="driverCardImage">
-            {driver.imageUrl == null || driver.imageUrl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={driver.imageUrl}/>
-            }
+          <div className="driverCards">
+            <div className="driverTeamBackground">
+              <Parallax bgImage={driver.teamImage} strength={100} bgStyle={{position: 'relative', height: '100%'}}>
+              </Parallax>
+              <div className="driverCardImage">
+                {driver.imageUrl == null || driver.imageUrl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={driver.imageUrl}/>
+                }
+              </div>
+              <div className="driverNames">
+                {driver.forename + ' ' + driver.surname}
+              </div>
+            </div>
           </div>
         </div>
       );
