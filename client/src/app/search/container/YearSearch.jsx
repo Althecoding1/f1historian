@@ -4,6 +4,8 @@ import axios from 'axios';
 import { Parallax, Background } from 'react-parallax';
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
+import Modal from 'react-modal';
+import DriverModal from '../../drivers/container/DriverModal.jsx';
 import Driver from '../../drivers/presentation/Driver.jsx';
 
 class YearSearch extends Component {
@@ -21,6 +23,7 @@ class YearSearch extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.updateAllQueryInfo = this.updateAllQueryInfo.bind(this);
+    this.renderModal = this.renderModal.bind(this);
   }
 
   componentWillMount() {
@@ -55,6 +58,12 @@ class YearSearch extends Component {
     })
   }
 
+  renderModal(i, data) {
+    return (
+      <DriverModal data={data} index={i}/>
+    )
+  }
+
   updateDriverList(data) {
     let year = new Date().getYear() + 1900;
     let month = new Date().getMonth();
@@ -62,10 +71,9 @@ class YearSearch extends Component {
       let dobYear = Number(driver.dob.slice(0, 4)), dobMonth = Number(driver.dob.slice(5,7));
       let age = year - dobYear;
       driver.age = age;
-      console.log(driver);
       return(
         <div className="col-xs-12" key={index}>
-          <div className="driverCards">
+          <div className="driverCards" onClick={() => {this.renderModal(index, driver)}}>
             <div className="driverTeamBackground">
               <img src={driver.teamImage} />
               <div className="driverCardImage">

@@ -6,9 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import scrollToElement from 'scroll-to-element';
 import DriversPage from '../presentation/DriversPage.jsx';
-import DriverFlipPage from './FlipDriver.jsx';
 import CircularProgress from 'material-ui/CircularProgress';
-import FlipDriverView from '../presentation/FlipDriverView.jsx';
 import Driver from '../presentation/Driver.jsx';
 import '../../../../stylesheets/main.scss';
 
@@ -24,7 +22,8 @@ class Drivers extends Component {
 
   }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.drivers.drivers);
+    let drivers = nextProps.drivers;
+    this.setState({drivers});
   }
 
   scrollToTop(e) {
@@ -43,6 +42,7 @@ class Drivers extends Component {
   }
 
   render() {
+    console.log(this.state.drivers);
     let yearKeys = Object.keys(this.props.years);
     let year = (
       <div className="driverNavTopBar">
@@ -61,11 +61,11 @@ class Drivers extends Component {
     );
     if(yearKeys.length === 1) {
       return (
-        <DriversPage drivers={this.props.drivers.drivers} year={year} />
+        <DriversPage drivers={this.state.drivers.drivers} year={year} />
       )
     }
     return (
-      <DriversPage drivers={this.props.drivers.drivers}/>
+      <DriversPage drivers={this.state.drivers.drivers}/>
     );
   }
 }
