@@ -7,10 +7,17 @@
   padding-bottom: 3em;
 }
 
+.driverRows {
+  .col-xs-12 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .driverCardImage {
   position: absolute;
-  top: 23%;
-  height: 85%;
+  top: 20%;
+  height: 100%;
   width: 30%;
   overflow: hidden;
   img {
@@ -19,14 +26,6 @@
     height: 100%;
     width: 100%;
   }
-}
-
-
-.driverListings {
-}
-.driverRows {
-  padding-left: 5%;
-  padding-right: 6%;
 }
 
 .driversPage {
@@ -48,9 +47,7 @@
 
 .driverTeamBackground {
   position: relative;
-  height: 56vh;
-  width: 100vw;
-  left: -6em;
+  height: 100%;
   overflow: hidden;
   img {
     position: relative;
@@ -67,7 +64,7 @@
   left: 35%;
   color: #faf8f3;
   letter-spacing: 0.2em;
-  font-size: 3.5em;
+  font-size: 3vw;
 }
 .driverCards {
   position: relative;

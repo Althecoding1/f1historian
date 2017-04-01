@@ -67,8 +67,7 @@ class YearSearch extends Component {
         <div className="col-xs-12" key={index}>
           <div className="driverCards">
             <div className="driverTeamBackground">
-              <Parallax bgImage={driver.teamImage} strength={100} bgStyle={{position: 'relative', height: '100%'}}>
-              </Parallax>
+              <img src={driver.teamImage} />
               <div className="driverCardImage">
                 {driver.imageUrl == null || driver.imageUrl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={driver.imageUrl}/>
                 }
