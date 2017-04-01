@@ -9,7 +9,7 @@ import DriverModal from '../../drivers/container/DriverModal.jsx';
 import Driver from '../../drivers/presentation/Driver.jsx';
 
 class YearSearch extends Component {
-  constructor(props) {
+  cconstructor(props) {
     super(props);
     this.state = {
       value: 1,
@@ -59,9 +59,7 @@ class YearSearch extends Component {
   }
 
   renderModal(i, data) {
-    return (
-      <DriverModal data={data} index={i}/>
-    )
+    this.props.renderModal(i, data);
   }
 
   updateDriverList(data) {
