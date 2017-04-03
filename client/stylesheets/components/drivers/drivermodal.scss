@@ -1,0 +1,56 @@
+.driverTitle {
+  position: absolute;
+  height: 12%;
+  width: 100%;
+  background-color: #faf8f3;
+  border-radius: 0px 0px 10px 10px;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 4px 2px -2px black;
+  overflow: hidden;
+  .driverName {
+    position: absolute;
+    text-decoration: underline;
+    display: inline-block;
+    font-size: 1.9em;
+    letter-spacing: 0.2em;
+    font-family: 'PT Serif', serif;
+    left: 1em;
+    top: 1em;
+  }
+}
+
+.driverInfoButtons {
+  position: absolute;
+  display: inline-block;
+  height: 5%;
+  width: 96%;
+  color: #faf8f3;
+  border-radius: 0px 0px 10px 10px;
+  background-color:#dbcd9d;
+  font-family: 'PT Serif', serif;
+  font-size: 1.2em;
+  top: 11.9%;
+  left: 2%;
+  overflow: hidden;
+}
+
+.driverImage {
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  width: 9%;
+  left: 0;
+  top: 20%;
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.closeModalButton {
+  position: absolute;
+  display: inline-block;
+  bottom: 0;
+}

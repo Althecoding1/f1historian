@@ -5,6 +5,7 @@ import createFragment from 'react-addons-create-fragment'
 import MenuItem from 'material-ui/MenuItem';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import scrollToElement from 'scroll-to-element';
+import DriverModal from './DriverModal.jsx';
 import DriversPage from '../presentation/DriversPage.jsx';
 import CircularProgress from 'material-ui/CircularProgress';
 import Driver from '../presentation/Driver.jsx';
@@ -16,12 +17,18 @@ class Drivers extends Component {
 
     this.state ={
       drivers: [],
+      modal: null,
+      modalOpen: false,
     };
 
     this.scrollToTop = this.scrollToTop.bind(this);
+    this.openModal = this.openModal.bind(this);
 
   }
   componentWillReceiveProps(nextProps) {
+    if(nextProps.modal) {
+      this.openModal(nextProps.modal.driver);
+    }
     let drivers = nextProps.drivers;
     this.setState({drivers});
   }
@@ -41,8 +48,14 @@ class Drivers extends Component {
     });
   }
 
+  openModal(driver) {
+    if(driver) {
+      let modal = <DriverModal driverData={driver} open={true}/>
+      this.setState({modal});
+    }
+  }
+
   render() {
-    console.log(this.state.drivers);
     let yearKeys = Object.keys(this.props.years);
     let year = (
       <div className="driverNavTopBar">
@@ -61,11 +74,11 @@ class Drivers extends Component {
     );
     if(yearKeys.length === 1) {
       return (
-        <DriversPage drivers={this.state.drivers.drivers} year={year} />
+        <DriversPage drivers={this.state.drivers.drivers} year={year} modal={this.state.modal}/>
       )
     }
     return (
-      <DriversPage drivers={this.state.drivers.drivers}/>
+      <DriversPage drivers={this.state.drivers.drivers} modal={this.state.modal}/>
     );
   }
 }

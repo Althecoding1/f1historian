@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import SearchDrivers from '../../search/presentation/SearchDrivers.jsx';
 
-const DriversPage = ({ drivers, year }) => (
+const DriversPage = ({ drivers, year, modal }) => (
 
   <div className="driverResults">
     {year}
@@ -12,6 +12,9 @@ const DriversPage = ({ drivers, year }) => (
         <div className="container-fluid">
           <div className="row driverRows">
             {drivers}
+          </div>
+          <div className="driverModal">
+            {modal}
           </div>
         </div>
       </div>

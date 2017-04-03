@@ -28,6 +28,7 @@ class Search extends Component {
         }
       },
       loading: false,
+      modal: []
     };
     this.onChildUpdate = this.onChildUpdate.bind(this);
     this.returnWikiPage = this.returnWikiPage.bind(this);
@@ -40,7 +41,8 @@ class Search extends Component {
   }
 
   renderModal(index, driver) {
-
+    let modal = {i: index, driver: driver};
+    this.setState({modal});
   }
 
   onChildUpdate(inputEvents, driverInfo, teamInfo, circuitInfo, yearInfo) {
@@ -52,13 +54,12 @@ class Search extends Component {
           events.triggered[key] = newKey;
         }
       }
-      console.log(driverInfo, teamInfo, circuitInfo, yearInfo)
       this.setState({events, driverInfo, teamInfo, circuitInfo, yearInfo});
   }
 
   render() {
     return (
-      <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo}
+      <SearchDrivers callback={this.onChildUpdate} drivers={this.state.driverInfo} driverModal={this.state.modal}
         teams={this.state.teamInfo} circuits={this.state.circuitInfo} renderModal={this.renderModal}
         events={this.state.events} years={this.state.yearInfo} returnWiki={this.returnWikiPage} />
     );

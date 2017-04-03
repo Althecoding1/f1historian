@@ -19,7 +19,8 @@ class YearSearch extends Component {
       team: '',
       driverList: [],
       flipped: false,
-      driverWikis: []
+      driverWikis: [],
+      modalRender: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.updateAllQueryInfo = this.updateAllQueryInfo.bind(this);
@@ -34,7 +35,6 @@ class YearSearch extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     if(nextProps.years.length >= 1) {
       let value = nextProps.events.triggered.years ? 1 : 0;
       let count = 0;
