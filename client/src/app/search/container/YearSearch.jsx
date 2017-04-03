@@ -9,7 +9,7 @@ import DriverModal from '../../drivers/container/DriverModal.jsx';
 import Driver from '../../drivers/presentation/Driver.jsx';
 
 class YearSearch extends Component {
-  cconstructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
       value: 1,
