@@ -12,7 +12,7 @@ import Footer from '../../base/presentation/Footer.jsx';
 import CircuitsPage from '../../circuits/container/CircuitsPage.jsx';
 import '../../../../stylesheets/main.scss';
 
-const SearchDrivers = ({ callback, returnWiki, drivers, currentCircuits, teams, circuits, years, events, driverStats, year }) => (
+const SearchDrivers = ({ callback, returnWiki, drivers, currentCircuits, teams, circuits, years, events, driverStats, year, renderModal, driverModal }) => (
 
   <div>
     <div className="resultSearch">
@@ -20,7 +20,8 @@ const SearchDrivers = ({ callback, returnWiki, drivers, currentCircuits, teams, 
         <div className="row">
           <div className="col-sm-3">
             <YearMenu callback={callback} years={years}
-              events={events} returnWikiPage={returnWiki}/>
+              events={events} returnWikiPage={returnWiki}
+              renderModal={renderModal}/>
           </div>
           <div className="col-sm-3">
             <DriverMenu callback={callback} drivers={drivers}
@@ -37,7 +38,7 @@ const SearchDrivers = ({ callback, returnWiki, drivers, currentCircuits, teams, 
         </div>
       </div>
     </div>
-    <DriversPage drivers={drivers} years={years} driverStats={driverStats}/>
+    <DriversPage drivers={drivers} years={years} driverStats={driverStats} modal={driverModal}/>
     <CircuitsPage circuits={circuits}/>
     <Footer />
   </div>
