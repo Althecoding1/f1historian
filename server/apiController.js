@@ -1,4 +1,6 @@
 const axios = require('axios');
+const Promise = require('prfun');
+const Parsoid = require('parsoid');
 
 module.exports = {
 
@@ -18,12 +20,19 @@ module.exports = {
   },
 
   getWikiInfoBoxData: (req, res) => {
-    let options = {headers: {'Api-User-Agent': 'F1Historian/v1 (https://localhost:3001 Artielivingston1@gmail.com to contact)'}};
-    let url =
-    'http://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=xmlfm&titles=' + driver + '&rvsection=0';
-    axios.get(url, options)
+    let driver = req.params.forename + '_' + req.params.surname;
+    let url = 'https://en.wikipedia.org/api/rest_v1/page/html/' + driver;
+    axios.get(url)
     .then( (data) => {
-      console.log(data);
+      new Promise((resolve, reject) => {
+        resolve(Parsoid.parse(data.data, {pdoc: true}))
+      }).then((response) => {
+        console.log(response);
+        res.send(response)
+      });
+    })
+    .catch( (err) => {
+      console.log(err);
     })
   },
 

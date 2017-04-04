@@ -41,6 +41,8 @@
     "mysql": "^2.13.0",
     "node-sass": "^4.5.0",
     "nodemon": "^1.11.0",
+    "parsoid": "^0.6.1",
+    "prfun": "^2.1.4",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-bootstrap": "^0.30.7",

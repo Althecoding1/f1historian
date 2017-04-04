@@ -16,6 +16,8 @@ class DriverModal extends Component {
             top: "11em",
           }
         },
+        driverSummary: '',
+        driverInfoBox: {}
       };
       this.closeModal = this.closeModal.bind(this);
       this.loadDriverWikiData = this.loadDriverWikiData.bind(this);
@@ -34,7 +36,6 @@ class DriverModal extends Component {
       if(nextProps.open) {
         let isOpen = true;
         let driverInfo = nextProps.driverData;
-        this.loadDriverWikiData(nextProps.driverData);
         this.setState({isOpen, driverInfo});
       }
     }
@@ -46,9 +47,13 @@ class DriverModal extends Component {
 
     loadDriverWikiData(driver) {
       let url = '/api/wiki/driver/' + driver.forename + '/' + driver.surname;
-      axios.get(url)
+      let infoBoxUrl = '/api/infobox/driver/' + driver.forename + '/' + driver.surname;
+      let retrievedData = {};
+      axios.get(infoBoxUrl)
       .then( (result) => {
-      })
+        console.log(result);
+        retrievedData.summary = result.data;
+      });
     }
 
     render() {
@@ -68,6 +73,7 @@ class DriverModal extends Component {
           <div className="driverInfoButtons">
 
           </div>
+
           <button className="closeModalButton button btn" onClick={this.closeModal}>close</button>
         </Modal>
       );
