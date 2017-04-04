@@ -12,5 +12,4 @@ connection.connect((err) => {
     console.log(`Successfully connected to database!`);
   }
 });
-// host: 'f1historiandata.c7dt2jerhu7u.us-west-2.rds.amazonaws.com',
 module.exports = connection;
