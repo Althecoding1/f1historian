@@ -20,6 +20,7 @@ app.get('/api/circuits/results/:year/:circuit', sql.collectCircuitRaceResults);
 app.get('/api/teams', sql.getAllTeamNames);
 app.get('/api/search/:year/:driver/:team/:circuit', sql.getCompiledSearch);
 app.get('/api/wiki/driver/:forename/:surname', api.getWikiDataForDriver);
+app.get('/api/infobox/driver/:forename/:surname', api.getWikiInfoBoxData);
 app.get('/api/news', rss.aggregateNewsArticles);
 app.get('/api/location/:long/:lat', api.getGoogleGeoCodeLoc);
 app.get('/api/wiki/:circuit', api.getWikiDataForCircuits);

@@ -45,24 +45,15 @@ class TeamSearch extends Component {
       driver.age = age;
       return(
         <div className="col-xs-12" key={index}>
-          <div className="driverTeamBackground">
-            <img src={driver.teamImage} />
-          </div>
-          <div className="driverBorders">
-            <div className="drivers hvr-grow-shadow">
-              <div className="driverInfo">
-                <div className="driverInfoCard">
-                  <div className="textBlock">
-                    <p>More Info</p>
-                  </div>
-                </div>
-              </div>
-              <div className="driverImage">
+          <div className="driverCards" onClick={() => {this.renderModal(index, driver)}}>
+            <div className="driverTeamBackground">
+              <img src={driver.teamImage} />
+              <div className="driverCardImage">
                 {driver.imageUrl == null || driver.imageUrl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={driver.imageUrl}/>
                 }
               </div>
-              <div className="initialDriverInfo">
-                <Driver driver={driver} />
+              <div className="driverNames">
+                {driver.forename + ' ' + driver.surname}
               </div>
             </div>
           </div>
