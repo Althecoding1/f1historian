@@ -19,7 +19,7 @@ app.get('/api/circuits', sql.getAllTracks);
 app.get('/api/circuits/results/:year/:circuit', sql.collectCircuitRaceResults);
 app.get('/api/teams', sql.getAllTeamNames);
 app.get('/api/search/:year/:driver/:team/:circuit', sql.getCompiledSearch);
-app.get('/wiki/driverData', api.getWikiDataForDriver);
+app.get('/api/wiki/driver/:forename/:surname', api.getWikiDataForDriver);
 app.get('/api/news', rss.aggregateNewsArticles);
 app.get('/api/location/:long/:lat', api.getGoogleGeoCodeLoc);
 app.get('/api/wiki/:circuit', api.getWikiDataForCircuits);

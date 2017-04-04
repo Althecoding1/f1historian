@@ -108,8 +108,8 @@ module.exports = {
 
     let queries = {
 
-      builtDriverQuery: 'SELECT DISTINCT' +
-      ' D.number, forename, surname, dob, teamImage, nationality, D.url, imageUrl FROM drivers AS D' +
+      builtDriverQuery: 'SELECT' +
+      ' D.number, forename, surname, dob, teamImage, nationality, D.url, imageUrl, SUM(points) AS totalPoints FROM drivers AS D' +
       ' JOIN results AS R ON D.driverId = R.driverId' +
       ' JOIN races AS Races ON Races.raceId = R.raceId' +
       ' JOIN constructors AS T ON T.constructorId = R.constructorId',
@@ -130,10 +130,14 @@ module.exports = {
     };
 
     let sortByQueries = {
-      driverSort: ' ORDER BY surname ASC',
+      driverSort: ' ORDER BY totalPoints DESC',
       circuitSort: ' ORDER BY round ASC',
       teamSort: ' ORDER BY T.name ASC'
     };
+
+    let groupByQueries = {
+      driverSort: ' GROUP BY forename, D.number, surname, D.dob, T.teamImage, D.nationality, D.url',
+    }
 
     let finalQueryBuilds = {};
     for(let key in queries) {
@@ -153,7 +157,7 @@ module.exports = {
          finalQuery = queries[key] += whereClause;
       }
 
-      if(key === 'builtDriverQuery') { finalQuery = finalQuery + sortByQueries.driverSort }
+      if(key === 'builtDriverQuery') { finalQuery = finalQuery + groupByQueries.driverSort + sortByQueries.driverSort }
       if(key === 'builtCircuitQuery') { finalQuery = finalQuery + sortByQueries.circuitSort }
       if(key === 'builtTeamQuery') { finalQuery = finalQuery + sortByQueries.teamSort }
 

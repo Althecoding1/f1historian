@@ -46,6 +46,10 @@ class Search extends Component {
   }
 
   onChildUpdate(inputEvents, driverInfo, teamInfo, circuitInfo, yearInfo) {
+    let modal;
+    if(this.state.yearInfo !== yearInfo) {
+      modal = null;
+    }
       let events = this.state.events;
       for(let key in events.triggered) {
         let newKey;
@@ -54,7 +58,7 @@ class Search extends Component {
           events.triggered[key] = newKey;
         }
       }
-      this.setState({events, driverInfo, teamInfo, circuitInfo, yearInfo});
+      this.setState({events, driverInfo, teamInfo, circuitInfo, yearInfo, modal});
   }
 
   render() {

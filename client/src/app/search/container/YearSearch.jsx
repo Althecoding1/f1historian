@@ -21,6 +21,7 @@ class YearSearch extends Component {
       flipped: false,
       driverWikis: [],
       modalRender: false,
+      driverModal: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.updateAllQueryInfo = this.updateAllQueryInfo.bind(this);
