@@ -25,7 +25,7 @@ module.exports = {
     .then( (data) => {
       console.log(data);
     })
-  }
+  },
 
   getWikiDataForCircuits: (req, res) => {
     let circuit = req.params.circuit;
