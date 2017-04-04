@@ -25,6 +25,10 @@ class Drivers extends Component {
     this.openModal = this.openModal.bind(this);
 
   }
+
+  componentWillUnmount() {
+    this.setState
+  }
   componentWillReceiveProps(nextProps) {
     if(nextProps.modal) {
       this.openModal(nextProps.modal.driver);

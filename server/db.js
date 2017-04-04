@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 const env = require('../.env');
 const connection = mysql.createConnection({
-  host: 'f1historiandata.c7dt2jerhu7u.us-west-2.rds.amazonaws.com',
-  database: 'f1historiandata',
-  user: env.DB_USERNAME,
-  password: env.DB_PASSWORD
+  host: 'localhost',
+  database: 'f1sqldata',
+  user: 'root',
+  password: ''
 });
 connection.connect((err) => {
   if(err) {
@@ -13,5 +13,5 @@ connection.connect((err) => {
     console.log(`Successfully connected to database!`);
   }
 });
-
+// host: 'f1historiandata.c7dt2jerhu7u.us-west-2.rds.amazonaws.com',
 module.exports = connection;
