@@ -11,6 +11,7 @@ class DriverModal extends Component {
         driverInfo: {},
         modalStyle: {
           overlay: {
+            zIndex: 15,
           },
           content: {
             top: "11em",
@@ -27,7 +28,6 @@ class DriverModal extends Component {
       if(nextProps.open) {
         let isOpen = true;
         let driverInfo = nextProps.driverData;
-        this.loadDriverWikiData(nextProps.driverData);
         this.setState({isOpen, driverInfo});
       }
     }
@@ -65,9 +65,9 @@ class DriverModal extends Component {
           <div className="driverTitle">
             <div className="driverImage">
             </div>
-            <div className="driverName">
-              {driver.forename + " " + driver.surname}
-            </div>
+              <div className="driverName">
+                {driver.forename + " " + driver.surname}
+              </div>
           </div>
           <div className="driverInfoButtons">
 

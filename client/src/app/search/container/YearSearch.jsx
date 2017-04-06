@@ -79,6 +79,8 @@ class YearSearch extends Component {
                 {driver.imageUrl == null || driver.imageUrl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={driver.imageUrl}/>
                 }
               </div>
+              <div className="topDriverNavBar">
+              </div>
               <div className="driverNames">
                 {driver.forename + ' ' + driver.surname}
               </div>
