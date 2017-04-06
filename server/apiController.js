@@ -25,8 +25,6 @@ module.exports = {
     .then( (data) => {
       new Promise((resolve, reject) => {
       }).then((response) => {
-        console.log(response);
-        res.send(response)
       });
     })
     .catch( (err) => {
