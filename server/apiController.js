@@ -1,6 +1,4 @@
 const axios = require('axios');
-const Promise = require('prfun');
-const Parsoid = require('parsoid');
 
 module.exports = {
 
@@ -16,6 +14,7 @@ module.exports = {
     })
     .catch( (err) => {
       console.log(err);
+
     })
   },
 
@@ -25,7 +24,6 @@ module.exports = {
     axios.get(url)
     .then( (data) => {
       new Promise((resolve, reject) => {
-        resolve(Parsoid.parse(data.data, {pdoc: true}))
       }).then((response) => {
         console.log(response);
         res.send(response)

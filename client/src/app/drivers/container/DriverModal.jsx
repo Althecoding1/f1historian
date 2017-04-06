@@ -51,7 +51,6 @@ class DriverModal extends Component {
       let retrievedData = {};
       axios.get(infoBoxUrl)
       .then( (result) => {
-        console.log(result);
         retrievedData.summary = result.data;
       });
     }
