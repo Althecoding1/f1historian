@@ -24,6 +24,7 @@ app.get('/api/infobox/driver/:forename/:surname', api.getWikiInfoBoxData);
 app.get('/api/news', rss.aggregateNewsArticles);
 app.get('/api/location/:long/:lat', api.getGoogleGeoCodeLoc);
 app.get('/api/wiki/:circuit', api.getWikiDataForCircuits);
+app.get('/api/drivers/driverStats/:year', sql.collectDriverYearData);
 
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('client/static', 'index.html'));

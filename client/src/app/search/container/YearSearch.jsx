@@ -63,13 +63,14 @@ class YearSearch extends Component {
     this.props.renderModal(i, data);
   }
 
-  updateDriverList(data) {
+  updateDriverList(data, stats) {
     let year = new Date().getYear() + 1900;
     let month = new Date().getMonth();
     return data.map((driver, index) => {
       let dobYear = Number(driver.dob.slice(0, 4)), dobMonth = Number(driver.dob.slice(5,7));
       let age = year - dobYear;
       driver.age = age;
+      console.log(stats[index]);
       return(
         <div className="col-xs-12" key={index}>
           <div className="driverCards" onClick={() => {this.renderModal(index, driver)}}>
@@ -83,6 +84,7 @@ class YearSearch extends Component {
               </div>
               <div className="driverNames">
                 {driver.forename + ' ' + driver.surname}
+                {stats[index].totalPoints}
               </div>
             </div>
           </div>
@@ -122,64 +124,68 @@ class YearSearch extends Component {
     let options = {headers: {'typeofsearch': 'year'}};
     axios.get('/api/search/' + year + '/' + driver + '/' + team + '/' + circuit, options)
     .then( (res) => {
-      let data = res.data;
-      let driverInfo = {
-        drivers: [],
-        driverNames: [],
-        driverData: []
-      },
-      yearInfo = {
-        years: []
-      },
-      teamInfo = {
-        teams: [],
-        teamNames: [],
-      },
-      circuitInfo = {
-        circuits: [],
-        circuitNames: [],
-      };
-      let driverList;
-      if(year !== "Years") {
-        yearInfo.years = year;
-      }
-      for(let key in data) {
-        if(key === "drivers") {
-          driverList = this.updateDriverList(data[key]);
-          driverInfo.drivers = driverList;
-          data[key].forEach( (driver) => {
-            driverInfo.driverData.push(driver);
-            let name = driver.forename + ' ' + driver.surname;
-            if(driverInfo.driverNames.indexOf(name) === -1) {
-              driverInfo.driverNames.push(name);
-            }
-          });
+      axios.get('/api/drivers/driverStats/' + year)
+      .then((statsRes) => {
+        let data = res.data;
+        let statsData = statsRes.data;
+        let driverInfo = {
+          drivers: [],
+          driverNames: [],
+          driverData: []
+        },
+        yearInfo = {
+          years: []
+        },
+        teamInfo = {
+          teams: [],
+          teamNames: [],
+        },
+        circuitInfo = {
+          circuits: [],
+          circuitNames: [],
+        };
+        let driverList;
+        if(year !== "Years") {
+          yearInfo.years = year;
         }
-        if(key === "teams") {
-          data[key].forEach( (team) => {
-            let name = team.name;
-            if(teamInfo.teamNames.indexOf(name) === -1) {
-              teamInfo.teamNames.push(name);
-            }
-          });
+        for(let key in data) {
+          if(key === "drivers") {
+            driverList = this.updateDriverList(data[key], statsData);
+            driverInfo.driverData = statsData;
+            driverInfo.drivers = driverList;
+            data[key].forEach( (driver) => {
+              let name = driver.forename + ' ' + driver.surname;
+              if(driverInfo.driverNames.indexOf(name) === -1) {
+                driverInfo.driverNames.push(name);
+              }
+            });
+          }
+          if(key === "teams") {
+            data[key].forEach( (team) => {
+              let name = team.name;
+              if(teamInfo.teamNames.indexOf(name) === -1) {
+                teamInfo.teamNames.push(name);
+              }
+            });
+          }
+          if(key === "circuits") {
+            data[key].forEach( (circuit) => {
+              let name = circuit.circuitName;
+              if(circuitInfo.circuitNames.indexOf(name) === -1) {
+                circuitInfo.circuitNames.push(name);
+                circuitInfo.circuits.push(circuit);
+              }
+            })
+          }
         }
-        if(key === "circuits") {
-          data[key].forEach( (circuit) => {
-            let name = circuit.circuitName;
-            if(circuitInfo.circuitNames.indexOf(name) === -1) {
-              circuitInfo.circuitNames.push(name);
-              circuitInfo.circuits.push(circuit);
-            }
-          })
+        if(year === "Years") {
+          this.props.events.triggered.years = false;
+        } else {
+          this.props.events.triggered.years = true;
         }
-      }
-      if(year === "Years") {
-        this.props.events.triggered.years = false;
-      } else {
-        this.props.events.triggered.years = true;
-      }
-      let events = this.props.events;
-      this.props.callback(events, driverInfo, teamInfo, circuitInfo, yearInfo);
+        let events = this.props.events;
+        this.props.callback(events, driverInfo, teamInfo, circuitInfo, yearInfo);
+      })
     })
   }
 
