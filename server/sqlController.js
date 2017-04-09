@@ -109,9 +109,10 @@ module.exports = {
     let queries = {
 
       builtDriverQuery: 'SELECT' +
-      ' D.number, forename, surname, dob, teamImage, nationality, D.url, imageUrl, SUM(points) AS totalPoints FROM drivers AS D' +
+      ' D.driverId, D.number, forename, surname, dob, teamImage, nationality, D.url, imageUrl, SUM(DS.points) AS points FROM drivers AS D' +
       ' JOIN results AS R ON D.driverId = R.driverId' +
       ' JOIN races AS Races ON Races.raceId = R.raceId' +
+      ' JOIN driverStandings AS DS ON D.driverId = DS.driverId' +
       ' JOIN constructors AS T ON T.constructorId = R.constructorId',
 
       builtCircuitQuery: 'SELECT DISTINCT circuitName, round, location, country, lat, lng, C.image_backgrounds, C.url, C.imageUrl, circuitRef, Races.name' +
@@ -130,13 +131,13 @@ module.exports = {
     };
 
     let sortByQueries = {
-      driverSort: ' ORDER BY totalPoints DESC',
+      driverSort: ' ORDER BY points DESC',
       circuitSort: ' ORDER BY round ASC',
       teamSort: ' ORDER BY T.name ASC'
     };
 
     let groupByQueries = {
-      driverSort: ' GROUP BY forename, D.number, surname, D.dob, T.teamImage, D.nationality, D.url',
+      driverSort: ' GROUP BY forename, D.number, surname, D.dob, T.teamImage, D.nationality, D.url, imageUrl',
     }
 
     let finalQueryBuilds = {};
@@ -200,6 +201,19 @@ module.exports = {
     });
   },
 
-  
+   collectDriverYearData: (req, res) => {
+     let query = 'SELECT D.driverId, MAX(wins) AS totalWins, year, forename, surname, MAX(points) AS totalPoints FROM ' + ' driverStandings AS DS ' +
+     ' JOIN drivers AS D ON D.driverId = DS.driverId ' +
+     ' JOIN races AS R ON R.raceId = DS.raceId ' +
+     ' WHERE year = ' + req.params.year +
+     ' GROUP BY D.driverId, year, forename, surname ' +
+     ' ORDER BY totalPoints DESC';
+     db.query(query, (err, rows, fields) => {
+       if(err) {console.log(err)}
+       let newRows = JSON.stringify(rows);
+       newRows = JSON.parse(newRows);
+       res.send(newRows);
+     });
+   },
 
  };

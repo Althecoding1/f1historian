@@ -60,6 +60,7 @@ class Drivers extends Component {
   }
 
   render() {
+    console.log(this.state.drivers);
     let yearKeys = Object.keys(this.props.years);
     let year = (
       <div className="driverNavTopBar">
