@@ -66,25 +66,29 @@ class YearSearch extends Component {
   updateDriverList(data, stats) {
     let year = new Date().getYear() + 1900;
     let month = new Date().getMonth();
-    return data.map((driver, index) => {
-      let dobYear = Number(driver.dob.slice(0, 4)), dobMonth = Number(driver.dob.slice(5,7));
-      let age = year - dobYear;
-      driver.age = age;
-      console.log(stats[index]);
+    return stats.map((driver, index) => {
+      let currDriver;
+      for(let i = 0; i < data.length; i++) {
+        if(data[i].driverId === driver.driverId) {
+          currDriver = data[i];
+          let dobYear = Number(currDriver.dob.slice(0, 4)), dobMonth = Number(currDriver.dob.slice(5,7));
+          let age = year - dobYear;
+          currDriver.age = age;
+        }
+      }
       return(
         <div className="col-xs-12" key={index}>
           <div className="driverCards" onClick={() => {this.renderModal(index, driver)}}>
             <div className="driverTeamBackground">
-              <img src={driver.teamImage} />
+              <img src={currDriver.teamImage} />
               <div className="driverCardImage">
-                {driver.imageUrl == null || driver.imageUrl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={driver.imageUrl}/>
+                {currDriver.imageUrl == null || currDriver.imageUrl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={currDriver.imageUrl}/>
                 }
               </div>
               <div className="topDriverNavBar">
               </div>
               <div className="driverNames">
-                {driver.forename + ' ' + driver.surname}
-                {stats[index].totalPoints}
+                {currDriver.forename + ' ' + currDriver.surname}
               </div>
             </div>
           </div>

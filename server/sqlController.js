@@ -109,7 +109,7 @@ module.exports = {
     let queries = {
 
       builtDriverQuery: 'SELECT' +
-      ' D.number, forename, surname, dob, teamImage, nationality, D.url, imageUrl, SUM(DS.points) AS points FROM drivers AS D' +
+      ' D.driverId, D.number, forename, surname, dob, teamImage, nationality, D.url, imageUrl, SUM(DS.points) AS points FROM drivers AS D' +
       ' JOIN results AS R ON D.driverId = R.driverId' +
       ' JOIN races AS Races ON Races.raceId = R.raceId' +
       ' JOIN driverStandings AS DS ON D.driverId = DS.driverId' +
