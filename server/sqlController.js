@@ -202,9 +202,10 @@ module.exports = {
   },
 
    collectDriverYearData: (req, res) => {
-     let query = 'SELECT D.driverId, MAX(wins) AS totalWins, year, forename, surname, MAX(points) AS totalPoints FROM ' + ' driverStandings AS DS ' +
+     let query = 'SELECT D.driverId, MAX(wins) AS totalWins, year, forename, surname, MAX(DS.points) AS totalPoints, SUM(res.position) AS podiums FROM ' + ' driverStandings AS DS ' +
      ' JOIN drivers AS D ON D.driverId = DS.driverId ' +
      ' JOIN races AS R ON R.raceId = DS.raceId ' +
+     ' JOIN results AS res ON R.raceId = res.raceId ' +
      ' WHERE year = ' + req.params.year +
      ' GROUP BY D.driverId, year, forename, surname ' +
      ' ORDER BY totalPoints DESC';
