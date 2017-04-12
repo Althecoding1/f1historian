@@ -80,6 +80,7 @@ class DriverModal extends Component {
         <Modal
           isOpen={this.state.isOpen}
           style={this.state.modalStyle}
+          onRequestClose={this.closeModal}
           contentLabel="driverModal">
           <div className="driverTitle">
             <div className="driverImage">
