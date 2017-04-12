@@ -19,7 +19,13 @@
     left: 1em;
     top: 1em;
   }
+  @media screen and (max-width: 460px) {
+    .driverName {
+      font-size: 1.2em;
+    }
+  }
 }
+
 
 .wikiDesc {
   position: absolute;
