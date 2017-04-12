@@ -28,7 +28,17 @@ class DriverModal extends Component {
       if(nextProps.open) {
         let isOpen = true;
         let driverInfo = nextProps.driverData;
-        this.setState({isOpen, driverInfo});
+        new Promise( (resolve, reject) => {
+          let url = '/api/wiki/driver/' + driverInfo.forename + '/' + driverInfo.surname;
+          axios.get(url)
+          .then( (result) => {
+            let driverSummary = result.data;
+            resolve(driverSummary);
+          });
+        }).then( (resolution) => {
+          let driverSummary = resolution;
+          this.setState({isOpen, driverInfo, driverSummary});
+        })
       }
     }
 
@@ -36,7 +46,17 @@ class DriverModal extends Component {
       if(nextProps.open) {
         let isOpen = true;
         let driverInfo = nextProps.driverData;
-        this.setState({isOpen, driverInfo});
+        new Promise( (resolve, reject) => {
+          let url = '/api/wiki/driver/' + driverInfo.forename + '/' + driverInfo.surname;
+          axios.get(url)
+          .then( (result) => {
+            let driverSummary = result.data;
+            resolve(driverSummary);
+          });
+        }).then( (resolution) => {
+          let driverSummary = resolution;
+          this.setState({isOpen, driverInfo, driverSummary});
+        })
       }
     }
 
@@ -47,11 +67,10 @@ class DriverModal extends Component {
 
     loadDriverWikiData(driver) {
       let url = '/api/wiki/driver/' + driver.forename + '/' + driver.surname;
-      let infoBoxUrl = '/api/infobox/driver/' + driver.forename + '/' + driver.surname;
-      let retrievedData = {};
-      axios.get(infoBoxUrl)
+      axios.get(url)
       .then( (result) => {
-        retrievedData.summary = result.data;
+        let driverSummary = result.data;
+        return driverSummary;
       });
     }
 
@@ -72,7 +91,9 @@ class DriverModal extends Component {
           <div className="driverInfoButtons">
 
           </div>
-
+          <div className="wikiDesc">
+            {this.state.driverSummary}
+          </div>
           <button className="closeModalButton button btn" onClick={this.closeModal}>close</button>
         </Modal>
       );
