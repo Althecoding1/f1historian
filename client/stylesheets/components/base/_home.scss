@@ -57,6 +57,11 @@
     }
   }
 }
+@media screen and (max-width: 500px) {
+  .links {
+    top: 70%;
+  }
+}
 .driversButton {
   position: relative;
   height: 100%;
@@ -79,7 +84,7 @@
 }
 @media screen and (max-width: 500px) {
   .driversButton {
-    left: 23%;
+    left: 18%;
   }
 }
 
@@ -107,7 +112,7 @@
 }
 @media screen and (max-width: 500px) {
   .newsButtons {
-    left: 23%;
+    left: 18%;
   }
 }
 .newsButtons:hover {
