@@ -11,13 +11,6 @@ const Home = ({ onClick }) => (
       </div>
         <div className="banner-container">
         </div>
-        <Link to="/drivers">
-          <div className="driverButton">
-            <div className="hoverHelmetText hvr-grow">
-              <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/DriverHelmet7_zpstmakltg6.png" />
-            </div>
-          </div>
-        </Link>
           <div className="links">
             <div className="container-fluid">
               <div className="row">

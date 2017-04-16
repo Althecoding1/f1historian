@@ -3,6 +3,7 @@ import HomePage from './base/container/HomePage.jsx';
 import DriversPage from './drivers/container/Drivers.jsx';
 import CircuitsPage from './circuits/container/CircuitsPage.jsx';
 import SearchResults from './search/container/Search.jsx';
+import News from './base/container/NewsPage.jsx';
 
 const Routes = {
   component: Base,
@@ -16,8 +17,8 @@ const Routes = {
       component: SearchResults
     },
     {
-      path: '/circuits',
-      component: CircuitsPage
+      path: '/news',
+      component: News
     }
   ]
 }
