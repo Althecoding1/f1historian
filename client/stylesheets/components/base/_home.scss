@@ -43,6 +43,7 @@
       height: 100%;
       .driverPageLink {
         height: 25%;
+        margin-bottom: 1em;
         a {
           color: white;
         }
@@ -57,35 +58,57 @@
   }
 }
 .driversButton {
-  position: absolute;
+  position: relative;
   height: 100%;
   z-index: 3000;
   width: 15em;
-  left: 45%;
+  left: 40%;
+  text-align: left;
   border: 3px solid white;
   box-shadow: 5px 5px 10px black;
   border-radius: 5px;
   padding: 0.5em;
+  margin-bottom: 1em;
   font-family: 'PT Serif', serif;
   transition: 0.3s;
 }
+@media screen and (max-width: 770px) {
+  .driversButton {
+    left: 33%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .driversButton {
+    left: 23%;
+  }
+}
+
 .driversButton:hover {
   background: black(0.5);
 }
 
 .newsButtons {
-  position: absolute;
+  position: relative;
   height: 100%;
   width: 15em;
   z-index: 3000;
-  
-  left: 25%;
+  left: 20%;
   border: 3px solid white;
   box-shadow: 5px 5px 10px black;
   border-radius: 5px;
   padding: 0.5em;
   font-family: 'PT Serif', serif;
   transition: 0.3s;
+}
+@media screen and (max-width: 770px) {
+  .newsButtons {
+    left: 33%;
+  }
+}
+@media screen and (max-width: 500px) {
+  .newsButtons {
+    left: 23%;
+  }
 }
 .newsButtons:hover {
   background: black(0.5);
