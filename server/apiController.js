@@ -4,7 +4,6 @@ module.exports = {
 
   getWikiDataForDriver: (req, res) => {
     let driver = req.params.forename + "_" + req.params.surname;
-    console.log(driver);
     let options = {headers: {'Api-User-Agent': 'F1Historian/v1 (https://localhost:3001 Artielivingston1@gmail.com to contact)'}};
     let url = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=' + driver;
     axios.get(url, options)

@@ -32,6 +32,65 @@
   box-shadow: 0px 5px 0px black;
 }
 
+.links {
+  position: absolute;
+  top: 75%;
+  height: 25%;
+  width: 100%;
+  .container-fluid {
+    height: 100%;
+    .row {
+      height: 100%;
+      .driverPageLink {
+        height: 25%;
+        a {
+          color: white;
+        }
+      }
+      .newsPageLink {
+        height: 25%;
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+}
+.driversButton {
+  position: absolute;
+  height: 100%;
+  z-index: 3000;
+  width: 15em;
+  left: 45%;
+  border: 3px solid white;
+  box-shadow: 5px 5px 10px black;
+  border-radius: 5px;
+  padding: 0.5em;
+  font-family: 'PT Serif', serif;
+  transition: 0.3s;
+}
+.driversButton:hover {
+  background: black(0.5);
+}
+
+.newsButtons {
+  position: absolute;
+  height: 100%;
+  width: 15em;
+  z-index: 3000;
+  
+  left: 25%;
+  border: 3px solid white;
+  box-shadow: 5px 5px 10px black;
+  border-radius: 5px;
+  padding: 0.5em;
+  font-family: 'PT Serif', serif;
+  transition: 0.3s;
+}
+.newsButtons:hover {
+  background: black(0.5);
+}
+
 @import "compass/css3";
 
 @include keyframes(bounce) { 0%, 20%, 50%, 80%, 100%

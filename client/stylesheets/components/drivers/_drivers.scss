@@ -81,6 +81,10 @@
   color: #faf8f3;
   letter-spacing: 0.2em;
   font-size: 3vw;
+  transition: 0.2s;
+}
+.driverNames:hover {
+  border-bottom: 2px solid #d6dcf0;
 }
 .driverCards {
   position: relative;

@@ -11,13 +11,26 @@ const Home = ({ onClick }) => (
       </div>
         <div className="banner-container">
         </div>
-        <Link to="/drivers">
-          <div className="driverButton">
-            <div className="hoverHelmetText hvr-grow">
-              <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/DriverHelmet7_zpstmakltg6.png" />
+          <div className="links">
+            <div className="container-fluid">
+              <div className="row">
+                <div className="driverPageLink col-xs-6">
+                  <Link to="/drivers">
+                    <div className="driversButton">
+                      <p>Drivers, Teams, & Circuits</p>
+                    </div>
+                  </Link>
+                </div>
+                <div className="newsPageLink col-xs-6">
+                  <Link to="/news">
+                    <div className="newsButtons">
+                      <p>F1 News</p>
+                    </div>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
-        </Link>
         <div className="CTA">
         </div>
         <div className="newsIcon">

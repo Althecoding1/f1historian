@@ -7,7 +7,9 @@
     border-radius: 20%;
   }
 }
-
+.scrollToCircuits {
+  right: 70px;
+}
 .driverSearchOverlay {
   height: 100%;
   width: 0;
@@ -50,7 +52,7 @@
     .driver-right {
       position: fixed;
       bottom: 20px;
-      right: 20px;
+      right: 10px;
       background: white;
       background: rgba(255, 255, 255, 0.7);
       width: 50px;
