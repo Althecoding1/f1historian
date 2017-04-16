@@ -14,14 +14,14 @@ const Home = ({ onClick }) => (
           <div className="links">
             <div className="container-fluid">
               <div className="row">
-                <div className="driverPageLink col-xs-6">
+                <div className="driverPageLink col-sm-6">
                   <Link to="/drivers">
                     <div className="driversButton">
                       <p>Drivers, Teams, & Circuits</p>
                     </div>
                   </Link>
                 </div>
-                <div className="newsPageLink col-xs-6">
+                <div className="newsPageLink col-sm-6">
                   <Link to="/news">
                     <div className="newsButtons">
                       <p>F1 News</p>
