@@ -17,14 +17,22 @@ const Home = ({ onClick }) => (
                 <div className="driverPageLink col-sm-6">
                   <Link to="/drivers">
                     <div className="driversButton">
-                      <p>Drivers, Teams, & Circuits</p>
+                      <div className="driverInlay">
+                       <div className="homeButtonDriverText">
+                         Drivers, Teams, & Circuits
+                       </div>
+                      </div>
                     </div>
                   </Link>
                 </div>
                 <div className="newsPageLink col-sm-6">
                   <Link to="/news">
                     <div className="newsButtons">
-                      <p>F1 News</p>
+                      <div className="newsInlay">
+                        <div className="homeButtonNewsText">
+                          F1 News
+                        </div>
+                      </div>
                     </div>
                   </Link>
                 </div>
@@ -34,8 +42,6 @@ const Home = ({ onClick }) => (
         <div className="CTA">
         </div>
         <div className="newsIcon">
-        </div>
-        <div className="arrow bounce">
         </div>
       </div>
   </div>
