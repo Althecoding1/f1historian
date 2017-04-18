@@ -1,4 +1,4 @@
-@function black($opacity) {
+@function lightBlue($opacity) {
   @return rgba(black, $opacity)
 }
 
@@ -119,7 +119,8 @@
 }
 
 .driversButton:hover {
-  background: black(0.5);
+  background: lightBlue(0.6);
+  color: black;
 }
 
 .newsButtons {
@@ -136,8 +137,6 @@
   font-family: 'PT Serif', serif;
   transition: 0.3s;
   .newsInlay {
-    width: 99%;
-    height: 99%;
     border: 5px solid white;
     height: 100%;
     color: black;
@@ -166,7 +165,8 @@
   }
 }
 .newsButtons:hover {
-  background: black(0.5);
+  background: lightBlue(0.6);
+  color: black;
 }
 
 @import "compass/css3";
