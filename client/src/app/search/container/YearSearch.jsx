@@ -76,16 +76,29 @@ class YearSearch extends Component {
           currDriver.age = age;
         }
       }
+      let champPos = index + 1;
+      if(champPos === 1) { champPos = '1st' }
+        else if(champPos === 2) { champPos = '2nd' }
+        else if(champPos === 3) { champPos = '3rd' }
+        else if(champPos === 21) { champPos = '21st' }
+          else champPos = champPos + 'th';
       return(
         <div className="col-xs-12" key={index}>
           <div className="driverCards" onClick={() => {this.renderModal(index, driver)}}>
             <div className="driverTeamBackground">
-              <img src={currDriver.teamImage} />
+              <img src={currDriver.teamImage} className="teamImage"/>
               <div className="driverCardImage">
                 {currDriver.imageUrl == null || currDriver.imageUrl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={currDriver.imageUrl}/>
                 }
               </div>
               <div className="topDriverNavBar">
+              </div>
+              <div className="DriverNavFillIn">
+                <div className="currentDriverPosition">
+                  <div className='text'>
+                    {champPos}
+                  </div>
+                </div>
               </div>
               <div className="driverNames">
                 {currDriver.forename + ' ' + currDriver.surname}
