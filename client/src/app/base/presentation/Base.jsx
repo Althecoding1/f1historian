@@ -6,7 +6,7 @@ import '../../../../stylesheets/main.scss';
 
 const Base = ({ children }) => (
   <div>
-    <div className="container-fluid">
+    <div className="container-fluid beginBody">
         <div className="row">
           <div className="top-bar">
             <div className="top-bar-left">
