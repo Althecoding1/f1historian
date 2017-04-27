@@ -80,12 +80,9 @@ const navScrolling = () => {
        document.getElementsByClassName('pageInfoCard')[0].classList.remove('fixBox');
      }
    }
-   console.log(Math.round(circuitNav), Math.round(infoBoxBottom));
-   if(Math.round(circuitNav) - Math.round(infoBoxBottom) <= 40) {
+   if(Math.round(circuitNav) - Math.round(infoBoxBottom) <= 40 && !infoBox.classList.contains('bottomPage')) {
      infoBox.classList.add('bottomPage');
-   }
-   else {
-     infoBox.classList.remove('bottomPage');
+     infoBox.classList.remove('fixBox');
    }
  };
 
