@@ -296,3 +296,13 @@
 .driverSeasonTitle {
   color: white;
 }
+
+@media screen and (max-width: 700px) {
+  .pageInfoCard {
+    display: none;
+  }
+  .driverRows {
+    width: 100%;
+    left: 0;
+  }
+}

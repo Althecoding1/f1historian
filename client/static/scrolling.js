@@ -72,8 +72,6 @@ const navScrolling = () => {
    let infoBoxTop = infoBox.getBoundingClientRect().top;
    let infoBoxBottom = infoBox.getBoundingClientRect().bottom;
    let circuitNav = document.getElementsByClassName('circuitNavTopBar')[0].getBoundingClientRect().top;
-   console.log(driverNav);
-   console.log(Math.round(infoBoxTop));
    if(infoBoxTop - driverNav <= 7 && !infoBox.classList.contains('bottomPage')) {
      document.getElementsByClassName('pageInfoCard')[0].classList.add('fixBox');
    }
