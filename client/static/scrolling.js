@@ -72,6 +72,8 @@ const navScrolling = () => {
    let infoBoxTop = infoBox.getBoundingClientRect().top;
    let infoBoxBottom = infoBox.getBoundingClientRect().bottom;
    let circuitNav = document.getElementsByClassName('circuitNavTopBar')[0].getBoundingClientRect().top;
+   console.log(driverNav);
+   console.log(Math.round(infoBoxTop));
    if(infoBoxTop - driverNav <= 7 && !infoBox.classList.contains('bottomPage')) {
      document.getElementsByClassName('pageInfoCard')[0].classList.add('fixBox');
    }
@@ -80,9 +82,15 @@ const navScrolling = () => {
        document.getElementsByClassName('pageInfoCard')[0].classList.remove('fixBox');
      }
    }
-   if(Math.round(circuitNav) - Math.round(infoBoxBottom) <= 40 && !infoBox.classList.contains('bottomPage')) {
+   if(Math.round(circuitNav) - Math.round(infoBoxBottom) < 40 && !infoBox.classList.contains('bottomPage')) {
      infoBox.classList.add('bottomPage');
      infoBox.classList.remove('fixBox');
+   }
+   if(driverNav + Math.round(infoBoxTop) > 234 && !infoBox.classList.contains('fixBox')) {
+     if(document.body.scrollTop > 259) {
+       infoBox.classList.remove('bottomPage');
+       infoBox.classList.add('fixBox');
+     }
    }
  };
 
