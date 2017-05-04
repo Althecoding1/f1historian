@@ -8,14 +8,7 @@ window.onscroll = (e) => {
   if(document.getElementsByClassName('driverNavTopBar')[0]) {
     driverSearchScrolling();
   }
-  // if(document.getElementsByClassName('circuitNavTopBar')[0]) {
-  //   if(!circuitNavRange) {
-  //     let circuitNav = document.getElementsByClassName('circuitNavTopBar')[0];
-  //     circuitNavRange = circuitNav.getBoundingClientRect().top;
-  //     circuitSearchScrolling();
-  //   } else {
-  //   }
-  // }
+  setDriverYearInfoCard();
 };
 
 const navScrolling = () => {
@@ -71,6 +64,32 @@ const navScrolling = () => {
      }
    }
   }
+ };
+
+ const setDriverYearInfoCard = () => {
+   let driverNav = document.getElementsByClassName('driverNavTopBar')[0].getBoundingClientRect().bottom;
+   let infoBox = document.getElementsByClassName('pageInfoCard')[0];
+   let infoBoxTop = infoBox.getBoundingClientRect().top;
+   let infoBoxBottom = infoBox.getBoundingClientRect().bottom;
+   let circuitNav = document.getElementsByClassName('circuitNavTopBar')[0].getBoundingClientRect().top;
+   if(infoBoxTop - driverNav <= 7 && !infoBox.classList.contains('bottomPage')) {
+     document.getElementsByClassName('pageInfoCard')[0].classList.add('fixBox');
+   }
+   if(document.getElementsByClassName('pageInfoCard')[0].classList.contains('fixBox')) {
+     if(document.body.scrollTop < 140) {
+       document.getElementsByClassName('pageInfoCard')[0].classList.remove('fixBox');
+     }
+   }
+   if(Math.round(circuitNav) - Math.round(infoBoxBottom) < 40 && !infoBox.classList.contains('bottomPage')) {
+     infoBox.classList.add('bottomPage');
+     infoBox.classList.remove('fixBox');
+   }
+   if(driverNav + Math.round(infoBoxTop) > 234 && !infoBox.classList.contains('fixBox')) {
+     if(document.body.scrollTop > 259) {
+       infoBox.classList.remove('bottomPage');
+       infoBox.classList.add('fixBox');
+     }
+   }
  };
 
  const circuitSearchScrolling = () => {

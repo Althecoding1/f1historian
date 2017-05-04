@@ -9,8 +9,9 @@ const DriversPage = ({ drivers, year, modal }) => (
       <div className="driverSeasonTitle">
       </div>
       <div className="driverListings">
-        <div className="container-fluid">
-          <div className="row driverRows">
+        <div className="pageInfoCard"></div>
+        <div className="container-fluid driverRows">
+          <div className="row driverRow">
             {drivers}
           </div>
           <div className="driverModal">
