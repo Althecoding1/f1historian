@@ -7,8 +7,8 @@ window.onscroll = (e) => {
   navScrolling();
   if(document.getElementsByClassName('driverNavTopBar')[0]) {
     driverSearchScrolling();
+    setDriverYearInfoCard();
   }
-  setDriverYearInfoCard();
 };
 
 const navScrolling = () => {
