@@ -9,10 +9,10 @@ class SideDriverInfo extends Component {
   render() {
     return (
       <div>
-        
+        <h1>Hi</h1>
       </div>
     )
   }
 }
 
-module export SideDriverInfo;
+export default SideDriverInfo;
