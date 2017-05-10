@@ -8,6 +8,7 @@ import scrollToElement from 'scroll-to-element';
 import DriverModal from './DriverModal.jsx';
 import DriversPage from '../presentation/DriversPage.jsx';
 import CircularProgress from 'material-ui/CircularProgress';
+import InfoCard from './SideDriverInfo.jsx';
 import Driver from '../presentation/Driver.jsx';
 import '../../../../stylesheets/main.scss';
 
