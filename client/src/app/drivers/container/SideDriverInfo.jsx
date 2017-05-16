@@ -22,7 +22,6 @@ class SideDriverInfo extends Component {
     navHeight = 106;
     if(this.props.stats) {
       driverStats = this.props.stats;
-      console.log(driverStats);
     }
     this.setState({driverStats, navHeight, windowHeight});
   }
@@ -60,7 +59,6 @@ class SideDriverInfo extends Component {
     let driverStats;
     if(nextProps.stats) {
       driverStats = nextProps.stats;
-      console.log(driverStats);
     }
     this.setState({driverStats});
   }
@@ -70,10 +68,26 @@ class SideDriverInfo extends Component {
     return (
       <div>
         <div className="driverInfoTitles">
-          <div className="driverNationality">Nationality: {currDriver.nationality}</div>
-          <div className="driverTeamName">Team: </div>
-          <div className="driverPoints">Points: {currDriver.totalPoints}</div>
-          <div className="driverPodiums">Podiums: </div>
+          <div className="driverNationality">Nationality:
+            <div className="updateValue">
+              {currDriver.nationality}
+            </div>
+            </div>
+          <div className="driverTeamName">Team:
+            <div className="updateValue">
+              {currDriver.name}
+            </div>
+          </div>
+          <div className="driverPoints">Points:
+            <div className="updateValue">
+              {currDriver.totalPoints}
+            </div>
+          </div>
+          <div className="driverPodiums">Podiums:
+            <div className="updateValue">
+              
+            </div>
+          </div>
         </div>
       </div>
     )
