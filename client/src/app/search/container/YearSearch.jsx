@@ -148,7 +148,8 @@ class YearSearch extends Component {
         let driverInfo = {
           drivers: [],
           driverNames: [],
-          driverData: []
+          driverData: [],
+          moreData: data
         },
         yearInfo = {
           years: []

@@ -1,0 +1,27 @@
+.driverInfoTitles {
+  position: absolute;
+  text-align: left;
+  left: 0.5em;
+  width: 100%;
+  top: 2%;
+  font-size: 1.7vw;
+  .driverNationality {
+    padding-bottom: 5vw;
+  }
+  .driverTeamName {
+    padding-bottom: 5vw;
+  }
+  .driverPoints {
+    padding-bottom: 5vw;
+  }
+  .driverPodiums {
+    padding-bottom: 5vw;
+  }
+  .updateValue {
+    position: absolute;
+    display: inline-block;
+    text-align: right;
+    right: 1.2em;
+    font-size: 2vw;
+  }
+}
