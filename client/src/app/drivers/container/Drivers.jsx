@@ -61,6 +61,7 @@ class Drivers extends Component {
   }
 
   render() {
+    console.log(this.state.drivers)
     let yearKeys = Object.keys(this.props.years);
     let year = (
       <div className="driverNavTopBar">
@@ -79,11 +80,11 @@ class Drivers extends Component {
     );
     if(yearKeys.length === 1) {
       return (
-        <DriversPage drivers={this.state.drivers.drivers} year={year} modal={this.state.modal}/>
+        <DriversPage drivers={this.state.drivers.drivers} year={year} modal={this.state.modal} stats={this.state.drivers}/>
       )
     }
     return (
-      <DriversPage drivers={this.state.drivers.drivers} modal={this.state.modal}/>
+      <DriversPage drivers={this.state.drivers.drivers} modal={this.state.modal} stats={this.state.drivers}/>
     );
   }
 }
