@@ -85,7 +85,7 @@ class SideDriverInfo extends Component {
           </div>
           <div className="driverPodiums">Podiums:
             <div className="updateValue">
-              
+
             </div>
           </div>
         </div>
