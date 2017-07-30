@@ -11,7 +11,8 @@
     "watch": "webpack -d --watch",
     "build": "nodemon server/server.js",
     "start": "node server/server.js",
-    "postinstall": "webpack -p"
+    "postinstall": "webpack -p",
+    "dev": "concurrently --kill-others \"npm run watch\" \"npm run build\""
   },
   "author": "",
   "license": "ISC",
@@ -34,6 +35,7 @@
     "body-parser": "^1.17.1",
     "bootstrap": "^3.3.7",
     "compass-mixins": "^0.12.10",
+    "concurrently": "^3.5.0",
     "css-loader": "^0.27.3",
     "express": "^4.15.2",
     "feedparser": "^2.1.0",
@@ -44,6 +46,7 @@
     "mysql": "^2.13.0",
     "node-sass": "^4.5.0",
     "nodemon": "^1.11.0",
+    "pg": "7.0.2",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-bootstrap": "^0.30.7",

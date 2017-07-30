@@ -80,7 +80,7 @@ class SideDriverInfo extends Component {
           </div>
           <div className="driverPoints">Points:
             <div className="updateValue">
-              {currDriver.totalPoints}
+              {currDriver.totalpoints}
             </div>
           </div>
           <div className="driverPodiums">Podiums:

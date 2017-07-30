@@ -32,12 +32,12 @@ class CircuitsPage extends Component {
     let showingSummaries = {};
     let raceSummaries = {};
     circuits.map((circuit) => {
-      axios.get('/api/wiki/' + circuit.circuitName)
+      axios.get('/api/wiki/' + circuit.circuitname)
       .then( (result) => {
-        showingSummaries[circuit.circuitRef] = result.data;
+        showingSummaries[circuit.circuitref] = result.data;
         axios.get('/api/wiki/' + circuit.name)
         .then( (response) => {
-          raceSummaries[circuit.circuitRef] = response.data;
+          raceSummaries[circuit.circuitref] = response.data;
         })
       });
     });
@@ -52,7 +52,7 @@ class CircuitsPage extends Component {
     let circuitTableResult = {};
     let year = document.getElementsByClassName('year')[0].children[0].children[1].innerHTML;
     circuits.map( (circuit) => {
-      axios.get('/api/circuits/results/' + year + '/' + circuit.circuitName)
+      axios.get('/api/circuits/results/' + year + '/' + circuit.circuitname)
       .then( (result) => {
         let res = result.data;
         let driverList = res.map( (driver, index) => {
@@ -61,13 +61,13 @@ class CircuitsPage extends Component {
               <th scope="row">{driver.forename + " " + driver.surname}</th>
               <td>{driver.name}</td>
               <td>{driver.grid}</td>
-              <td>{driver.positionText}</td>
-              <td>{driver.fastestLap}</td>
+              <td>{driver.positiontext}</td>
+              <td>{driver.fastestlap}</td>
               <td>{driver.time}</td>
             </tr>
           )
         });
-        circuitTableResult[circuit.circuitRef] = (
+        circuitTableResult[circuit.circuitref] = (
             <div className="circuitRaceStats" onClick={() => this.swapTextCards()}>
               <table className="table statsTable">
                 <thead>
@@ -92,6 +92,7 @@ class CircuitsPage extends Component {
   }
 
   renderFullCircuit(i, longitude, latitude, cirRef, circuit) {
+    console.log(this.state.clickedCircuits);
     let expandedCircuits = this.state.expandedCircuits;
     let displayedCircuits = this.state.displayedCircuits;
     let referenceCircuit = displayedCircuits[i];
@@ -258,7 +259,7 @@ class CircuitsPage extends Component {
     let displayedCircuits = nextProps.circuits.circuits.map( (circuit, index) => {
       let long = circuit.lng;
       let lat = circuit.lat;
-      let circuitRef = circuit.circuitRef;
+      let circuitRef = circuit.circuitref;
       return (
         <div className="col-sm-6 cirSm" key={index}
           onClick={() => this.renderFullCircuit(index, long, lat, circuitRef, circuit)}

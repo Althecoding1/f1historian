@@ -8,7 +8,7 @@ module.exports = {
       if(err) {
         res.status(404).send(err);
       } else {
-        res.json(rows);
+        res.json(rows.rows);
       }
     });
   },
@@ -67,7 +67,7 @@ module.exports = {
       if(err) {
         res.status(501).send(err);
       } else {
-        res.json(rows);
+        res.json(rows.rows);
       }
     })
   },
@@ -137,7 +137,7 @@ module.exports = {
     };
 
     let groupByQueries = {
-      driverSort: ' GROUP BY forename, D.number, surname, D.dob, T.name, T.teamImage, D.nationality, D.url, imageUrl',
+      driverSort: ' GROUP BY D.driverid, forename, D.number, surname, D.dob, T.name, T.teamImage, D.nationality, D.url, imageUrl',
     }
 
     let finalQueryBuilds = {};
@@ -169,17 +169,17 @@ module.exports = {
       if(err) {console.log(finalQueryBuilds.builtDriverQuery, err)}
       let newRows = JSON.stringify(rows);
       newRows = JSON.parse(newRows);
-      resultObj.drivers = newRows;
+      resultObj.drivers = newRows.rows;
       db.query(finalQueryBuilds.builtTeamQuery, (err, rows, fields) => {
         if(err) {console.log(finalQueryBuilds.builtTeamQuery, err)}
         let newRows = JSON.stringify(rows);
         newRows = JSON.parse(newRows);
-        resultObj.teams = newRows;
+        resultObj.teams = newRows.rows;
         db.query(finalQueryBuilds.builtCircuitQuery, (err, rows, fields) => {
           if(err) {console.log(finalQueryBuilds.builtCircuitQuery, err)}
           let newRows = JSON.stringify(rows);
           newRows = JSON.parse(newRows);
-          resultObj.circuits = newRows;
+          resultObj.circuits = newRows.rows;
           res.send(resultObj);
         })
       })
@@ -187,17 +187,17 @@ module.exports = {
   },
 
   collectCircuitRaceResults: (req, res) => {
-    let dataQuery = 'SELECT Res.positionText, Res.fastestLap, Res.time, Res.grid, D.forename, D.surname, R.name, ' + 'C.circuitName, Con.name FROM results AS Res ' +
+    let dataQuery = 'SELECT Res.positionText, Res.fastestLap, Res.time, Res.grid, D.forename, D.surname, R.name, ' + 'C.circuitname, Con.name FROM results AS Res ' +
     'JOIN races AS R ON Res.raceId = R.raceId ' +
     'JOIN drivers AS D ON Res.driverId = D.driverId ' +
     'JOIN circuits AS C ON R.circuitId = C.circuitId ' +
     'JOIN constructors AS Con ON Con.constructorId = Res.constructorId ' +
-    'WHERE R.year = ' + req.params.year + ' AND C.circuitName = ' + '"' + req.params.circuit + '" ';
+    'WHERE R.year = ' + req.params.year + ' AND C.circuitname = ' + "'" + req.params.circuit + "'";
     db.query(dataQuery, (err, rows, fields) => {
-      if(err) {console.log(err)}
+      if(err) {console.log(`Error occured fetching Circuit Results, ${err}`)};
       let newRows = JSON.stringify(rows);
       newRows = JSON.parse(newRows);
-      res.send(newRows);
+      res.send(newRows.rows);
     });
   },
 
@@ -213,7 +213,7 @@ module.exports = {
        if(err) {console.log(err)}
        let newRows = JSON.stringify(rows);
        newRows = JSON.parse(newRows);
-       res.send(newRows);
+       res.send(newRows.rows);
      });
    },
 
