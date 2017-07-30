@@ -10,9 +10,9 @@
     "test": "jest",
     "watch": "webpack -d --watch",
     "build": "nodemon server/server.js",
+    "dev": "concurrently --kill-others \"npm run watch\" \"npm run build\"",
     "start": "node server/server.js",
     "postinstall": "webpack -p",
-    "dev": "concurrently --kill-others \"npm run watch\" \"npm run build\""
   },
   "author": "",
   "license": "ISC",
