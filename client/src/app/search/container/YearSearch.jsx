@@ -69,7 +69,7 @@ class YearSearch extends Component {
     return stats.map((driver, index) => {
       let currDriver;
       for(let i = 0; i < data.length; i++) {
-        if(data[i].driverId === driver.driverId) {
+        if(data[i].driverid === driver.driverid) {
           currDriver = data[i];
           let dobYear = Number(currDriver.dob.slice(0, 4)), dobMonth = Number(currDriver.dob.slice(5,7));
           let age = year - dobYear;
@@ -86,9 +86,9 @@ class YearSearch extends Component {
         <div className="col-xs-12" key={index}>
           <div className="driverCards" onClick={() => {this.renderModal(index, driver)}}>
             <div className="driverTeamBackground">
-              <img src={currDriver.teamImage} className="teamImage"/>
+              <img src={currDriver.teamimage} className="teamImage"/>
               <div className="driverCardImage">
-                {currDriver.imageUrl == null || currDriver.imageUrl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={currDriver.imageUrl}/>
+                {currDriver.imageurl == null || currDriver.imageurl === 'null' ? <img src="http://i393.photobucket.com/albums/pp19/Althecoding1/silhouette_zpsbasyukvi.png"/> : <img src={currDriver.imageurl}/>
                 }
               </div>
               <div className="topDriverNavBar">
@@ -188,7 +188,7 @@ class YearSearch extends Component {
           }
           if(key === "circuits") {
             data[key].forEach( (circuit) => {
-              let name = circuit.circuitName;
+              let name = circuit.circuitname;
               if(circuitInfo.circuitNames.indexOf(name) === -1) {
                 circuitInfo.circuitNames.push(name);
                 circuitInfo.circuits.push(circuit);

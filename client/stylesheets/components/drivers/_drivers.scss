@@ -46,11 +46,12 @@
   height: 100%;
   width: 30%;
   overflow: hidden;
+  transition: all 1s ease-in-out;
   img {
     position: absolute;
-    left: 0;
     height: 100%;
     width: 100%;
+    left: 0;
     z-index: 1;
   }
 }
@@ -79,6 +80,7 @@
   padding-top: 1em;
   overflow: hidden;
   border-radius: 5px 5px 5px 5px;
+  transition: all 0.3s ease-in-out;
   .teamImage {
     position: relative;
     height: 100%;
@@ -91,6 +93,10 @@
     width: 99%;
     left: 0.5%;
   }
+}
+
+.driverTeamSize {
+  transform: scale(1.02);
 }
 
 .topDriverNavBar {
@@ -201,7 +207,6 @@
       }
       i {
         position: absolute;
-        left: 40%;
         font-size: 1em;
         transition: 0.3s;
       }

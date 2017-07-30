@@ -105,7 +105,6 @@ const navScrolling = () => {
  } else {
    if(circuitNav.classList.contains('circuitScroll')) {
      circuitNav.classList.remove('circuitScroll');
-
    }
  }
  };
